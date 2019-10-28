@@ -9,27 +9,10 @@ public class ValueCalculation{
     public int wisBonus;
     public int chaBonus;
     //Skills
-    public int acrobatics;
-    public int animalHandling;
-    public int arcana;
-    public int athletics;
-    public int deception;
-    public int history;
-    public int insight;
-    public int intimidation;
-    public int investigation;
-    public int medicine;
-    public int nature;
-    public int perception;
-    public int performance;
-    public int persuasion;
-    public int religion;
-    public int slightHand;
-    public int stealth;
-    public int survival;
+
     public boolean proficiency;
 
-    public int getBonus(int stat) {
+    private int getBonus(int stat) {
         int bonus;
         bonus = stat - 10;
         if (bonus % 2 == 0) {
@@ -42,27 +25,27 @@ public class ValueCalculation{
         }
     }
 
-    public void setStrBonus(int str) {
+    void setStrBonus(int str) {
         strBonus = getBonus(str);
     }
 
-    public void setIntBonus(int Int) {
+    void setIntBonus(int Int) {
         intBonus = getBonus(Int);
     }
 
-    public void setWisBonus(int wis) {
+    void setWisBonus(int wis) {
         wisBonus = getBonus(wis);
     }
 
-    public void setDexBonus(int dex) {
+    void setDexBonus(int dex) {
         dexBonus = getBonus(dex);
     }
 
-    public void setChaBonus(int cha) {
+    void setChaBonus(int cha) {
         chaBonus = getBonus(cha);
     }
 
-    public void setConBonus(int con) {
+    void setConBonus(int con) {
         conBonus = getBonus(con);
     }
 }
