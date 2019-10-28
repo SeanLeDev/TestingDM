@@ -7,7 +7,7 @@ public class ValueCalculation{
     public int conBonus;
     public int intBonus;
     public int wisBonus;
-    public int charBonus;
+    public int chaBonus;
     //Skills
     public int acrobatics;
     public int animalHandling;
@@ -29,5 +29,40 @@ public class ValueCalculation{
     public int survival;
     public boolean proficiency;
 
+    public int getBonus(int stat) {
+        int bonus;
+        bonus = stat - 10;
+        if (bonus % 2 == 0) {
+            bonus = bonus / 2;
+            return bonus;
+        } else {
+            bonus--;
+            bonus = bonus / 2;
+            return bonus;
+        }
+    }
 
+    public void setStrBonus(int str) {
+        strBonus = getBonus(str);
+    }
+
+    public void setIntBonus(int Int) {
+        intBonus = getBonus(Int);
+    }
+
+    public void setWisBonus(int wis) {
+        wisBonus = getBonus(wis);
+    }
+
+    public void setDexBonus(int dex) {
+        dexBonus = getBonus(dex);
+    }
+
+    public void setChaBonus(int cha) {
+        chaBonus = getBonus(cha);
+    }
+
+    public void setConBonus(int con) {
+        conBonus = getBonus(con);
+    }
 }

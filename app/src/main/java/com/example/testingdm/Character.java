@@ -31,22 +31,27 @@ public class Character extends ValueCalculation{
         return Con;
     }
     //Setter Methods
-    public void setStr(int str) {
+    private void setStr(int str) {
         Str = str;
     }
-    public void setInt(int Intel) {
+
+    private void setInt(int Intel) {
         Int = Intel;
     }
-    public void setWis(int wis) {
+
+    private void setWis(int wis) {
         Wis = wis;
     }
-    public void setDex(int dex) {
+
+    private void setDex(int dex) {
         Dex = dex;
     }
-    public void setCha(int cha) {
+
+    private void setCha(int cha) {
         Cha = cha;
     }
-    public void setCon(int con) {
+
+    private void setCon(int con) {
         Con = con;
     }
 
@@ -65,11 +70,12 @@ public class Character extends ValueCalculation{
         setDex(d);
         setCha(c);
         setCon(con);
+        setStrBonus(s);
+        setIntBonus(i);
+        setWisBonus(w);
+        setDexBonus(d);
+        setChaBonus(c);
+        setConBonus(con);
 
-        strBonus=Str-10;
-        if(strBonus%2==0){
-            return;}
-        else{
-            strBonus--;}
     }
 }
