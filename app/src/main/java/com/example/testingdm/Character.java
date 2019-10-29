@@ -76,7 +76,27 @@ public class Character extends ValueCalculation{
         setDexBonus(d);
         setChaBonus(c);
         setConBonus(con);
+        //Instantiating all of the skills
         Skills atheletics = new Skills("Athletics", dexBonus, false);
+        Skills arcana = new Skills("Arcana",intBonus, false);
+        Skills acrobatics = new Skills("Acrobatics", dexBonus, false);
+        Skills animalHandling = new Skills("Animal Handling", wisBonus, false);
+        Skills athletics = new Skills("Athletics", strBonus, false);
+        Skills sleightOfHand = new Skills("Sleight of Hand", dexBonus, false);
+        Skills stealth = new Skills("Stealth", dexBonus, false);
+        Skills history = new Skills("History", intBonus, false);
+        Skills investigation = new Skills ("Investigation", intBonus, false);
+        Skills nature = new Skills("Nature", intBonus,false);
+        Skills religion = new Skills ("Religion", intBonus, false);
+        Skills insight = new Skills ("Insight", wisBonus, false);
+        Skills medicine = new Skills ("Medicine", wisBonus, false);
+        Skills perception = new Skills ("Perception", wisBonus, false);
+        Skills survival = new Skills ("Survival", wisBonus, false);
+        Skills deception = new Skills ("Deception", chaBonus, false);
+        Skills intimidation = new Skills ("Intimidation", chaBonus, false);
+        Skills performance = new Skills ("Performance", chaBonus , false);
+        Skills persuasion = new Skills ("Persuasion", chaBonus, false);
+
 
     }
 }
