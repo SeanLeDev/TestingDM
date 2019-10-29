@@ -76,6 +76,7 @@ public class Character extends ValueCalculation{
         setDexBonus(d);
         setChaBonus(c);
         setConBonus(con);
+        Skills atheletics = new Skills("Athletics", dexBonus, false);
 
     }
 }

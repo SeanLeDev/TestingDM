@@ -12,7 +12,7 @@ public class ValueCalculation{
 
     public boolean proficiency;
 
-    private int getBonus(int stat) {
+    public int getBonus(int stat) {
         int bonus;
         bonus = stat - 10;
         if (bonus % 2 == 0) {
