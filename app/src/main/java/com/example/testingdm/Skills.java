@@ -7,8 +7,7 @@ public class Skills extends ValueCalculation
     boolean p;
 
     //Constructor Method
-    public Skills(String skillName, int level, boolean proficient)
-    {
+    public Skills(String skillName, int level, boolean proficient) {
         name = skillName;
         l = level;
         p = proficient;
