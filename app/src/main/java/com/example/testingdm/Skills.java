@@ -15,8 +15,7 @@ public class Skills extends ValueCalculation
     }
 
     //if proficient it adds 2 to the level
-    private int p()
-    {
+    private int p() {
         if(p==true)
         {
             return l+2;

@@ -46,8 +46,16 @@ public class PlaceholderFragment extends Fragment {
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_main, container, false);
+        View rootView = null;
+        switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
+            case 1:
+                rootView = inflater.inflate(R.layout.fragment_character, container, false);
+                break;
+            case 2:
+                rootView = inflater.inflate(R.layout.fragment_main, container, false);
+                break;
+        }
 
-        return root;
+        return rootView;
     }
 }
