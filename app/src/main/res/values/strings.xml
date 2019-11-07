@@ -6,4 +6,11 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="character_screen">Character Screen</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="character_level"></string>
+    <string name="title_activity_character_screen">characterScreen</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
 </resources>
