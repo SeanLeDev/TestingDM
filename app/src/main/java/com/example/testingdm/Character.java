@@ -4,6 +4,7 @@ package com.example.testingdm;
 
 public class Character extends ValueCalculation{
 
+    private String Name;
     private int Str;
     private int Int;
     private int Wis;
@@ -30,6 +31,11 @@ public class Character extends ValueCalculation{
     public int getCon() {
         return Con;
     }
+
+    public String getName() {
+        return Name;
+    }
+
     //Setter Methods
     private void setStr(int str) {
         Str = str;
@@ -55,6 +61,10 @@ public class Character extends ValueCalculation{
         Con = con;
     }
 
+    private void setName(String name) {
+        Name = name;
+    }
+
     public Character(){
         setStr(10);
         setInt(10);
@@ -63,7 +73,9 @@ public class Character extends ValueCalculation{
         setCha(10);
         setCon(10);
     }
-    public Character(int s, int i, int w, int d, int c, int con) {
+
+    public Character(String name, int s, int i, int w, int d, int c, int con) {
+        setName(name);
         setStr(s);
         setInt(i);
         setWis(w);

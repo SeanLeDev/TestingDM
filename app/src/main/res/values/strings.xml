@@ -13,4 +13,12 @@
     <string name="title_activity_character_screen">characterScreen</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
+
+    <string name="nameInput">Character Name</string>
+    <string name="strInput">Str</string>
+    <string name="intInput">Int</string>
+    <string name="wisInput">Wis</string>
+    <string name="dexInput">Dex</string>
+    <string name="conInput">Con</string>
+    <string name="chaInput">Cha</string>
 </resources>
