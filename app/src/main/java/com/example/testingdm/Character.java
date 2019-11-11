@@ -2,7 +2,9 @@ package com.example.testingdm;
 
 
 
-public class Character extends ValueCalculation{
+public abstract class Character extends ValueCalculation{
+
+    DatabaseHelper mDatabaseHelper;
 
     private String Name;
     private int Str;
@@ -108,6 +110,12 @@ public class Character extends ValueCalculation{
         Skills intimidation = new Skills ("Intimidation", chaBonus, false);
         Skills performance = new Skills ("Performance", chaBonus , false);
         Skills persuasion = new Skills ("Persuasion", chaBonus, false);
+
+
+    }
+    public void AddData (String newEntry)
+    {
+        boolean insertData = mDatabaseHelper.addData(newEntry);
 
 
     }
