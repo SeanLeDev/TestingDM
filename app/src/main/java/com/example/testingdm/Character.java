@@ -1,10 +1,16 @@
 package com.example.testingdm;
 
 
+import android.widget.Toast;
 
 public abstract class Character extends ValueCalculation{
 
     DatabaseHelper mDatabaseHelper;
+    protected void onCreate()
+    {
+        mDatabaseHelper = new DatabaseHelper(this);
+    }
+
 
     private String Name;
     private int Str;
@@ -113,6 +119,12 @@ public abstract class Character extends ValueCalculation{
 
 
     }
+//TODO: Fix this cluster fuck
+ //   private void toastMessage(String message)
+  //  {
+  //      Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+  //  }
+
     public void AddData (String newEntry)
     {
         boolean insertData = mDatabaseHelper.addData(newEntry);
