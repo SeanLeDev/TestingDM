@@ -5,25 +5,21 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".characterEdit">
+    tools:context=".ui.main.ui.main.characterEdit">
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="102dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="260dp"
-        android:layout_marginLeft="260dp"
-        android:layout_marginTop="72dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/character_level"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/intInput"
-        android:layout_width="59dp"
-        android:layout_height="64dp"
-        android:layout_marginBottom="472dp"
-        android:autofillHints="@string/nameInput"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="508dp"
         android:ems="10"
         android:gravity="center"
         android:hint="@string/intInput"
@@ -32,54 +28,52 @@
         app:layout_anchorGravity="center|top"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.585"
+        app:layout_constraintHorizontal_bias="0.418"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
         app:layout_constraintVertical_bias="0.369" />
 
     <EditText
-        android:id="@+id/chaInput"
-        android:layout_width="59dp"
-        android:layout_height="64dp"
-        android:layout_marginBottom="472dp"
-        android:autofillHints="@string/nameInput"
+        android:id="@+id/wisInput"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="508dp"
         android:ems="10"
         android:gravity="center"
-        android:hint="@string/chaInput"
+        android:hint="@string/wisInput"
         android:inputType="textPersonName"
         app:layout_anchor="@+id/view_pager"
         app:layout_anchorGravity="center|top"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.92"
+        app:layout_constraintHorizontal_bias="0.884"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
         app:layout_constraintVertical_bias="0.369" />
 
     <EditText
-        android:id="@+id/dexInput"
-        android:layout_width="59dp"
-        android:layout_height="64dp"
-        android:layout_marginBottom="472dp"
-        android:autofillHints="@string/nameInput"
+        android:id="@+id/strInput"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="508dp"
         android:ems="10"
         android:gravity="center"
-        android:hint="@string/dexInput"
+        android:hint="@string/strInput"
         android:inputType="textPersonName"
         app:layout_anchor="@+id/view_pager"
         app:layout_anchorGravity="center|top"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.417"
+        app:layout_constraintHorizontal_bias="0.109"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
         app:layout_constraintVertical_bias="0.369" />
 
     <EditText
         android:id="@+id/conInput"
-        android:layout_width="59dp"
-        android:layout_height="64dp"
-        android:layout_marginBottom="472dp"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="508dp"
         android:autofillHints="@string/nameInput"
         android:ems="10"
         android:gravity="center"
@@ -89,45 +83,45 @@
         app:layout_anchorGravity="center|top"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintHorizontal_bias="0.264"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
         app:layout_constraintVertical_bias="0.369" />
 
     <EditText
-        android:id="@+id/strInput"
-        android:layout_width="59dp"
-        android:layout_height="64dp"
-        android:layout_marginBottom="472dp"
+        android:id="@+id/dexInput"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="508dp"
         android:autofillHints="@string/nameInput"
         android:ems="10"
         android:gravity="center"
-        android:hint="@string/strInput"
+        android:hint="@string/dexInput"
         android:inputType="textPersonName"
         app:layout_anchor="@+id/view_pager"
         app:layout_anchorGravity="center|top"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.082"
+        app:layout_constraintHorizontal_bias="0.573"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
         app:layout_constraintVertical_bias="0.369" />
 
     <EditText
-        android:id="@+id/wisInput"
-        android:layout_width="59dp"
-        android:layout_height="64dp"
-        android:layout_marginBottom="472dp"
+        android:id="@+id/chaInput"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="508dp"
         android:autofillHints="@string/nameInput"
         android:ems="10"
         android:gravity="center"
-        android:hint="@string/wisInput"
+        android:hint="@string/chaInput"
         android:inputType="textPersonName"
         app:layout_anchor="@+id/view_pager"
         app:layout_anchorGravity="center|top"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.752"
+        app:layout_constraintHorizontal_bias="0.727"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
         app:layout_constraintVertical_bias="0.369" />
@@ -136,123 +130,17 @@
         android:id="@+id/editText1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView"
-        android:layout_marginTop="13dp"
-        android:layout_toRightOf="@+id/textView"
+        android:layout_marginTop="92dp"
         android:background="#CCCCCC"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:layout_editor_absoluteX="149dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.848"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
 
-        <requestFocus />
+        <requestFocus
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </EditText>
-
-    <View
-        android:id="@+id/divider"
-        android:layout_width="409dp"
-        android:layout_height="1dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintBottom_toTopOf="@+id/divider2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/divider9"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <View
-        android:id="@+id/divider2"
-        android:layout_width="409dp"
-        android:layout_height="1dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginRight="1dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintBottom_toTopOf="@+id/divider3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/divider9" />
-
-    <View
-        android:id="@+id/divider3"
-        android:layout_width="409dp"
-        android:layout_height="1dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginRight="1dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="396dp" />
-
-    <View
-        android:id="@+id/divider4"
-        android:layout_width="409dp"
-        android:layout_height="1dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginRight="1dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="436dp" />
-
-    <View
-        android:id="@+id/divider5"
-        android:layout_width="409dp"
-        android:layout_height="1dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginRight="1dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="477dp" />
-
-    <View
-        android:id="@+id/divider6"
-        android:layout_width="409dp"
-        android:layout_height="1dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginRight="1dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="513dp" />
-
-    <View
-        android:id="@+id/divider7"
-        android:layout_width="409dp"
-        android:layout_height="1dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="552dp" />
-
-    <View
-        android:id="@+id/divider9"
-        android:layout_width="1dp"
-        android:layout_height="234dp"
-        android:background="?android:attr/listDivider"
-        tools:layout_editor_absoluteX="138dp"
-        tools:layout_editor_absoluteY="318dp" />
-
-    <View
-        android:id="@+id/divider10"
-        android:layout_width="1dp"
-        android:layout_height="234dp"
-        android:background="?android:attr/listDivider"
-        tools:layout_editor_absoluteX="282dp"
-        tools:layout_editor_absoluteY="318dp" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
