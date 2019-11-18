@@ -20,20 +20,7 @@ public class characterEdit extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
 
     private PageViewModel pageViewModel;
-    public int editStorage;
-    public String conversion;
-    public EditText strInput;
-    public EditText chaInput;
-    public EditText wisInput;
-    public EditText conInput;
-    public EditText dexInput;
-    public EditText intInput;
-    private TextView strBonus;
-    private TextView chaBonus;
-    private TextView wisBonus;
-    private TextView conBonus;
-    private TextView dexBonus;
-    private TextView intBonus;
+
 
     public static characterEdit newInstance(int index) {
         characterEdit fragment = new characterEdit();
@@ -52,7 +39,7 @@ public class characterEdit extends Fragment {
             index = getArguments().getInt(ARG_SECTION_NUMBER);
         }
         pageViewModel.setIndex(index);
-        strInput = (EditText) findViewById(R.id.strInput);
+
     }
 
     @Override
@@ -64,15 +51,5 @@ public class characterEdit extends Fragment {
         return rootView;
     }
 
-    public void bonusDisplay() {
-        conversion = strInput.getText().toString();
-        try {
-            editStorage = Integer.parseInt(conversion);
-        }
-        //  Set up button
-        catch (NumberFormatException nfe) {
 
-        }
-
-    }
 }

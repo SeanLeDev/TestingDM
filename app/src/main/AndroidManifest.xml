@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.main.characterScreen"
+            android:name=".ui.main.ui.main.characterScreen"
             android:label="@string/title_activity_character_screen"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">

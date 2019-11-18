@@ -22,4 +22,5 @@
     <string name="dexInput">Dex</string>
     <string name="conInput">Con</string>
     <string name="chaInput">Cha</string>
+    <string name="saveResults">Save</string>
 </resources>
