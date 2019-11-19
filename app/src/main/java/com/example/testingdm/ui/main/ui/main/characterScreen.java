@@ -53,12 +53,31 @@ public class characterScreen extends AppCompatActivity {
     public EditText conInput;
     public EditText dexInput;
     public EditText intInput;
+    public TextView nameDisplay;
     public TextView strBonus;
     public TextView chaBonus;
     public TextView wisBonus;
     public TextView conBonus;
     public TextView dexBonus;
     public TextView intBonus;
+    public TextView acrobatics;
+    public TextView animalHandling;
+    public TextView arcana;
+    public TextView athletics;
+    public TextView deception;
+    public TextView history;
+    public TextView insight;
+    public TextView intimidation;
+    public TextView investigation;
+    public TextView medicine;
+    public TextView nature;
+    public TextView perception;
+    public TextView performance;
+    public TextView persuasion;
+    public TextView religion;
+    public TextView slightOfHand;
+    public TextView stealth;
+    public TextView survival;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +106,27 @@ public class characterScreen extends AppCompatActivity {
         dexBonus = findViewById(R.id.dexBonus);
         intBonus = findViewById(R.id.intBonus);
 
+        acrobatics = findViewById(R.id.acrobaticsBonus);
+        animalHandling = findViewById(R.id.animalHandlingBonus);
+        arcana = findViewById(R.id.arcanaBonus);
+        athletics = findViewById(R.id.athleticsBonus);
+        deception = findViewById(R.id.deceptionBonus);
+        history = findViewById(R.id.historyBonus);
+        insight = findViewById(R.id.insightBonus);
+        intimidation = findViewById(R.id.intimidationBonus);
+        investigation = findViewById(R.id.investigationBonus);
+        medicine = findViewById(R.id.medicineBonus);
+        nature = findViewById(R.id.natureBonus);
+        perception = findViewById(R.id.perceptionBonus);
+        performance = findViewById(R.id.performanceBonus);
+        persuasion = findViewById(R.id.persuasionBonus);
+        religion = findViewById(R.id.religionBonus);
+        slightOfHand = findViewById(R.id.slightOfHandBonus);
+        stealth = findViewById(R.id.stealthBonus);
+        survival = findViewById(R.id.survivalBonus);
+
+
+
         saveButton = findViewById(R.id.saveButton);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +137,32 @@ public class characterScreen extends AppCompatActivity {
                 conBonus.setText(ValueCalculation.getBonus(Integer.valueOf(conInput.getText().toString())));
                 dexBonus.setText(ValueCalculation.getBonus(Integer.valueOf(dexInput.getText().toString())));
                 intBonus.setText(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString())));
+
+                nameDisplay.setText(nameInput.getText().toString());
+                //Strength bonus
+                athletics.setText(ValueCalculation.getBonus(Integer.valueOf(strInput.getText().toString())));
+                //Dexterity bonus
+                acrobatics.setText(ValueCalculation.getBonus(Integer.valueOf(dexInput.getText().toString())));
+                slightOfHand.setText(ValueCalculation.getBonus(Integer.valueOf(dexInput.getText().toString())));
+                stealth.setText(ValueCalculation.getBonus(Integer.valueOf(dexInput.getText().toString())));
+                //Wisdom bonus
+                animalHandling.setText(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString())));
+                insight.setText(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString())));
+                medicine.setText(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString())));
+                perception.setText(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString())));
+                survival.setText(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString())));
+                //Intelligence bonus
+                arcana.setText(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString())));
+                history.setText(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString())));
+                investigation.setText(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString())));
+                nature.setText(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString())));
+                religion.setText(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString())));
+                //Charisma Bonus
+                deception.setText(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString())));
+                intimidation.setText(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString())));
+                performance.setText(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString())));
+                persuasion.setText(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString())));
+
             }
         });
 
@@ -134,7 +200,7 @@ public class characterScreen extends AppCompatActivity {
 
     public void load(View v) {
 
-        FileInputStream fis = null
+        FileInputStream fis = null;
 
         try {
             fis = openFileInput(FILENAME);
