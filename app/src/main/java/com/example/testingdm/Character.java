@@ -8,7 +8,7 @@ public abstract class Character extends ValueCalculation{
     DatabaseHelper mDatabaseHelper;
     protected void onCreate()
     {
-        mDatabaseHelper = new DatabaseHelper(this);
+       // mDatabaseHelper = new DatabaseHelper(this);
     }
 
 

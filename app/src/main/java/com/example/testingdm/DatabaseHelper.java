@@ -18,9 +18,9 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private static final String COL2 = "name";
 
 
-    public DatabaseHelper(Character context) {
-        super(context, TABLE_NAME, null, 1);
-    }
+   public DatabaseHelper(Context context) {
+       super(context, TABLE_NAME, null, 1);
+   }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
