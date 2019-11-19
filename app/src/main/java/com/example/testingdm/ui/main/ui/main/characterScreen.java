@@ -41,12 +41,12 @@ public class characterScreen extends AppCompatActivity {
     public EditText conInput;
     public EditText dexInput;
     public EditText intInput;
-    private TextView strBonus;
-    private TextView chaBonus;
-    private TextView wisBonus;
-    private TextView conBonus;
-    private TextView dexBonus;
-    private TextView intBonus;
+    public TextView strBonus;
+    public TextView chaBonus;
+    public TextView wisBonus;
+    public TextView conBonus;
+    public TextView dexBonus;
+    public TextView intBonus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +66,7 @@ public class characterScreen extends AppCompatActivity {
         dexInput = findViewById(R.id.dexInput);
         intInput = findViewById(R.id.intInput);
         //Save Button
-        saveButton = findViewById(R.id.saveButton);
+        saveButtonClicked c = new saveButtonClicked();
         //Bonus View
         strBonus = findViewById(R.id.strBonus);
         chaBonus = findViewById(R.id.chaBonus);
@@ -75,17 +75,23 @@ public class characterScreen extends AppCompatActivity {
         dexBonus = findViewById(R.id.dexBonus);
         intBonus = findViewById(R.id.intBonus);
 
+        saveButton = findViewById(R.id.saveButton);
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                strBonus.setText(ValueCalculation.getBonus(Integer.valueOf(strInput.getText().toString())));
+                chaBonus.setText(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString())));
+                wisBonus.setText(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString())));
+                conBonus.setText(ValueCalculation.getBonus(Integer.valueOf(conInput.getText().toString())));
+                dexBonus.setText(ValueCalculation.getBonus(Integer.valueOf(dexInput.getText().toString())));
+                intBonus.setText(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString())));
+            }
+        });
+
+
         //configureFabButton();
     }
 
-    public void saveButtonClicked(View v) {
-        strBonus.setText(ValueCalculation.getBonus(Integer.valueOf(strInput.getText().toString())));
-        chaBonus.setText(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString())));
-        wisBonus.setText(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString())));
-        conBonus.setText(ValueCalculation.getBonus(Integer.valueOf(conInput.getText().toString())));
-        dexBonus.setText(ValueCalculation.getBonus(Integer.valueOf(dexInput.getText().toString())));
-        intBonus.setText(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString())));
-    }
 
 
 
