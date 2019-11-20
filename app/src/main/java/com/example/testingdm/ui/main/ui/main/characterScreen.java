@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.view.View.OnClickListener;
 
 import static com.example.testingdm.R.id.view_pager;
 import static com.example.testingdm.R.layout.activity_character_screen;
@@ -88,6 +89,8 @@ public class characterScreen extends AppCompatActivity {
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
+
+
         //Inputs
         nameInput = findViewById(R.id.nameInput);
         strInput = findViewById(R.id.strInput);
@@ -126,48 +129,7 @@ public class characterScreen extends AppCompatActivity {
         survival = findViewById(R.id.survivalBonus);
 
 
-
-        saveButton = findViewById(R.id.saveButton);
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                strBonus.setText(ValueCalculation.getBonus(Integer.valueOf(strInput.getText().toString())));
-                chaBonus.setText(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString())));
-                wisBonus.setText(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString())));
-                conBonus.setText(ValueCalculation.getBonus(Integer.valueOf(conInput.getText().toString())));
-                dexBonus.setText(ValueCalculation.getBonus(Integer.valueOf(dexInput.getText().toString())));
-                intBonus.setText(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString())));
-
-                nameDisplay.setText(nameInput.getText().toString());
-                //Strength bonus
-                athletics.setText(ValueCalculation.getBonus(Integer.valueOf(strInput.getText().toString())));
-                //Dexterity bonus
-                acrobatics.setText(ValueCalculation.getBonus(Integer.valueOf(dexInput.getText().toString())));
-                slightOfHand.setText(ValueCalculation.getBonus(Integer.valueOf(dexInput.getText().toString())));
-                stealth.setText(ValueCalculation.getBonus(Integer.valueOf(dexInput.getText().toString())));
-                //Wisdom bonus
-                animalHandling.setText(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString())));
-                insight.setText(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString())));
-                medicine.setText(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString())));
-                perception.setText(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString())));
-                survival.setText(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString())));
-                //Intelligence bonus
-                arcana.setText(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString())));
-                history.setText(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString())));
-                investigation.setText(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString())));
-                nature.setText(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString())));
-                religion.setText(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString())));
-                //Charisma Bonus
-                deception.setText(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString())));
-                intimidation.setText(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString())));
-                performance.setText(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString())));
-                persuasion.setText(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString())));
-
-            }
-        });
-
-
-        //configureFabButton();
+        configureFabButton();
     }
 
 
@@ -181,14 +143,13 @@ public class characterScreen extends AppCompatActivity {
 
             nameInput.getText().clear();
 
-            Toast.makeText(this, "Saved to " + getFilesDir()+ "/" + FILENAME, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Saved to " + getFilesDir() + "/" + FILENAME, Toast.LENGTH_LONG).show();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            if(fos != null)
-            {
+            if (fos != null) {
                 try {
                     fos.close();
                 } catch (IOException e) {
@@ -209,11 +170,10 @@ public class characterScreen extends AppCompatActivity {
             StringBuilder sb = new StringBuilder();
             String text;
 
-            while((text = br.readLine()) != null){
+            while ((text = br.readLine()) != null) {
                 sb.append(text).append("\n");
 
             }
-
 
 
         } catch (FileNotFoundException e) {
@@ -223,6 +183,46 @@ public class characterScreen extends AppCompatActivity {
         }
     }
 
-
-
+    public void configureFabButton() {
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println(strInput.getText());
+                strength = Integer.valueOf(strInput.getText().toString());
+                strBonus.setText(ValueCalculation.getBonus(strength));
+                chaBonus.setText(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString())));
+                wisBonus.setText(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString())));
+                conBonus.setText(ValueCalculation.getBonus(Integer.valueOf(conInput.getText().toString())));
+                dexBonus.setText(ValueCalculation.getBonus(Integer.valueOf(dexInput.getText().toString())));
+                intBonus.setText(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString())));
+                //Setting up Name
+                nameDisplay.setText(nameInput.getText().toString());
+                //Strength skills bonus
+                athletics.setText(ValueCalculation.getBonus(Integer.valueOf(strInput.getText().toString())));
+                //Dexterity skills bonus
+                acrobatics.setText(ValueCalculation.getBonus(Integer.valueOf(dexInput.getText().toString())));
+                slightOfHand.setText(ValueCalculation.getBonus(Integer.valueOf(dexInput.getText().toString())));
+                stealth.setText(ValueCalculation.getBonus(Integer.valueOf(dexInput.getText().toString())));
+                //Wisdom skills bonus
+                animalHandling.setText(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString())));
+                insight.setText(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString())));
+                medicine.setText(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString())));
+                perception.setText(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString())));
+                survival.setText(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString())));
+                //Intelligence skills bonus
+                arcana.setText(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString())));
+                history.setText(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString())));
+                investigation.setText(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString())));
+                nature.setText(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString())));
+                religion.setText(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString())));
+                //Charisma skills bonus
+                deception.setText(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString())));
+                intimidation.setText(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString())));
+                performance.setText(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString())));
+                persuasion.setText(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString())));
+            }
+        });
+    }
 }
