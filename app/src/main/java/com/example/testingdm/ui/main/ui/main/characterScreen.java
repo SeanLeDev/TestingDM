@@ -189,6 +189,7 @@ public class characterScreen extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                save(v);
                 System.out.println(strInput.getText());
                 strength = Integer.valueOf(strInput.getText().toString());
                 strBonus.setText(ValueCalculation.getBonus(strength));
@@ -222,6 +223,7 @@ public class characterScreen extends AppCompatActivity {
                 intimidation.setText(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString())));
                 performance.setText(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString())));
                 persuasion.setText(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString())));
+                load(v);
             }
         });
     }
