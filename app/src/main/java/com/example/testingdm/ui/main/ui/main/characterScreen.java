@@ -234,28 +234,28 @@ public class characterScreen extends AppCompatActivity {
                 //Setting up Name
                 nameDisplay.setText(nameInput.getText().toString());
                 //Strength skills bonus
-                athletics.setText(ValueCalculation.getBonus(Integer.valueOf(strInput.getText().toString())));
+                athletics.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(strInput.getText().toString()))));
                 //Dexterity skills bonus
-                acrobatics.setText(ValueCalculation.getBonus(Integer.valueOf(dexInput.getText().toString())));
-                slightOfHand.setText(ValueCalculation.getBonus(Integer.valueOf(dexInput.getText().toString())));
-                stealth.setText(ValueCalculation.getBonus(Integer.valueOf(dexInput.getText().toString())));
+                acrobatics.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(dexInput.getText().toString()))));
+                slightOfHand.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(dexInput.getText().toString()))));
+                stealth.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(dexInput.getText().toString()))));
                 //Wisdom skills bonus
-                animalHandling.setText(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString())));
-                insight.setText(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString())));
-                medicine.setText(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString())));
-                perception.setText(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString())));
-                survival.setText(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString())));
+                animalHandling.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString()))));
+                insight.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString()))));
+                medicine.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString()))));
+                perception.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString()))));
+                survival.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString()))));
                 //Intelligence skills bonus
-                arcana.setText(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString())));
-                history.setText(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString())));
-                investigation.setText(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString())));
-                nature.setText(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString())));
-                religion.setText(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString())));
+                arcana.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString()))));
+                history.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString()))));
+                investigation.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString()))));
+                nature.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString()))));
+                religion.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString()))));
                 //Charisma skills bonus
-                deception.setText(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString())));
-                intimidation.setText(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString())));
-                performance.setText(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString())));
-                persuasion.setText(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString())));
+                deception.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString()))));
+                intimidation.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString()))));
+                performance.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString()))));
+                persuasion.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString()))));
                 load(v);
             }
         });
