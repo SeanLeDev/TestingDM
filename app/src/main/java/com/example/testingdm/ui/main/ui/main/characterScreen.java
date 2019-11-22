@@ -34,7 +34,7 @@ import java.io.InputStreamReader;
 
 public class characterScreen extends AppCompatActivity {
 
-    private static final String FILENAME = "names.txt";
+    private static String FILENAME;
 
 
     private String name;
@@ -136,7 +136,7 @@ public class characterScreen extends AppCompatActivity {
     public void save(View v) {
         String text = nameInput.getText().toString();
         FileOutputStream fos = null;
-
+        FILENAME = text + ".txt";
         try {
             fos = openFileOutput(FILENAME, MODE_PRIVATE);
             fos.write(text.getBytes());
@@ -224,6 +224,7 @@ public class characterScreen extends AppCompatActivity {
                 performance.setText(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString())));
                 persuasion.setText(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString())));
                 load(v);
+
             }
         });
     }
