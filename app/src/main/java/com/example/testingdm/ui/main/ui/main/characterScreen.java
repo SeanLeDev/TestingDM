@@ -35,7 +35,7 @@ import java.io.InputStreamReader;
 public class characterScreen extends AppCompatActivity {
 
     private static String FILENAME;
-
+    public String [][] stats = new String[100][6];
 
     private String name;
     private int strength;
@@ -132,57 +132,6 @@ public class characterScreen extends AppCompatActivity {
 
 
 
-    public void save(View v) {
-        nameInput = findViewById(R.id.nameInput);
-        String text = nameInput.getText().toString();
-        FileOutputStream fos = null;
-        FILENAME = text + ".txt";
-        try {
-            fos = openFileOutput(FILENAME, MODE_PRIVATE);
-            fos.write(text.getBytes());
-
-            nameInput.getText().clear();
-
-            Toast.makeText(this, "Saved to " + getFilesDir() + "/" + FILENAME, Toast.LENGTH_LONG).show();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (fos != null) {
-                try {
-                    fos.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
-    public void load(View v) {
-
-        FileInputStream fis = null;
-
-        try {
-            fis = openFileInput(FILENAME);
-            InputStreamReader isr = new InputStreamReader(fis);
-            BufferedReader br = new BufferedReader(isr);
-            StringBuilder sb = new StringBuilder();
-            String text;
-
-            while ((text = br.readLine()) != null) {
-                sb.append(text).append("\n");
-
-            }
-
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void configureFabButton() {
         FloatingActionButton fab = findViewById(R.id.fab);
         fab = findViewById(R.id.fab);
@@ -222,7 +171,6 @@ public class characterScreen extends AppCompatActivity {
                 slightOfHand = findViewById(R.id.slightOfHandBonus);
                 stealth = findViewById(R.id.stealthBonus);
                 survival = findViewById(R.id.survivalBonus);
-                save(v);
                 System.out.println(nameInput.getText().toString());
                 strength = Integer.valueOf(strInput.getText().toString());
                 strBonus.setText(String.valueOf(ValueCalculation.getBonus(strength)));
@@ -256,9 +204,26 @@ public class characterScreen extends AppCompatActivity {
                 intimidation.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString()))));
                 performance.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString()))));
                 persuasion.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString()))));
+                asave();
                 load(v);
 
             }
         });
+
     }
+    public void asave() {
+        int i=0;
+        while(stats[i][0] != null) {
+            i++;
+        }
+        stats[i][0] = nameInput.getText().toString();
+        stats[i][1] = conInput.getText().toString();
+        stats[i][2] = strInput.getText().toString();
+        stats[i][3] = dexInput.getText().toString();
+        stats[i][4] = intInput.getText().toString();
+        stats[i][5] = wisInput.getText().toString();
+        stats[i][6] = chaInput.getText().toString();
+        save();
+    }
+
 }
