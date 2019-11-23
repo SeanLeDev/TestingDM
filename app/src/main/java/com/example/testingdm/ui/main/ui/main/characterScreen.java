@@ -2,6 +2,7 @@ package com.example.testingdm.ui.main.ui.main;
 
 import android.os.Bundle;
 
+import com.example.testingdm.IO;
 import com.example.testingdm.R;
 import com.example.testingdm.ui.main.ui.main.SectionsPagerAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -34,8 +35,7 @@ import java.io.InputStreamReader;
 
 public class characterScreen extends AppCompatActivity {
 
-    private static String FILENAME;
-    public String [][] stats = new String[100][6];
+    public static String [][] stats = new String[100][6];
 
     private String name;
     private int strength;
@@ -205,12 +205,13 @@ public class characterScreen extends AppCompatActivity {
                 performance.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString()))));
                 persuasion.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString()))));
                 asave();
-                load(v);
+                IO.load();
 
             }
         });
 
     }
+    //This method loads the charecter data into our array
     public void asave() {
         int i=0;
         while(stats[i][0] != null) {
@@ -223,7 +224,7 @@ public class characterScreen extends AppCompatActivity {
         stats[i][4] = intInput.getText().toString();
         stats[i][5] = wisInput.getText().toString();
         stats[i][6] = chaInput.getText().toString();
-        save();
+        IO.save();
     }
 
 }
