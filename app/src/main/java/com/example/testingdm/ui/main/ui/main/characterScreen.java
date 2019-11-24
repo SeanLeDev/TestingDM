@@ -224,7 +224,7 @@ public class characterScreen extends AppCompatActivity {
         stats[i][4] = intInput.getText().toString();
         stats[i][5] = wisInput.getText().toString();
         stats[i][6] = chaInput.getText().toString();
-        IO.save();
+        IO.save(i);
     }
 
 }

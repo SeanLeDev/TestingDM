@@ -8,12 +8,7 @@ public class IO {
 
 
 
-    public static void save(){
-
-        int i=0;
-        while(stats[i][0] != null) {
-            i++;
-        }
+    public static void save(int i){
         FILENAME = stats[i][0] + ".txt";
 
 
