@@ -1,5 +1,6 @@
 package com.example.testingdm.ui.main.ui.main;
 
+import android.os.Build;
 import android.os.Bundle;
 
 import com.example.testingdm.IO;
@@ -8,6 +9,7 @@ import com.example.testingdm.ui.main.ui.main.SectionsPagerAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
+import androidx.annotation.RequiresApi;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -136,6 +138,7 @@ public class characterScreen extends AppCompatActivity {
         FloatingActionButton fab = findViewById(R.id.fab);
         fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
                 nameInput = findViewById(R.id.nameInput);
@@ -211,7 +214,8 @@ public class characterScreen extends AppCompatActivity {
         });
 
     }
-    //This method loads the charecter data into our array
+    //This method loads the character data into our array
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void asave() {
         int i=0;
         while(stats[i][0] != null) {
