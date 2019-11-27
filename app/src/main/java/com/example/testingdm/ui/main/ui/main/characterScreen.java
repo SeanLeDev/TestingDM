@@ -229,6 +229,8 @@ public class characterScreen extends AppCompatActivity {
         stats[i][5] = wisInput.getText().toString();
         stats[i][6] = chaInput.getText().toString();
         IO.save(i);
+        Toast.makeText(this, "Saved",Toast.LENGTH_LONG).show();
+
     }
 
 }
