@@ -5,7 +5,6 @@ import android.widget.Toast;
 
 public abstract class Character extends ValueCalculation{
 
-    DatabaseHelper mDatabaseHelper;
     protected void onCreate()
     {
        // mDatabaseHelper = new DatabaseHelper(this);
@@ -125,10 +124,5 @@ public abstract class Character extends ValueCalculation{
   //      Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
   //  }
 
-    public void AddData (String newEntry)
-    {
-        boolean insertData = mDatabaseHelper.addData(newEntry);
 
-
-    }
 }
