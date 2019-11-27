@@ -5,7 +5,11 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 
 import static com.example.testingdm.ui.main.ui.main.characterScreen.stats;
@@ -32,7 +36,20 @@ public class IO {
 
     }
 
-    public static void load(){
+    public static void load(String n) throws IOException {
+        BufferedReader inputStream = null;
+        String file;
 
+        for (int counter = 0; counter == stats.length; counter++) {
+            if (stats[counter][0].equals(n)) {
+                break;
+            } else {
+                continue;
+            }
+        }
+        file = n + ".txt";
+        inputStream = new BufferedReader(new FileReader(file));
+        
     }
+
 }
