@@ -30,6 +30,13 @@ public class IO {
             e.printStackTrace();
         }
 
+        try (PrintWriter out = new PrintWriter("Name.txt")) {
+            out.println(stats[i][0]);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
     public static void load(){
