@@ -37,7 +37,7 @@ import java.io.InputStreamReader;
 
 public class characterScreen extends AppCompatActivity {
 
-    public static String [][] stats = new String[100][6];
+    public static String[][] stats = new String[100][7];
 
     private String name;
     private int strength;
@@ -141,74 +141,10 @@ public class characterScreen extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
-                nameInput = findViewById(R.id.nameInput);
-                strInput = findViewById(R.id.strInput);
-                chaInput = findViewById(R.id.chaInput);
-                wisInput = findViewById(R.id.wisInput);
-                conInput = findViewById(R.id.conInput);
-                dexInput = findViewById(R.id.dexInput);
-                intInput = findViewById(R.id.intInput);
-
-                strBonus = findViewById(R.id.strBonus);
-                chaBonus = findViewById(R.id.chaBonus);
-                wisBonus = findViewById(R.id.wisBonus);
-                conBonus = findViewById(R.id.conBonus);
-                dexBonus = findViewById(R.id.dexBonus);
-                intBonus = findViewById(R.id.intBonus);
-                nameDisplay = findViewById(R.id.nameDisplay);
-                acrobatics = findViewById(R.id.acrobaticsBonus);
-                animalHandling = findViewById(R.id.animalHandlingBonus);
-                arcana = findViewById(R.id.arcanaBonus);
-                athletics = findViewById(R.id.athleticsBonus);
-                deception = findViewById(R.id.deceptionBonus);
-                history = findViewById(R.id.historyBonus);
-                insight = findViewById(R.id.insightBonus);
-                intimidation = findViewById(R.id.intimidationBonus);
-                investigation = findViewById(R.id.investigationBonus);
-                medicine = findViewById(R.id.medicineBonus);
-                nature = findViewById(R.id.natureBonus);
-                perception = findViewById(R.id.perceptionBonus);
-                performance = findViewById(R.id.performanceBonus);
-                persuasion = findViewById(R.id.persuasionBonus);
-                religion = findViewById(R.id.religionBonus);
-                slightOfHand = findViewById(R.id.slightOfHandBonus);
-                stealth = findViewById(R.id.stealthBonus);
-                survival = findViewById(R.id.survivalBonus);
-                System.out.println(nameInput.getText().toString());
-                strength = Integer.valueOf(strInput.getText().toString());
-                strBonus.setText(String.valueOf(ValueCalculation.getBonus(strength)));
-                chaBonus.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString()))));
-                wisBonus.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString()))));
-                conBonus.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(conInput.getText().toString()))));
-                dexBonus.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(dexInput.getText().toString()))));
-                intBonus.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString()))));
-                //Setting up Name
-                nameDisplay.setText(nameInput.getText().toString());
-                //Strength skills bonus
-                athletics.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(strInput.getText().toString()))));
-                //Dexterity skills bonus
-                acrobatics.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(dexInput.getText().toString()))));
-                slightOfHand.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(dexInput.getText().toString()))));
-                stealth.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(dexInput.getText().toString()))));
-                //Wisdom skills bonus
-                animalHandling.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString()))));
-                insight.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString()))));
-                medicine.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString()))));
-                perception.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString()))));
-                survival.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString()))));
-                //Intelligence skills bonus
-                arcana.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString()))));
-                history.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString()))));
-                investigation.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString()))));
-                nature.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString()))));
-                religion.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString()))));
-                //Charisma skills bonus
-                deception.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString()))));
-                intimidation.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString()))));
-                performance.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString()))));
-                persuasion.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString()))));
+                setStatDisplay();
+                setSkillsDisplay();
                 asave();
-                IO.load();
+                //IO.load();
 
             }
         });
@@ -233,4 +169,109 @@ public class characterScreen extends AppCompatActivity {
 
     }
 
-}
+    public String load() {
+        int characterRow = 0;
+        characterRow = IO.load(nameInput); //Temporary before the actual name list comes
+        for (int l = 0; l < 7; l++) {
+            switch (l) { //Loads all the stats into the inputs
+                case 0:
+                    nameDisplay.setText(stats[characterRow][l]);
+                    break;
+                case 1:
+                    conInput.setText(stats[characterRow][l]);
+                    break;
+                case 3:
+                    strInput.setText(stats[characterRow][l]);
+                    break;
+                case 4:
+                    dexInput.setText(stats[characterRow][l]);
+                    break;
+                case 5:
+                    intInput.setText(stats[characterRow][l]);
+                    break;
+                case 6:
+                    wisInput.setText(stats[characterRow][l]);
+                    break;
+                case 7:
+                    chaInput.setText(stats[characterRow][l]);
+            }
+            return null;
+        }
+
+
+        public void setStatDisplay () {
+            nameInput = findViewById(R.id.nameInput);
+            strInput = findViewById(R.id.strInput);
+            chaInput = findViewById(R.id.chaInput);
+            wisInput = findViewById(R.id.wisInput);
+            conInput = findViewById(R.id.conInput);
+            dexInput = findViewById(R.id.dexInput);
+            intInput = findViewById(R.id.intInput);
+            nameDisplay = findViewById(R.id.nameDisplay);
+            strBonus = findViewById(R.id.strBonus);
+            chaBonus = findViewById(R.id.chaBonus);
+            wisBonus = findViewById(R.id.wisBonus);
+            conBonus = findViewById(R.id.conBonus);
+            dexBonus = findViewById(R.id.dexBonus);
+            intBonus = findViewById(R.id.intBonus);
+
+            nameDisplay.setText(nameInput.getText().toString());
+            strBonus.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(strInput.getText().toString()))));
+            chaBonus.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString()))));
+            wisBonus.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString()))));
+            conBonus.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(conInput.getText().toString()))));
+            dexBonus.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(dexInput.getText().toString()))));
+            intBonus.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString()))));
+        }
+        public void setSkillsDisplay () {
+            strBonus = findViewById(R.id.strBonus);
+            chaBonus = findViewById(R.id.chaBonus);
+            wisBonus = findViewById(R.id.wisBonus);
+            conBonus = findViewById(R.id.conBonus);
+            dexBonus = findViewById(R.id.dexBonus);
+            intBonus = findViewById(R.id.intBonus);
+            acrobatics = findViewById(R.id.acrobaticsBonus);
+            animalHandling = findViewById(R.id.animalHandlingBonus);
+            arcana = findViewById(R.id.arcanaBonus);
+            athletics = findViewById(R.id.athleticsBonus);
+            deception = findViewById(R.id.deceptionBonus);
+            history = findViewById(R.id.historyBonus);
+            insight = findViewById(R.id.insightBonus);
+            intimidation = findViewById(R.id.intimidationBonus);
+            investigation = findViewById(R.id.investigationBonus);
+            medicine = findViewById(R.id.medicineBonus);
+            nature = findViewById(R.id.natureBonus);
+            perception = findViewById(R.id.perceptionBonus);
+            performance = findViewById(R.id.performanceBonus);
+            persuasion = findViewById(R.id.persuasionBonus);
+            religion = findViewById(R.id.religionBonus);
+            slightOfHand = findViewById(R.id.slightOfHandBonus);
+            stealth = findViewById(R.id.stealthBonus);
+            survival = findViewById(R.id.survivalBonus);
+
+            //Strength skills bonus
+            athletics.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(strInput.getText().toString()))));
+            //Dexterity skills bonus
+            acrobatics.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(dexInput.getText().toString()))));
+            slightOfHand.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(dexInput.getText().toString()))));
+            stealth.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(dexInput.getText().toString()))));
+            //Wisdom skills bonus
+            animalHandling.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString()))));
+            insight.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString()))));
+            medicine.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString()))));
+            perception.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString()))));
+            survival.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(wisInput.getText().toString()))));
+            //Intelligence skills bonus
+            arcana.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString()))));
+            history.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString()))));
+            investigation.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString()))));
+            nature.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString()))));
+            religion.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString()))));
+            //Charisma skills bonus
+            deception.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString()))));
+            intimidation.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString()))));
+            performance.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString()))));
+            persuasion.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString()))));
+        }
+
+    }

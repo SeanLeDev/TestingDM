@@ -36,12 +36,13 @@ public class IO {
 
     }
 
-    public static void load(String n) throws IOException {
+    public static int load(String n) throws IOException {
         BufferedReader inputStream = null;
         String file;
-
+        int row = 0;
         for (int counter = 0; counter == stats.length; counter++) {
             if (stats[counter][0].equals(n)) {
+                row = counter;
                 break;
             } else {
                 continue;
@@ -49,7 +50,7 @@ public class IO {
         }
         file = n + ".txt";
         inputStream = new BufferedReader(new FileReader(file));
-        
+        return row;
     }
 
 }
