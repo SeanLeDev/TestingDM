@@ -133,7 +133,6 @@ public class characterScreen extends AppCompatActivity {
     }
 
 
-
     public void configureFabButton() {
         FloatingActionButton fab = findViewById(R.id.fab);
         fab = findViewById(R.id.fab);
@@ -150,11 +149,12 @@ public class characterScreen extends AppCompatActivity {
         });
 
     }
+
     //This method loads the character data into our array
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void asave() {
-        int i=0;
-        while(stats[i][0] != null) {
+        int i = 0;
+        while (stats[i][0] != null) {
             i++;
         }
         stats[i][0] = nameInput.getText().toString();
@@ -165,13 +165,14 @@ public class characterScreen extends AppCompatActivity {
         stats[i][5] = wisInput.getText().toString();
         stats[i][6] = chaInput.getText().toString();
         IO.save(i);
-        Toast.makeText(this, "Saved",Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Saved", Toast.LENGTH_LONG).show();
 
     }
 
     public String load() {
+
         int characterRow = 0;
-        characterRow = IO.load(nameInput); //Temporary before the actual name list comes
+        characterRow = IO.load(); //Temporary before the actual name list comes
         for (int l = 0; l < 7; l++) {
             switch (l) { //Loads all the stats into the inputs
                 case 0:
@@ -197,9 +198,10 @@ public class characterScreen extends AppCompatActivity {
             }
             return null;
         }
+        //Return statement here
+    }
 
-
-        public void setStatDisplay () {
+    public void setStatDisplay() {
             nameInput = findViewById(R.id.nameInput);
             strInput = findViewById(R.id.strInput);
             chaInput = findViewById(R.id.chaInput);
@@ -223,7 +225,8 @@ public class characterScreen extends AppCompatActivity {
             dexBonus.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(dexInput.getText().toString()))));
             intBonus.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(intInput.getText().toString()))));
         }
-        public void setSkillsDisplay () {
+
+    public void setSkillsDisplay() {
             strBonus = findViewById(R.id.strBonus);
             chaBonus = findViewById(R.id.chaBonus);
             wisBonus = findViewById(R.id.wisBonus);
@@ -274,4 +277,5 @@ public class characterScreen extends AppCompatActivity {
             persuasion.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString()))));
         }
 
-    }
+
+}

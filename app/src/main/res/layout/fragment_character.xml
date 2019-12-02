@@ -5,9 +5,12 @@
     android:layout_height="match_parent"
     tools:context=".characterFragment">
 
-    <Button
-        android:id="@+id/button"
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="87dp"
-        android:text="Button" />
+        android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </androidx.recyclerview.widget.RecyclerView>
 </FrameLayout>
