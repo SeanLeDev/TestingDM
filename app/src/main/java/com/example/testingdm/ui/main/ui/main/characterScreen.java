@@ -9,6 +9,8 @@ import com.example.testingdm.ui.main.ui.main.SectionsPagerAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
+import java.io.BufferedReader;
+
 import androidx.annotation.RequiresApi;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,9 +30,11 @@ import static com.example.testingdm.R.layout.activity_main;
 import com.example.testingdm.ValueCalculation;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -40,6 +44,7 @@ public class characterScreen extends AppCompatActivity {
     public static String[][] stats = new String[100][7];
 
     private String name;
+    public String nameLoad;
     private int strength;
     private int intelligence;
     private int wisdom;
@@ -169,10 +174,18 @@ public class characterScreen extends AppCompatActivity {
 
     }
 
-    public String load() {
-
+    public String load() throws IOException {
         int characterRow = 0;
-        characterRow = IO.load(); //Temporary before the actual name list comes
+
+        BufferedReader reader = new BufferedReader(new FileReader("Name.txt"));
+        for (int l = 0; l == 100; l++) {
+            if (reader.readLine().equals(nameLoad)) {
+                name = nameLoad;
+            } else {
+                continue;
+            }
+        }
+        characterRow = IO.load(name); //Temporary before the actual name list comes
         for (int l = 0; l < 7; l++) {
             switch (l) { //Loads all the stats into the inputs
                 case 0:
@@ -198,7 +211,7 @@ public class characterScreen extends AppCompatActivity {
             }
             return null;
         }
-        //Return statement here
+        return null; //Return statement here
     }
 
     public void setStatDisplay() {
