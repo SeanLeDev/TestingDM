@@ -181,21 +181,8 @@ public class characterScreen extends AppCompatActivity {
     }
 
     public void setStatDisplay() {
-        nameInput = findViewById(R.id.nameInput);
-        strInput = findViewById(R.id.strInput);
-        chaInput = findViewById(R.id.chaInput);
-        wisInput = findViewById(R.id.wisInput);
-        conInput = findViewById(R.id.conInput);
-        dexInput = findViewById(R.id.dexInput);
-        intInput = findViewById(R.id.intInput);
-        nameDisplay = findViewById(R.id.nameDisplay);
-        strBonus = findViewById(R.id.strBonus);
-        chaBonus = findViewById(R.id.chaBonus);
-        wisBonus = findViewById(R.id.wisBonus);
-        conBonus = findViewById(R.id.conBonus);
-        dexBonus = findViewById(R.id.dexBonus);
-        intBonus = findViewById(R.id.intBonus);
-
+        getIDBonus();
+        getIDinput();
         nameDisplay.setText(nameInput.getText().toString());
         strBonus.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(strInput.getText().toString()))));
         chaBonus.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString()))));
@@ -206,31 +193,8 @@ public class characterScreen extends AppCompatActivity {
     }
 
     public void setSkillsDisplay() {
-        strBonus = findViewById(R.id.strBonus);
-        chaBonus = findViewById(R.id.chaBonus);
-        wisBonus = findViewById(R.id.wisBonus);
-        conBonus = findViewById(R.id.conBonus);
-        dexBonus = findViewById(R.id.dexBonus);
-        intBonus = findViewById(R.id.intBonus);
-        acrobatics = findViewById(R.id.acrobaticsBonus);
-        animalHandling = findViewById(R.id.animalHandlingBonus);
-        arcana = findViewById(R.id.arcanaBonus);
-        athletics = findViewById(R.id.athleticsBonus);
-        deception = findViewById(R.id.deceptionBonus);
-        history = findViewById(R.id.historyBonus);
-        insight = findViewById(R.id.insightBonus);
-        intimidation = findViewById(R.id.intimidationBonus);
-        investigation = findViewById(R.id.investigationBonus);
-        medicine = findViewById(R.id.medicineBonus);
-        nature = findViewById(R.id.natureBonus);
-        perception = findViewById(R.id.perceptionBonus);
-        performance = findViewById(R.id.performanceBonus);
-        persuasion = findViewById(R.id.persuasionBonus);
-        religion = findViewById(R.id.religionBonus);
-        slightOfHand = findViewById(R.id.slightOfHandBonus);
-        stealth = findViewById(R.id.stealthBonus);
-        survival = findViewById(R.id.survivalBonus);
-
+        getIDBonus();
+        getIDSkills();
         //Strength skills bonus
         athletics.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(strInput.getText().toString()))));
         //Dexterity skills bonus
@@ -267,6 +231,7 @@ public class characterScreen extends AppCompatActivity {
     }
 
     public void getIDBonus(){
+        nameDisplay = findViewById(R.id.nameDisplay);
         strBonus = findViewById(R.id.strBonus);
         chaBonus = findViewById(R.id.chaBonus);
         wisBonus = findViewById(R.id.wisBonus);
