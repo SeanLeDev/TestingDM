@@ -47,10 +47,15 @@ public class IO {
             e.printStackTrace();
         }
 
+        //The following code is to test to ensure our file save function works correclty
+
+
 
     }
 
     public static int load(String n) throws IOException {
+        String path = Environment.getDataDirectory().toString();
+
         BufferedReader inputStream = null;
         String file;
         int row = 0;
@@ -62,7 +67,8 @@ public class IO {
                 continue;
             }
         }
-        file = n + ".txt";
+        file = path +"/"+ n + ".txt";
+
         inputStream = new BufferedReader(new FileReader(file));
         return row;
     }
