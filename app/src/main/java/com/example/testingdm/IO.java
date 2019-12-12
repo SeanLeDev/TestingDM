@@ -19,6 +19,7 @@ import static com.example.testingdm.ui.main.ui.main.characterScreen.stats;
 public class IO {
     private static String FILENAME;
     private File nameList;
+    static  String path = Environment.getDataDirectory().toString();
 
 
 
@@ -27,7 +28,8 @@ public class IO {
     public static void save(int i){
         File nameList = new File(Environment.getExternalStorageDirectory(), "Names");
         FILENAME = stats[i][0] + ".txt";
-        try (PrintWriter out = new PrintWriter(FILENAME)) {
+        File file = new File(path + "/abikor.txt");
+        try (PrintWriter out = new PrintWriter(file)) {
             out.println(stats[i][0]);
             out.println(stats[i][1]);
             out.println(stats[i][2]);
