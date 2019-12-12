@@ -3,7 +3,7 @@ package com.example.testingdm;
 
 import android.widget.Toast;
 
-public abstract class Character extends ValueCalculation{
+public class Character extends ValueCalculation {
 
     protected void onCreate()
     {
@@ -79,6 +79,10 @@ public abstract class Character extends ValueCalculation{
         setDex(10);
         setCha(10);
         setCon(10);
+    }
+
+    public Character(String name) {
+        setName(name);
     }
 
     public Character(String name, int s, int i, int w, int d, int c, int con) {

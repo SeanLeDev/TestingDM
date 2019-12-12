@@ -10,7 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import static com.example.testingdm.ui.main.ui.main.characterScreen.stats;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +40,7 @@ public class adapterCardView extends RecyclerView.Adapter<adapterCardView.charac
     public characterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //inflating and returning our view holder
         LayoutInflater inflater = LayoutInflater.from(mCtx);
-        View view = inflater.inflate(R.layout.cardview, null);
+        View view = LayoutInflater.from(mCtx).inflate(R.layout.cardview, parent, false); //SETUP
         return new characterViewHolder(view);
     }
 
@@ -50,28 +51,23 @@ public class adapterCardView extends RecyclerView.Adapter<adapterCardView.charac
 
         //binding the data with the viewholder views
 
-
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return characterList.size();
     }
 
 
     class characterViewHolder extends RecyclerView.ViewHolder {
 
-        TextView textViewTitle, textViewShortDesc, textViewRating, textViewPrice;
+        TextView textViewName, textViewLevel, textViewRating, textViewPrice;
         ImageView imageView;
 
         public characterViewHolder(View itemView) {
             super(itemView);
-
-            textViewTitle = itemView.findViewById(R.id.textViewTitle);
-            textViewShortDesc = itemView.findViewById(R.id.textViewShortDesc);
-            textViewRating = itemView.findViewById(R.id.textViewRating);
-            textViewPrice = itemView.findViewById(R.id.textViewPrice);
-            imageView = itemView.findViewById(R.id.imageView);
+            textViewName = itemView.findViewById(R.id.textViewName);
+            textViewLevel = itemView.findViewById(R.id.textViewLevel);
         }
     }
 }
