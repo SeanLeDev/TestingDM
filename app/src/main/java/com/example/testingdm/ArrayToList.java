@@ -8,7 +8,7 @@ import java.util.Arrays;
 import static com.example.testingdm.ui.main.ui.main.characterScreen.stats;
 
 public class ArrayToList {
-    public static <T> List<Character> convertArrayToList(String[][] array) {
+    public static List<Character> convertArrayToList(String[][] array) {
 
         // Create an empty List
         List<Character> list = new ArrayList<>();

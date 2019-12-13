@@ -25,10 +25,11 @@ public class IO {
 
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public static void save(int i){
+    public static void save(int i) throws IOException {
         File nameList = new File(Environment.getExternalStorageDirectory(), "Names");
         FILENAME = stats[i][0] + ".txt";
-        File file = new File(path + "/abikor.txt");
+        String dir = Environment.getExternalStorageDirectory().getAbsolutePath();
+        File file = new File(dir + "/" + FILENAME);
         try (PrintWriter out = new PrintWriter(file)) {
             out.println(stats[i][0]);
             out.println(stats[i][1]);
