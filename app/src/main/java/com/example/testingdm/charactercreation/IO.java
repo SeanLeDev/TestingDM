@@ -3,7 +3,6 @@ package com.example.testingdm.charactercreation;
 
 import android.content.Context;
 import android.os.Build;
-import android.os.Environment;
 
 import androidx.annotation.RequiresApi;
 
@@ -48,6 +47,10 @@ public class IO {
         }
     }
 
+    /* If you wanna find the files, go to "View", "Tool Window",
+    "Device File Explorer, data, data,
+    com.example.testingdm
+     */
     public static int load(Context con, String n) throws IOException {
         String path = con.getFilesDir().toString();
         BufferedReader inputStream = null;

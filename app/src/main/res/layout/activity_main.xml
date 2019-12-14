@@ -6,6 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".ui.mainmenu.MainActivity">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/characterList"
+        android:layout_width="match_parent"
+        android:layout_height="618dp"
+        android:scrollbars="vertical"
+        app:layout_anchor="@+id/view_pager"
+        app:layout_anchorGravity="center"></androidx.recyclerview.widget.RecyclerView>
+
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,17 +59,13 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/characterList"
-        android:scrollbars="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
-
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:layout_height="613dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    </androidx.viewpager.widget.ViewPager>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
@@ -71,4 +75,5 @@
         android:layout_margin="@dimen/fab_margin"
         app:backgroundTint="#F44336"
         app:srcCompat="@android:drawable/ic_menu_add" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
