@@ -81,7 +81,7 @@ public class characterScreen extends AppCompatActivity {
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = findViewById(view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
-        TabLayout tabs = findViewById(R.id.tabs);
+        TabLayout tabs = findViewById(R.id.tabLayout);
         tabs.setupWithViewPager(viewPager);
         //Inputs
         getIDinput();
@@ -90,7 +90,6 @@ public class characterScreen extends AppCompatActivity {
         getIDSkills();
         configureFabButton();
     }
-
 
     public void configureFabButton() {
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -141,7 +140,7 @@ public class characterScreen extends AppCompatActivity {
                 continue;
             }
         }
-        characterRow = IO.load(name); //Temporary before the actual name list comes
+        characterRow = IO.load(this, name); //Temporary before the actual name list comes
         for (int l = 0; l < 7; l++) {
             switch (l) { //Loads all the stats into the inputs
                 case 0:

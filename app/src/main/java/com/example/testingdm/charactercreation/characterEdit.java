@@ -19,7 +19,6 @@ public class characterEdit extends Fragment {
 
     private PageViewModel pageViewModel;
 
-
     public static characterEdit newInstance(int index) {
         characterEdit fragment = new characterEdit();
         Bundle bundle = new Bundle();

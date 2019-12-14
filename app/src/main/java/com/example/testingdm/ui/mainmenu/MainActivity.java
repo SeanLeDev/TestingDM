@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import com.example.testingdm.R;
 import com.example.testingdm.characterfiles.Character;
+import com.example.testingdm.npc.npcView;
 import com.example.testingdm.ui.mainmenu.cardviewcreation.adapterCardView;
 import com.example.testingdm.charactercreation.characterScreen;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
-        TabLayout tabs = findViewById(R.id.tabs);
+        TabLayout tabs = findViewById(R.id.tabLayout);
         tabs.setupWithViewPager(viewPager);
 
 
@@ -69,15 +70,28 @@ public class MainActivity extends AppCompatActivity {
 
     private void configureFabButton() {
         FloatingActionButton fab;
+        final TabLayout tabs = findViewById(R.id.tabLayout);
         fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View v) {
+                int position = tabs.getSelectedTabPosition();
                 if (ContextCompat.checkSelfPermission(MainActivity.this,
                         Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                     Toast.makeText(MainActivity.this, "Storage Permission has already been granted.", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(MainActivity.this, characterScreen.class));
+                    switch (position) {
+                        case 0:
+                            startActivity(new Intent(MainActivity.this, characterScreen.class));
+                            break;
+                        case 1:
+                            startActivity(new Intent(MainActivity.this, npcView.class));
+                            break;
+                        case 2:
+                            // third tab is selected
+                            break;
+                    }
+
                 } else {
                     storageRequest();
                 }

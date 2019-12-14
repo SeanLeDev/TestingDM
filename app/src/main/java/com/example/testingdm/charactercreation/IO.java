@@ -19,7 +19,6 @@ import static com.example.testingdm.charactercreation.characterScreen.stats;
 
 public class IO {
     private static String FILENAME;
-
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static void save(Context con, int i) throws IOException {
         File nameList = new File(con.getFilesDir(), "Names");
@@ -42,15 +41,15 @@ public class IO {
         if (!nameList.exists()) {
             nameList = new File(con.getFilesDir(), "Names");
         }
-        try (BufferedWriter out = new BufferedWriter(new FileWriter(nameList))) {
+        try (BufferedWriter out = new BufferedWriter(new FileWriter(nameList, true))) {
             out.write(stats[i][0] + System.lineSeparator());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
 
-    public static int load(String n) throws IOException {
-        String path = Environment.getDataDirectory().toString();
+    public static int load(Context con, String n) throws IOException {
+        String path = con.getFilesDir().toString();
         BufferedReader inputStream = null;
         String file;
         int row = 0;
