@@ -1,4 +1,4 @@
-package com.example.testingdm.ui.main.ui.main;
+package com.example.testingdm.ui.mainmenu;
 
 import androidx.arch.core.util.Function;
 import androidx.lifecycle.LiveData;

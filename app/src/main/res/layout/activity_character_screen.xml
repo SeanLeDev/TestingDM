@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.ui.main.characterScreen">
+    tools:context=".charactercreation.characterScreen">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -57,7 +57,7 @@
 
         <fragment
             android:id="@+id/fragment"
-            android:name="com.example.testingdm.ui.main.ui.main.characterEdit"
+            android:name="com.example.testingdm.charactercreation.characterEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:layout="@layout/fragment_character_edit" />

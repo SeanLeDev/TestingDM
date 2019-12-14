@@ -1,4 +1,6 @@
-package com.example.testingdm;
+package com.example.testingdm.characterfiles;
+
+import com.example.testingdm.characterfiles.ValueCalculation;
 
 public class Skills extends ValueCalculation
 {

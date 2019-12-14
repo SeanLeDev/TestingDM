@@ -1,7 +1,5 @@
-package com.example.testingdm;
+package com.example.testingdm.characterfiles;
 
-
-import android.widget.Toast;
 
 public class Character extends ValueCalculation {
 

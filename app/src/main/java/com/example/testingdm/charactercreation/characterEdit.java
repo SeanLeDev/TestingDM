@@ -1,27 +1,27 @@
-package com.example.testingdm.ui.main;
+package com.example.testingdm.charactercreation;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 import com.example.testingdm.R;
+import com.example.testingdm.ui.mainmenu.PageViewModel;
 
-/**
- * A placeholder fragment containing a simple view.
- */
-public class PlaceholderFragment extends Fragment {
 
+public class characterEdit extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
 
     private PageViewModel pageViewModel;
 
-    public static PlaceholderFragment newInstance(int index) {
-        PlaceholderFragment fragment = new PlaceholderFragment();
+
+    public static characterEdit newInstance(int index) {
+        characterEdit fragment = new characterEdit();
         Bundle bundle = new Bundle();
         bundle.putInt(ARG_SECTION_NUMBER, index);
         fragment.setArguments(bundle);
@@ -37,25 +37,17 @@ public class PlaceholderFragment extends Fragment {
             index = getArguments().getInt(ARG_SECTION_NUMBER);
         }
         pageViewModel.setIndex(index);
+
     }
 
     @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View rootView = null;
-        switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
-            case 1:
-                rootView = inflater.inflate(R.layout.fragment_character, container, false);
-                break;
-            case 2:
-                rootView = inflater.inflate(R.layout.fragment_npcs, container, false);
-                break;
-            case 3:
-                rootView = inflater.inflate(R.layout.fragment_table, container, false);
-                break;
-        }
+        View rootView = inflater.inflate(R.layout.fragment_character_edit, container, false);
 
         return rootView;
     }
+
+
 }

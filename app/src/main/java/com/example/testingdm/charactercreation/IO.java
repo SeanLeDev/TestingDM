@@ -1,4 +1,4 @@
-package com.example.testingdm;
+package com.example.testingdm.charactercreation;
 
 
 import android.content.Context;
@@ -14,9 +14,8 @@ import java.io.FileReader;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 
-import static com.example.testingdm.ui.main.ui.main.characterScreen.stats;
+import static com.example.testingdm.charactercreation.characterScreen.stats;
 
 public class IO {
     private static String FILENAME;
@@ -37,7 +36,6 @@ public class IO {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
         if (!file.exists()) {
             file.createNewFile();
         }
@@ -49,10 +47,6 @@ public class IO {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        //The following code is to test to ensure our file save function works correclty
-
-
-
     }
 
     public static int load(String n) throws IOException {

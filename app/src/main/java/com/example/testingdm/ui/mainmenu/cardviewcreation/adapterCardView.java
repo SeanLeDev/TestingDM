@@ -1,4 +1,4 @@
-package com.example.testingdm;
+package com.example.testingdm.ui.mainmenu.cardviewcreation;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,7 +12,8 @@ import android.view.View;
 import java.util.List;
 
 
-import com.example.testingdm.ui.main.ui.main.characterScreen;
+import com.example.testingdm.R;
+import com.example.testingdm.characterfiles.Character;
 
 public class adapterCardView extends RecyclerView.Adapter<adapterCardView.characterViewHolder> {
 

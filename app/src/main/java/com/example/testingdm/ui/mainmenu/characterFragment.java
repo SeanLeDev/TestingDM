@@ -1,4 +1,4 @@
-package com.example.testingdm;
+package com.example.testingdm.ui.mainmenu;
 
 import android.content.Context;
 import android.net.Uri;
@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+
+import com.example.testingdm.R;
 
 
 /**

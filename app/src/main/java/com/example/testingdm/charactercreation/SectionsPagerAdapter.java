@@ -1,4 +1,4 @@
-package com.example.testingdm.ui.main.ui.main;
+package com.example.testingdm.charactercreation;
 
 import android.content.Context;
 

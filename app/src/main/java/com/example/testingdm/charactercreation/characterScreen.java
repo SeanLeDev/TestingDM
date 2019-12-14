@@ -1,11 +1,9 @@
-package com.example.testingdm.ui.main.ui.main;
+package com.example.testingdm.charactercreation;
 
 import android.os.Build;
 import android.os.Bundle;
 
-import com.example.testingdm.IO;
 import com.example.testingdm.R;
-import com.example.testingdm.ui.main.ui.main.SectionsPagerAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
@@ -16,27 +14,17 @@ import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
-import android.view.inputmethod.InputContentInfo;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.view.View.OnClickListener;
 
 import static com.example.testingdm.R.id.view_pager;
-import static com.example.testingdm.R.layout.activity_character_screen;
 import static com.example.testingdm.R.layout.activity_main;
 
-import com.example.testingdm.ValueCalculation;
+import com.example.testingdm.characterfiles.ValueCalculation;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 
 public class characterScreen extends AppCompatActivity {
@@ -97,8 +85,6 @@ public class characterScreen extends AppCompatActivity {
         tabs.setupWithViewPager(viewPager);
         //Inputs
         getIDinput();
-        //Save Button
-        saveButtonClicked c = new saveButtonClicked();
         //Bonus View
         getIDBonus();
         getIDSkills();

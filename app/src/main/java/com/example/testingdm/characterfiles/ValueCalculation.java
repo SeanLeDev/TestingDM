@@ -1,4 +1,4 @@
-package com.example.testingdm;
+package com.example.testingdm.characterfiles;
 
 public class ValueCalculation{
     //Stat Bonuses

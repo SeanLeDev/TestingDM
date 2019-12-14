@@ -1,4 +1,4 @@
-package com.example.testingdm.ui.main;
+package com.example.testingdm.ui.mainmenu;
 
 import android.content.Context;
 

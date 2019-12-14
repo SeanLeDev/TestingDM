@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:translationX="-1dp"
-    tools:context=".ui.main.ui.main.characterEdit">
+    tools:context=".charactercreation.characterEdit">
 
     <EditText
         android:id="@+id/intInput"

@@ -1,11 +1,9 @@
-package com.example.testingdm;
+package com.example.testingdm.ui.mainmenu.cardviewcreation;
 
-import java.lang.reflect.Array;
+import com.example.testingdm.characterfiles.Character;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Arrays;
-
-import static com.example.testingdm.ui.main.ui.main.characterScreen.stats;
 
 public class ArrayToList {
     public static List<Character> convertArrayToList(String[][] array) {

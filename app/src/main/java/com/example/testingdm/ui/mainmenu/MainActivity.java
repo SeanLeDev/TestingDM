@@ -1,14 +1,16 @@
-package com.example.testingdm;
+package com.example.testingdm.ui.mainmenu;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 
-import com.example.testingdm.ui.main.ui.main.characterScreen;
+import com.example.testingdm.R;
+import com.example.testingdm.characterfiles.Character;
+import com.example.testingdm.ui.mainmenu.cardviewcreation.adapterCardView;
+import com.example.testingdm.charactercreation.characterScreen;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
@@ -25,16 +27,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.testingdm.ui.main.SectionsPagerAdapter;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.example.testingdm.IO;
-
-import static android.Manifest.permission_group.STORAGE;
-import static com.example.testingdm.ui.main.ui.main.characterScreen.stats;
 
 
 public class MainActivity extends AppCompatActivity {
