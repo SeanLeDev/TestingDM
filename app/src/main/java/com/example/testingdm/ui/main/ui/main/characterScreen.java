@@ -137,7 +137,11 @@ public class characterScreen extends AppCompatActivity {
         stats[i][4] = intInput.getText().toString();
         stats[i][5] = wisInput.getText().toString();
         stats[i][6] = chaInput.getText().toString();
-        IO.save(i);
+        try {
+            IO.save(this, i);
+        } catch (IOException e) {
+            Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show();
+        }
         Toast.makeText(this, "Saved", Toast.LENGTH_LONG).show();
     }
     public String load() throws IOException {

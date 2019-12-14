@@ -8,9 +8,11 @@ import android.os.Environment;
 import androidx.annotation.RequiresApi;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -18,38 +20,35 @@ import static com.example.testingdm.ui.main.ui.main.characterScreen.stats;
 
 public class IO {
     private static String FILENAME;
-    private File nameList;
-    static  String path = Environment.getDataDirectory().toString();
-
-
-
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public static void save(int i) throws IOException {
-        File nameList = new File(Environment.getExternalStorageDirectory(), "Names");
+    public static void save(Context con, int i) throws IOException {
+        File nameList = new File(con.getFilesDir(), "Names");
         FILENAME = stats[i][0] + ".txt";
-        String dir = Environment.getExternalStorageDirectory().getAbsolutePath();
-        File file = new File(dir + "/" + FILENAME);
-        try (PrintWriter out = new PrintWriter(file)) {
-            out.println(stats[i][0]);
-            out.println(stats[i][1]);
-            out.println(stats[i][2]);
-            out.println(stats[i][3]);
-            out.println(stats[i][4]);
-            out.println(stats[i][5]);
-            out.println(stats[i][6]);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        if (!nameList.exists()) {
-            nameList.mkdirs();
-        }
-        try (PrintWriter out = new PrintWriter(nameList)) {
-            out.println(stats[i][0]);
+        File file = new File(con.getFilesDir(), FILENAME);
+        try (BufferedWriter out = new BufferedWriter(new FileWriter(file))) { //Writes to the file
+            out.write(stats[i][0] + System.lineSeparator()); //Name
+            out.write(stats[i][1] + System.lineSeparator());
+            out.write(stats[i][2] + System.lineSeparator());
+            out.write(stats[i][3] + System.lineSeparator());
+            out.write(stats[i][4] + System.lineSeparator());
+            out.write(stats[i][5] + System.lineSeparator());
+            out.write(stats[i][6] + System.lineSeparator());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+        if (!nameList.exists()) {
+            nameList = new File(con.getFilesDir(), "Names");
+        }
+        try (BufferedWriter out = new BufferedWriter(new FileWriter(nameList))) {
+            out.write(stats[i][0] + System.lineSeparator());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         //The following code is to test to ensure our file save function works correclty
 
 
@@ -58,7 +57,6 @@ public class IO {
 
     public static int load(String n) throws IOException {
         String path = Environment.getDataDirectory().toString();
-
         BufferedReader inputStream = null;
         String file;
         int row = 0;
