@@ -16,8 +16,11 @@ import java.io.IOException;
 
 import static com.example.testingdm.charactercreation.characterScreen.stats;
 
-public class IO {
+public class
+IO {
     private static String FILENAME;
+    private int aa = 0;
+
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static void save(Context con, int i) throws IOException {
         File nameList = new File(con.getFilesDir(), "Names");
@@ -51,23 +54,29 @@ public class IO {
     "Device File Explorer, data, data,
     com.example.testingdm
      */
-    public static int load(Context con, String n) throws IOException {
-        String path = con.getFilesDir().toString();
-        BufferedReader inputStream = null;
-        String file;
-        int row = 0;
-        for (int counter = 0; counter == stats.length; counter++) {
-            if (stats[counter][0].equals(n)) {
-                row = counter;
-                break;
-            } else {
-                continue;
-            }
-        }
-        file = path +"/"+ n + ".txt";
+    public void load(Context con) throws IOException
+    {
+        File name = new File(con.getFilesDir(),"names.txt");
+        BufferedReader reader = new BufferedReader(new FileReader(name));
+        int i =  aa;
+        while( i >= 99 )
+        {
+            String a = reader.readLine();
+            if(a != null)
+            {
+                BufferedReader E = new BufferedReader(new FileReader(con.getFilesDir()+a+".txt"));
+                stats[i][0] = E.readLine();
+                stats[i][1] = E.readLine();
+                stats[i][2] = E.readLine();
+                stats[i][3] = E.readLine();
+                stats[i][4] = E.readLine();
+                stats[i][5] = E.readLine();
+                stats[i][6] = E.readLine();
+                aa++;
 
-        inputStream = new BufferedReader(new FileReader(file));
-        return row;
+            }
+
+        }
     }
 
 }
