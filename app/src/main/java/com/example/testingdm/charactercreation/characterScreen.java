@@ -1,9 +1,11 @@
 package com.example.testingdm.charactercreation;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
 import com.example.testingdm.R;
+import com.example.testingdm.ui.mainmenu.MainActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
@@ -42,13 +44,13 @@ public class characterScreen extends AppCompatActivity {
     public int editStorage;
     public String conversion;
     public EditText nameInput;
-    public EditText strInput;
-    public EditText chaInput;
-    public EditText wisInput;
-    public EditText conInput;
-    public EditText dexInput;
-    public EditText intInput;
-    public TextView nameDisplay;
+    public static EditText strInput;
+    public static EditText chaInput;
+    public static EditText wisInput;
+    public static EditText conInput;
+    public static EditText dexInput;
+    public static EditText intInput;
+    public static TextView nameDisplay;
     public TextView strBonus;
     public TextView chaBonus;
     public TextView wisBonus;
@@ -129,18 +131,17 @@ public class characterScreen extends AppCompatActivity {
         }
         Toast.makeText(this, "Saved", Toast.LENGTH_LONG).show();
     }
-    public String load() throws IOException {
-        int characterRow = 0;
 
-        BufferedReader reader = new BufferedReader(new FileReader("Name.txt"));
+    public static void load(String n) throws IOException {
+        int characterRow = 0;
         for (int l = 0; l == 100; l++) {
-            if (reader.readLine().equals(nameLoad)) {
-                name = nameLoad;
-            } else {
+            if (n.equals(stats[l][0])) {
+                characterRow = l;
+                break;
+            } else
                 continue;
             }
-        }
-        characterRow = IO.load(this, name); //Temporary before the actual name list comes
+        //Temporary before the actual name list comes
         for (int l = 0; l < 7; l++) {
             switch (l) { //Loads all the stats into the inputs
                 case 0:
@@ -164,9 +165,7 @@ public class characterScreen extends AppCompatActivity {
                 case 7:
                     chaInput.setText(stats[characterRow][l]);
             }
-            return null;
         }
-        return null; //Return statement here
     }
 
     public void setStatDisplay() {

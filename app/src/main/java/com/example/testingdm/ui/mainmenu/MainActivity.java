@@ -8,8 +8,10 @@ import android.os.Build;
 import android.os.Bundle;
 
 import com.example.testingdm.R;
+import com.example.testingdm.charactercreation.IO;
 import com.example.testingdm.characterfiles.Character;
 import com.example.testingdm.npc.npcView;
+import com.example.testingdm.ui.mainmenu.cardviewcreation.ArrayToList;
 import com.example.testingdm.ui.mainmenu.cardviewcreation.adapterCardView;
 import com.example.testingdm.charactercreation.characterScreen;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -28,13 +30,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.testingdm.charactercreation.characterScreen.stats;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    List<Character> characterList;
+    List<String> characterList;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -57,11 +62,23 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.characterList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         characterList = new ArrayList<>();
-        //characterList = ArrayToList.convertArrayToList(stats);
-        characterList.add(new Character("Luciel"));
+        try {
+            System.out.println("YESSSSSSSSS");
+            characterList = ArrayToList.convertFileToList(this);
+            System.out.println(characterList);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            System.out.println(stats[1][0] + "**************");
+            IO.load(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         adapterCardView mAdapter = new adapterCardView(this, characterList); //Need to get Character Data
         recyclerView.setAdapter(mAdapter);
+
 
         System.out.println(characterList.isEmpty());
         configureFabButton();

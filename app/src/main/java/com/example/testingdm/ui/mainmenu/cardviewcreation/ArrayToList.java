@@ -1,24 +1,25 @@
 package com.example.testingdm.ui.mainmenu.cardviewcreation;
 
+import android.content.Context;
+
 import com.example.testingdm.characterfiles.Character;
 
+
+import java.io.File;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class ArrayToList {
-    public static List<Character> convertArrayToList(String[][] array) {
-
-        // Create an empty List
-        List<Character> list = new ArrayList<>();
-
-        // Iterate through the array
-        for (int i = 0; i == array.length; i++) {
-            Character c = new Character(array[i][1]);
-            list.add(c);
-            if (array[1][1] == null) {
-                break;
-            }
+    public static List<String> convertFileToList(Context con) throws IOException {
+        Scanner s = new Scanner(new File(con.getFilesDir(), "Names.txt"));
+        ArrayList<String> list = new ArrayList<String>();
+        while (s.hasNextLine()) {
+            list.add(s.nextLine());
         }
+        s.close();
         // Return the converted List
         return list;
     }

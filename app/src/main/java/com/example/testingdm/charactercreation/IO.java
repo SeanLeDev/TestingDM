@@ -19,11 +19,12 @@ import static com.example.testingdm.charactercreation.characterScreen.stats;
 public class
 IO {
     private static String FILENAME;
-    private int aa = 0;
+    private static int aa = 0;
+
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static void save(Context con, int i) throws IOException {
-        File nameList = new File(con.getFilesDir(), "Names");
+        File nameList = new File(con.getFilesDir(), "Names.txt");
         FILENAME = stats[i][0] + ".txt";
         File file = new File(con.getFilesDir(), FILENAME);
         try (BufferedWriter out = new BufferedWriter(new FileWriter(file))) { //Writes to the file
@@ -41,7 +42,7 @@ IO {
             file.createNewFile();
         }
         if (!nameList.exists()) {
-            nameList = new File(con.getFilesDir(), "Names");
+            nameList = new File(con.getFilesDir(), "Names.txt");
         }
         try (BufferedWriter out = new BufferedWriter(new FileWriter(nameList, true))) {
             out.write(stats[i][0] + System.lineSeparator());
@@ -54,17 +55,15 @@ IO {
     "Device File Explorer, data, data,
     com.example.testingdm
      */
-    public void load(Context con) throws IOException
-    {
-        File name = new File(con.getFilesDir(),"names.txt");
-        BufferedReader reader = new BufferedReader(new FileReader(name));
+    public static void load(Context con) throws IOException {
+        File nameList = new File(con.getFilesDir(), "Names.txt");
+        BufferedReader reader = new BufferedReader(new FileReader(nameList));
         int i =  aa;
-        while( i >= 99 )
-        {
+        while (i != 99) {
             String a = reader.readLine();
-            if(a != null)
-            {
-                BufferedReader E = new BufferedReader(new FileReader(con.getFilesDir()+a+".txt"));
+            if(a != null) {
+                BufferedReader E = new BufferedReader(new FileReader(con.getFilesDir() + "/" + a + ".txt"));
+                System.out.println(i);
                 stats[i][0] = E.readLine();
                 stats[i][1] = E.readLine();
                 stats[i][2] = E.readLine();
@@ -72,11 +71,12 @@ IO {
                 stats[i][4] = E.readLine();
                 stats[i][5] = E.readLine();
                 stats[i][6] = E.readLine();
+                E.close();
                 aa++;
-
+            } else {
+                break;
             }
-
         }
-    }
 
+    }
 }
