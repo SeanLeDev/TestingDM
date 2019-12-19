@@ -10,10 +10,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
+import android.widget.EditText;
 
 import com.example.testingdm.R;
 
 public class npcView extends AppCompatActivity {
+
+    public Chip sus;
+    public Chip trust;
+    public Chip chaos;
+    public Chip neutral;
+    public Chip law;
+    public Chip good;
+    public Chip evil;
+    public Chip companion;
+    public Chip secret;
+    public EditText name;
+    public EditText background;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,9 +34,9 @@ public class npcView extends AppCompatActivity {
         setContentView(R.layout.activity_npc_view);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getIDchips();
 
-        Chip sus = findViewById(R.id.suspicious);
-        sus.isEnabled();
+        sus.isChecked();
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -33,6 +46,37 @@ public class npcView extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+    }
+
+
+    private void getIDchips() {
+        Chip sus = findViewById(R.id.suspicious);
+        Chip trust = findViewById(R.id.trusted);
+        Chip chaos = findViewById(R.id.chaotic);
+        Chip neutral = findViewById(R.id.neutral);
+        Chip law = findViewById(R.id.lawful);
+        Chip good = findViewById(R.id.good);
+        Chip evil = findViewById(R.id.evil);
+        Chip companion = findViewById(R.id.companion);
+        Chip secret = findViewById(R.id.secret);
+    }
+
+    private void getIDtextFields() {
+        EditText name = findViewById(R.id.NPCname);
+        EditText background = findViewById(R.id.background);
+    }
+
+    private void getChipsChecked() {
+        getIDchips();
+        sus.isChecked();
+        trust.isChecked();
+        chaos.isChecked();
+        neutral.isChecked();
+        law.isChecked();
+        good.isChecked();
+        evil.isChecked();
+        companion.isChecked();
+        secret.isChecked();
     }
 
 }
