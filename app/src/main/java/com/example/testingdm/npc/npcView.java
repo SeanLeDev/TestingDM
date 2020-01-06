@@ -16,6 +16,8 @@ import com.example.testingdm.R;
 
 public class npcView extends AppCompatActivity {
 
+    public static String[][] npc = new String[100][10];
+
     public Chip sus;
     public Chip trust;
     public Chip chaos;
@@ -42,6 +44,7 @@ public class npcView extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
@@ -78,5 +81,24 @@ public class npcView extends AppCompatActivity {
         companion.isChecked();
         secret.isChecked();
     }
+
+    public void nsave(){
+
+        int i = 0;
+        while (npc [i][0] != null) {
+            i++;
+        }
+        npc [i][0] = name.getText().toString();
+        npc [i][1] = sus.toString();
+        npc [i][2] = trust.toString();
+        npc [i][3] = chaos.toString();
+        npc [i][4] = neutral.toString();
+        npc [i][5] = law.toString();
+        npc [i][6] = good.toString();
+        npc [i][7] = evil.toString();
+        npc [i][8] = companion.toString();
+        npc [i][9] = secret.toString();
+        npc [i][10] = background.getText().toString();
+        }
 
 }
