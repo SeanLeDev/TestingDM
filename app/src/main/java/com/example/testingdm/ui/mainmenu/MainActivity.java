@@ -15,6 +15,7 @@ import com.example.testingdm.ui.mainmenu.cardviewcreation.ArrayToList;
 import com.example.testingdm.ui.mainmenu.cardviewcreation.adapterCardView;
 import com.example.testingdm.charactercreation.characterScreen;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.example.testingdm.ui.mainmenu.characterFragment;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.annotation.NonNull;
@@ -27,6 +28,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
@@ -60,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager;
 
         recyclerView = findViewById(R.id.characterList);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         characterList = new ArrayList<>();
         try {
@@ -78,7 +81,31 @@ public class MainActivity extends AppCompatActivity {
 
         adapterCardView mAdapter = new adapterCardView(this, characterList); //Need to get Character Data
         recyclerView.setAdapter(mAdapter);
+        recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+            @Override
+            public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+                System.out.println("onIntTouchEvent");
+                return false;
+            }
 
+            @Override
+            public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+                RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) rv.getTag();
+                int position = viewHolder.getAdapterPosition();
+                System.out.println("onTouchEvent");
+                startActivity(new Intent(MainActivity.this, characterScreen.class));
+                try {
+                    characterScreen.load(characterList.get(position));
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+                System.out.println("onRequestTouchEvent");
+            }
+        });
 
         System.out.println(characterList.isEmpty());
         configureFabButton();
@@ -142,6 +169,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == STORAGE_PERMISSION_CODE) {
@@ -152,6 +180,18 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
+        }
+    }
+
+    public void onTouchEvent(View view) {
+        RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
+        int position = viewHolder.getAdapterPosition();
+        System.out.println("onTouchEvent");
+        startActivity(new Intent(MainActivity.this, characterScreen.class));
+        try {
+            characterScreen.load(characterList.get(position));
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
     }
 }
