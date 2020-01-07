@@ -36,8 +36,6 @@ public class npcView extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getIDchips();
 
-        sus.isChecked();
-
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,7 +45,6 @@ public class npcView extends AppCompatActivity {
             }
         });
     }
-
 
     private void getIDchips() {
         Chip sus = findViewById(R.id.suspicious);
