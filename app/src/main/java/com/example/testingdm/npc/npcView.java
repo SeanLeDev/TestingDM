@@ -1,11 +1,13 @@
 package com.example.testingdm.npc;
 
+import android.os.Build;
 import android.os.Bundle;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -13,6 +15,8 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.example.testingdm.R;
+
+import java.io.IOException;
 
 public class npcView extends AppCompatActivity {
 
@@ -42,9 +46,10 @@ public class npcView extends AppCompatActivity {
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View view) {
-
+                nsave();
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
@@ -82,6 +87,7 @@ public class npcView extends AppCompatActivity {
         secret.isChecked();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void nsave(){
 
         int i = 0;
@@ -99,6 +105,12 @@ public class npcView extends AppCompatActivity {
         npc [i][8] = companion.toString();
         npc [i][9] = secret.toString();
         npc [i][10] = background.getText().toString();
+
+        try {
+            npcio.nsave(this,i);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
 
 }
