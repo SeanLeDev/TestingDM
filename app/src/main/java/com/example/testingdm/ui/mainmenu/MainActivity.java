@@ -36,6 +36,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 import static com.example.testingdm.charactercreation.characterScreen.stats;
 
 
@@ -58,9 +61,9 @@ public class MainActivity extends AppCompatActivity {
         tabs.setupWithViewPager(viewPager);
 
 
+
         RecyclerView recyclerView;
         RecyclerView.LayoutManager layoutManager;
-
         recyclerView = findViewById(R.id.characterList);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -84,6 +87,10 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
             @Override
             public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+                RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) rv.getTag();
+                int position = viewHolder.getAdapterPosition();
+                System.out.println("onTouchEvent");
+                startActivity(new Intent(MainActivity.this, characterScreen.class));
                 System.out.println("onIntTouchEvent");
                 return false;
             }

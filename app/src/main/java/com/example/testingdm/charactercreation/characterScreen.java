@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import static androidx.core.content.ContextCompat.startActivity;
 import static com.example.testingdm.R.id.view_pager;
 import static com.example.testingdm.R.layout.activity_main;
 
@@ -27,6 +28,13 @@ import com.example.testingdm.characterfiles.ValueCalculation;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class characterScreen extends AppCompatActivity {
@@ -91,6 +99,26 @@ public class characterScreen extends AppCompatActivity {
         getIDBonus();
         getIDSkills();
         configureFabButton();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://dnd5eapi.co/api/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        dnd5eapi dnd5eapi = retrofit.create(dnd5eapi.class);
+
+        Call<List<equipment>> call = dnd5eapi.getEquipment();
+
+        call.enqueue(new Callback<List<equipment>>() {
+            @Override
+            public void onResponse(Call<List<equipment>> call, Response<List<equipment>> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<List<equipment>> call, Throwable t) {
+
+            }
+        });
     }
 
     public void configureFabButton() {
@@ -246,5 +274,15 @@ public class characterScreen extends AppCompatActivity {
         slightOfHand = findViewById(R.id.slightOfHandBonus);
         stealth = findViewById(R.id.stealthBonus);
         survival = findViewById(R.id.survivalBonus);
+    }
+
+    public void loadDataActivity(String n) {
+        Intent i = new Intent(characterScreen.this, MainActivity.class);
+        startActivity(i);
+        try {
+            characterScreen.load(n);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

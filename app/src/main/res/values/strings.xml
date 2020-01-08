@@ -24,6 +24,7 @@
     <string name="chaInput">Cha</string>
     <string name="saveResults">Save</string>
 
+    <string name="NPCtitle">NPC Creator</string>
     <string name="susInput">Suspicious</string>
     <string name="neutralInput">Neutral</string>
     <string name="lawfulInput">Lawful</string>
