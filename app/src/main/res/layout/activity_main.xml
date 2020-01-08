@@ -3,16 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".ui.mainmenu.MainActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/characterList"
-        android:layout_width="match_parent"
-        android:layout_height="618dp"
-        android:scrollbars="vertical"
-        app:layout_anchor="@+id/view_pager"
-        app:layout_anchorGravity="center"></androidx.recyclerview.widget.RecyclerView>
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -66,6 +59,13 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     </androidx.viewpager.widget.ViewPager>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/characterList"
+        android:layout_width="match_parent"
+        android:layout_height="506dp"
+        app:layout_anchor="@+id/view_pager"
+        app:layout_anchorGravity="center" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"

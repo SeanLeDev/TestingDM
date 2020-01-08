@@ -1,5 +1,6 @@
 package com.example.testingdm.ui.mainmenu.cardviewcreation;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import java.util.List;
 
 import com.example.testingdm.R;
 import com.example.testingdm.charactercreation.IO;
+import com.example.testingdm.charactercreation.characterEdit;
 import com.example.testingdm.charactercreation.characterScreen;
 import com.example.testingdm.characterfiles.Character;
 import com.example.testingdm.ui.mainmenu.MainActivity;
@@ -30,8 +32,10 @@ public class adapterCardView extends RecyclerView.Adapter<adapterCardView.charac
     //Array
     private List<String> characterList;
     private CardView card;
+    public TextView textViewName;
+    private View.OnClickListener onItemClickListener;
 
-    //getting the context and product list with constructor
+    //getting the context and character list with constructor
     public adapterCardView(Context mCtx, List<String> characterList) {
         this.mCtx = mCtx;
         this.characterList = characterList;
@@ -42,7 +46,13 @@ public class adapterCardView extends RecyclerView.Adapter<adapterCardView.charac
         //inflating and returning our view holder
         LayoutInflater inflater = LayoutInflater.from(mCtx);
         View view = inflater.inflate(R.layout.cardview, null); //SETUP
-
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                System.out.println("Pussy");
+                clickActivity();
+            }
+        });
         return new characterViewHolder(view);
     }
 
@@ -52,7 +62,10 @@ public class adapterCardView extends RecyclerView.Adapter<adapterCardView.charac
         String c = characterList.get(position);
         //binding the data with the viewholder views
         holder.textViewName.setText(c);
+    }
 
+    public void setItemClickListener(View.OnClickListener clickListener) {
+        onItemClickListener = clickListener;
     }
 
     @Override
@@ -67,22 +80,20 @@ public class adapterCardView extends RecyclerView.Adapter<adapterCardView.charac
             super(itemView);
             card = itemView.findViewById(R.id.card);
             textViewName = itemView.findViewById(R.id.textViewName);
-            card.setOnClickListener(new View.OnClickListener() {
+            itemView.setTag(this);
+            itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
-                    try {
-                        //startActivity(new Intent(MainActivity.this, characterScreen.class)); //Take a look
-                        characterScreen.load(textViewName.toString());  //setup
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                public void onClick(final View v) {
+                    //OnClickListener for the CardView*****
+                    clickActivity();
                 }
             });
         }
+    }
 
-        public String getCharacterName() {
-            String s = textViewName.toString();
-            return s;
-        }
+    public void clickActivity() {
+        characterScreen characterScreen = new characterScreen();
+        characterScreen.loadDataActivity(textViewName.toString());
     }
 }
+
