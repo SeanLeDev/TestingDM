@@ -9,13 +9,13 @@ import android.os.Bundle;
 
 import com.example.testingdm.R;
 import com.example.testingdm.charactercreation.IO;
-import com.example.testingdm.characterfiles.Character;
+import com.example.testingdm.charactercreation.api.dnd5eapi;
+import com.example.testingdm.charactercreation.api.equipment;
 import com.example.testingdm.npc.npcView;
 import com.example.testingdm.ui.mainmenu.cardviewcreation.ArrayToList;
 import com.example.testingdm.ui.mainmenu.cardviewcreation.adapterCardView;
 import com.example.testingdm.charactercreation.characterScreen;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.example.testingdm.ui.mainmenu.characterFragment;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.annotation.NonNull;
@@ -30,12 +30,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -49,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private int STORAGE_PERMISSION_CODE = 1;
+    private TextView apiTest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +64,49 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabLayout);
         tabs.setupWithViewPager(viewPager);
+        apiTest = findViewById(R.id.testAPI);
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://dnd5eapi.co/api/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        final dnd5eapi dnd5eapi = retrofit.create(dnd5eapi.class);
+
+        Call<equipment> call = dnd5eapi.getEquipment("shortsword");
+
+        call.enqueue(new Callback<equipment>() {
+            @Override
+            public void onResponse(Call<equipment> call, Response<equipment> response) {
+                apiTest = findViewById(R.id.testAPI);
+                if (!response.isSuccessful()) {
+                    apiTest.setText("Code: " + response.code());
+                    return;
+                }
+                equipment equipments = response.body();
+                equipment equip = new equipment();
+                String cont = "";
+                cont += "ID: " + response.body().get_Id() + "\n";
+                cont += "Index: " + response.body().getIndex() + "\n";
+                cont += "Name: " + response.body().getName() + "\n";
+                cont += "Equipment Category: " + response.body().getEquipmentCat() + "\n";
+                cont += "Weapon Category: " + response.body().getWeaponCat() + "\n";
+                cont += "Weapon Range: " + response.body().getWeaponRng() + "\n";
+                cont += "Cost: " + response.body().getCost() + "\n\n";
+                apiTest = findViewById(R.id.testAPI);
+                System.out.println(cont);
 
 
+            }
+
+            @Override
+            public void onFailure(Call<equipment> call, Throwable t) {
+                //TextView apiTest = findViewById(R.id.testAPI);
+                String message = t.getMessage();
+                System.out.println(message + "&&&&&&&&&&&&&&&&&&&&&");
+                //apiTest.setText(message);
+            }
+
+        });
 
         RecyclerView recyclerView;
         RecyclerView.LayoutManager layoutManager;

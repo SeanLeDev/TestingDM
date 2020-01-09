@@ -100,25 +100,7 @@ public class characterScreen extends AppCompatActivity {
         getIDSkills();
         configureFabButton();
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://dnd5eapi.co/api/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        dnd5eapi dnd5eapi = retrofit.create(dnd5eapi.class);
 
-        Call<List<equipment>> call = dnd5eapi.getEquipment();
-
-        call.enqueue(new Callback<List<equipment>>() {
-            @Override
-            public void onResponse(Call<List<equipment>> call, Response<List<equipment>> response) {
-
-            }
-
-            @Override
-            public void onFailure(Call<List<equipment>> call, Throwable t) {
-
-            }
-        });
     }
 
     public void configureFabButton() {
