@@ -95,7 +95,6 @@ public class MainActivity extends AppCompatActivity {
                 apiTest = findViewById(R.id.testAPI);
                 System.out.println(cont);
 
-
             }
 
             @Override
@@ -133,11 +132,11 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
             @Override
             public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
-              //  RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) rv.getTag();
-             //   int position = viewHolder.getAdapterPosition();
-              //  System.out.println("onTouchEvent");
-             //   startActivity(new Intent(MainActivity.this, characterScreen.class));
-              //  System.out.println("onIntTouchEvent");
+                /* RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) rv.getTag();
+                int position = viewHolder.getAdapterPosition();
+                System.out.println("onTouchEvent");
+                startActivity(new Intent(MainActivity.this, characterScreen.class));
+                System.out.println("onIntTouchEvent"); */
                 return false;
             }
 

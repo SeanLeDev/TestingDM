@@ -101,7 +101,7 @@ public class characterScreen extends AppCompatActivity {
         getIDBonus();
         getIDSkills();
         configureFabButton();
-
+        features();
 
     }
 
@@ -276,17 +276,16 @@ public class characterScreen extends AppCompatActivity {
             .build();
         final dnd5eapi dnd5eapi = retrofit.create(dnd5eapi.class);
 
-        Call<com.example.testingdm.charactercreation.api.Features> call = dnd5eapi.getFeatures(""); //Unsure what to put here
+        Call<com.example.testingdm.charactercreation.api.Features> call = dnd5eapi.getFeatures("action-surge-1-use"); //Unsure what to put here
 
         call.enqueue(new Callback<Features>() {
             @Override
             public void onResponse(Call<Features> call, Response<Features> response) { //Connection to api is succesful
 
-            //  apiTest = findViewById(R.id.testAPI); //Failsafe
-             //  if (!response.isSuccessful()) {
-                //    apiTest.setText("Code: " + response.code());
-                  //  return;
-               // }
+                if (!response.isSuccessful()) {
+                    System.out.println("Code: " + response.code());
+                    return;
+                }
                 Features feature = response.body(); //response.body is the object you get from api
                 Features feat = new Features();
                 String cont = ""; //console testing
@@ -297,7 +296,7 @@ public class characterScreen extends AppCompatActivity {
                 cont += "Description: " + response.body().getDesc() + "\n";
                 cont += "URL: " + response.body().getUrl() + "\n";
                 //apiTest = findViewById(R.id.testAPI);
-                System.out.println(cont);
+                System.out.println(cont + "testing this shit");
             }
 
             @Override
