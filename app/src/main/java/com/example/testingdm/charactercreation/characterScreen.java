@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import com.example.testingdm.R;
 import com.example.testingdm.charactercreation.api.Features;
+import com.example.testingdm.charactercreation.api.classes;
 import com.example.testingdm.charactercreation.api.dnd5eapi;
 import com.example.testingdm.ui.mainmenu.MainActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -301,6 +302,46 @@ public class characterScreen extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Features> call, Throwable t) {
+                //TextView apiTest = findViewById(R.id.testAPI);
+                String message = t.getMessage();
+                System.out.println(message + "&&&&&&&&&&&&&&&&&&&&&"); //bug output
+                //apiTest.setText(message);
+            }
+
+        });
+    }
+
+    public void classes (){Retrofit retrofit = new Retrofit.Builder() //Need this to access the api
+            .baseUrl("http://dnd5eapi.co/api/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build();
+        final dnd5eapi dnd5eapi = retrofit.create(dnd5eapi.class);
+
+        Call<com.example.testingdm.charactercreation.api.classes> call = dnd5eapi.getclasses(""); //Unsure what to put here
+
+        call.enqueue(new Callback<classes>() {
+            @Override
+            public void onResponse(Call<classes> call, Response<classes> response) { //Connection to api is succesful
+
+                if (!response.isSuccessful()) {
+                    System.out.println("Code: " + response.code());
+                    return;
+                }
+          /*      Features feature = response.body(); //response.body is the object you get from api
+                Features feat = new Features();
+                String cont = ""; //console testing
+                cont += "ID: " + response.body().getId() + "\n";
+                cont += "Index: " + response.body().getIndex() + "\n";
+                cont += "Name: " + response.body().getName() + "\n";
+                cont += "Level: " + response.body().getLevel() + "\n";
+                cont += "Description: " + response.body().getDesc() + "\n";
+                cont += "URL: " + response.body().getUrl() + "\n";
+                //apiTest = findViewById(R.id.testAPI);
+                System.out.println(cont + "testing this shit");
+           */ }
+
+            @Override
+            public void onFailure(Call<classes> call, Throwable t) {
                 //TextView apiTest = findViewById(R.id.testAPI);
                 String message = t.getMessage();
                 System.out.println(message + "&&&&&&&&&&&&&&&&&&&&&"); //bug output
