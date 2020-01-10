@@ -11,4 +11,9 @@ public interface dnd5eapi {
 
     @GET("skills/{skillname}")
     Call<skills> getSkills(@Path("skillname") String skillname);
+
+    @GET("features/{featurename}")
+    Call<Features> getFeatures(@Path("featurename") String featurename);
+
+    //@GET("spells/{spell}")
 }
