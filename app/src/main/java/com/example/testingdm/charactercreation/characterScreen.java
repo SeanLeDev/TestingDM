@@ -311,6 +311,7 @@ public class characterScreen extends AppCompatActivity {
         });
     }
 
+
     public void classes (){Retrofit retrofit = new Retrofit.Builder() //Need this to access the api
             .baseUrl("http://dnd5eapi.co/api/")
             .addConverterFactory(GsonConverterFactory.create())
@@ -327,18 +328,25 @@ public class characterScreen extends AppCompatActivity {
                     System.out.println("Code: " + response.code());
                     return;
                 }
-          /*      Features feature = response.body(); //response.body is the object you get from api
+                classes classes = response.body(); //response.body is the object you get from api
                 Features feat = new Features();
                 String cont = ""; //console testing
                 cont += "ID: " + response.body().getId() + "\n";
                 cont += "Index: " + response.body().getIndex() + "\n";
                 cont += "Name: " + response.body().getName() + "\n";
-                cont += "Level: " + response.body().getLevel() + "\n";
-                cont += "Description: " + response.body().getDesc() + "\n";
-                cont += "URL: " + response.body().getUrl() + "\n";
+                cont += "Hit Die: " + response.body().getHitdie() + "\n";
+                cont += "Choice: " + response.body().getChoice() + "\n";
+                cont += "Proficiencies" + response.body().getProficiencies() + "\n";
+                cont += "Class Saving Throw" + response.body().getClassSavingThrow() + "\n";
+                cont += "Starting Gear" + response.body().getStartingGear() + "\n";
+                cont += "Class Levels" + response.body().getClassLevels() + "\n";
+                cont += "Subclasses " + response.body().getSubclasses() + "\n";
+                cont += "Spell Casting " + response.body().getSpellcasting() + "\n";
+                cont += "Url " + response.body().getUrl() + "\n";
+
                 //apiTest = findViewById(R.id.testAPI);
                 System.out.println(cont + "testing this shit");
-           */ }
+            }
 
             @Override
             public void onFailure(Call<classes> call, Throwable t) {
