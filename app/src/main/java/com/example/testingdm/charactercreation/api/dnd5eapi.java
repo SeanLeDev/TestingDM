@@ -9,5 +9,6 @@ public interface dnd5eapi {
     @GET("equipment/{name}")
     Call<equipment> getEquipment(@Path("name") String name);
 
-    //@GET("spells/{spell}")
+    @GET("skills/{skillname}")
+    Call<skills> getSkills(@Path("skillname") String skillname);
 }

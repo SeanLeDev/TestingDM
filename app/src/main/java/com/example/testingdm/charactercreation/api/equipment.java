@@ -14,12 +14,11 @@ public class equipment {
     private String category_range;
 
     private Map<String, String> damage;
-    private Map<String, String> dmgBonus;
-    private Map<String, Map<String, String>> dmgType;
 
     private Cost cost;
+    private damage_type dmgType;
     private String dmgDice;
-    //private int dmgBonus;
+    private int dmgBonus;
 
     private Weapon_Properties properties;
     private int range;
@@ -69,6 +68,14 @@ public class equipment {
         return dmgDice;
     }
 
+    public int getDmgBonus() {
+        return dmgBonus;
+    }
+
+    public damage_type getDmgType() {
+        return dmgType;
+    }
+
     public int getRange() {
         return range;
     }
@@ -89,36 +96,9 @@ public class equipment {
         String url;
     }
 
-    public String get_id() {
-        return _id;
-    }
-
-    public String getEquipment_category() {
-        return equipment_category;
-    }
-
-    public String getWeapon_category() {
-        return weapon_category;
-    }
-
-    public String getWeapon_range() {
-        return weapon_range;
-    }
-
-    public String getCategory_range() {
-        return category_range;
-    }
-
-    public Map<String, String> getDmgBonus() {
-        return dmgBonus;
-    }
-
-    public Map<String, Map<String, String>> getDmgType() {
-        return dmgType;
-    }
-
-    public Weapon_Properties getProperties() {
-        return properties;
+    public class damage_type {
+        String url;
+        String name;
     }
 
     public class damageDiceBonus {
