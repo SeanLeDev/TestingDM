@@ -10,6 +10,8 @@ import com.example.testingdm.charactercreation.api.apio;
 import com.example.testingdm.charactercreation.api.classes;
 import com.example.testingdm.charactercreation.api.dnd5eapi;
 import com.example.testingdm.charactercreation.api.proficiencies;
+import com.example.testingdm.charactercreation.api.skills;
+import com.example.testingdm.characterfiles.Skills;
 import com.example.testingdm.ui.mainmenu.MainActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
@@ -158,7 +160,7 @@ public class characterScreen extends AppCompatActivity {
                 break;
             } else
                 continue;
-            }
+        }
         //Temporary before the actual name list comes
         for (int l = 0; l < 7; l++) {
             switch (l) { //Loads all the stats into the inputs
@@ -226,7 +228,7 @@ public class characterScreen extends AppCompatActivity {
         persuasion.setText(String.valueOf(ValueCalculation.getBonus(Integer.valueOf(chaInput.getText().toString()))));
     }
 
-    public void getIDinput(){
+    public void getIDinput() {
         nameInput = findViewById(R.id.nameInput);
         strInput = findViewById(R.id.strInput);
         chaInput = findViewById(R.id.chaInput);
@@ -236,7 +238,7 @@ public class characterScreen extends AppCompatActivity {
         intInput = findViewById(R.id.intInput);
     }
 
-    public void getIDBonus(){
+    public void getIDBonus() {
         nameDisplay = findViewById(R.id.nameDisplay);
         strBonus = findViewById(R.id.strBonus);
         chaBonus = findViewById(R.id.chaBonus);
@@ -245,7 +247,8 @@ public class characterScreen extends AppCompatActivity {
         dexBonus = findViewById(R.id.dexBonus);
         intBonus = findViewById(R.id.intBonus);
     }
-    public void getIDSkills(){
+
+    public void getIDSkills() {
         acrobatics = findViewById(R.id.acrobaticsBonus);
         animalHandling = findViewById(R.id.animalHandlingBonus);
         arcana = findViewById(R.id.arcanaBonus);
@@ -277,20 +280,18 @@ public class characterScreen extends AppCompatActivity {
     }
 
 
-
-
-
     //Beginning of the api interaction
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public void features(String k){Retrofit retrofit = new Retrofit.Builder() //Need this to access the api
-            .baseUrl("http://dnd5eapi.co/api/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build();
+    public void features(String k) {
+        Retrofit retrofit = new Retrofit.Builder() //Need this to access the api
+                .baseUrl("http://dnd5eapi.co/api/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
         final dnd5eapi dnd5eapi = retrofit.create(dnd5eapi.class);
-        final String [][] f = new String [1][6];
+        final String[][] f = new String[1][6];
         int i = 0;
-        while(i<7){
+        while (i < 7) {
             f[0][i] = null;
         }
         Call<com.example.testingdm.charactercreation.api.Features> call = dnd5eapi.getFeatures(k); //Unsure what to put here
@@ -306,17 +307,17 @@ public class characterScreen extends AppCompatActivity {
                 Features feature = response.body(); //response.body is the object you get from api
                 String cont = ""; //console testing
                 cont += "ID: " + response.body().getId() + "\n";
-                f [0][0] =  response.body().getId();
+                f[0][0] = response.body().getId();
                 cont += "Index: " + response.body().getIndex() + "\n";
-                f [0][1] =  response.body().getIndex();
+                f[0][1] = response.body().getIndex();
                 cont += "Name: " + response.body().getName() + "\n";
-                f [0][2] =  response.body().getName();
+                f[0][2] = response.body().getName();
                 cont += "Level: " + response.body().getLevel() + "\n";
-                f [0][3] = Integer.toString(response.body().getLevel());
+                f[0][3] = Integer.toString(response.body().getLevel());
                 cont += "Description: " + response.body().getDesc() + "\n";
-                f [0][4] =  response.body().getDesc().toString();
+                f[0][4] = response.body().getDesc().toString();
                 cont += "URL: " + response.body().getUrl() + "\n";
-                f [0][5] =  response.body().getUrl();
+                f[0][5] = response.body().getUrl();
                 //apiTest = findViewById(R.id.testAPI);
                 System.out.println(cont + "testing this shit");
             }
@@ -340,16 +341,16 @@ public class characterScreen extends AppCompatActivity {
     }
 
 
-
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public void classes (String k){Retrofit retrofit = new Retrofit.Builder() //Need this to access the api
-            .baseUrl("http://dnd5eapi.co/api/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build();
+    public void classes(String k) {
+        Retrofit retrofit = new Retrofit.Builder() //Need this to access the api
+                .baseUrl("http://dnd5eapi.co/api/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
         final dnd5eapi dnd5eapi = retrofit.create(dnd5eapi.class);
-        final String [][] f = new String [1][12];
+        final String[][] f = new String[1][12];
         int i = 0;
-        while(i<11) {
+        while (i < 12) {
             f[0][i] = null;
         }
         Call<com.example.testingdm.charactercreation.api.classes> call = dnd5eapi.getclasses(k); //Unsure what to put here
@@ -391,6 +392,7 @@ public class characterScreen extends AppCompatActivity {
                 //apiTest = findViewById(R.id.testAPI);
                 System.out.println(cont + "testing this shit");
             }
+
             @Override
             public void onFailure(Call<classes> call, Throwable t) {
                 //TextView apiTest = findViewById(R.id.testAPI);
@@ -408,16 +410,16 @@ public class characterScreen extends AppCompatActivity {
     }
 
 
-
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public void proficiencies(String k){Retrofit retrofit = new Retrofit.Builder() //Need this to access the api
-            .baseUrl("http://dnd5eapi.co/api/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build();
+    public void proficiencies(String k) {
+        Retrofit retrofit = new Retrofit.Builder() //Need this to access the api
+                .baseUrl("http://dnd5eapi.co/api/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
         final dnd5eapi dnd5eapi = retrofit.create(dnd5eapi.class);
-        final String [][] f = new String [1][7];
+        final String[][] f = new String[1][7];
         int i = 0;
-        while(i<8){
+        while (i < 7) {
             f[0][i] = null;
         }
         Call<com.example.testingdm.charactercreation.api.proficiencies> call = dnd5eapi.getproficiency(k); //Unsure what to put here
@@ -431,15 +433,14 @@ public class characterScreen extends AppCompatActivity {
                     return;
                 }
                 proficiencies proficiencies = response.body(); //response.body is the object you get from api
-                proficiencies pro = new proficiencies();
                 String cont = ""; //console testing
-                f [0][0] =  response.body().getId();
-                f [0][1] =  response.body().getIndex();
-                f [0][2] =  response.body().getType();
-                f [0][3] =  response.body().getName();
-                f [0][4] = String.valueOf(response.body().getProficiencyClass());
-                f [0][5] = String.valueOf(response.body().getRace());
-                f [0][6] =  response.body().getUrl();
+                f[0][0] = response.body().getId();
+                f[0][1] = response.body().getIndex();
+                f[0][2] = response.body().getType();
+                f[0][3] = response.body().getName();
+                f[0][4] = String.valueOf(response.body().getProficiencyClass());
+                f[0][5] = String.valueOf(response.body().getRace());
+                f[0][6] = response.body().getUrl();
             }
 
             @Override
@@ -461,7 +462,54 @@ public class characterScreen extends AppCompatActivity {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public void skills(String k) {
+        Retrofit retrofit = new Retrofit.Builder() //Need this to access the api
+                .baseUrl("http://dnd5eapi.co/api/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        final dnd5eapi dnd5eapi = retrofit.create(dnd5eapi.class);
+        final String[][] f = new String[1][6];
+        int i = 0;
+        while (i < 6) {
+            f[0][i] = null;
+        }
+        Call<com.example.testingdm.charactercreation.api.skills> call = dnd5eapi.getskill(k); //Unsure what to put here
+
+        call.enqueue(new Callback<skills>() {
+            @Override
+            public void onResponse(Call<skills> call, Response<skills> response) { //Connection to api is succesful
+
+                if (!response.isSuccessful()) {
+                    System.out.println("Code: " + response.code());
+                    return;
+                }
+                skills skills = response.body(); //response.body is the object you get from api
+                f[0][0] = response.body().getId();
+                f[0][1] = response.body().getIndex();
+                f[0][2] = response.body().getName();
+                f[0][3] = String.valueOf(response.body().getDesc());
+                f[0][4] = String.valueOf(response.body().getAbility_score());
+                f[0][5] = String.valueOf(response.body().getUrl());
+            }
+
+            @Override
+            public void onFailure(Call<skills> call, Throwable t) {
+                //TextView apiTest = findViewById(R.id.testAPI);
+                String message = t.getMessage();
+                System.out.println(message + "&&&&&&&&&&&&&&&&&&&&&"); //bug output
+                //apiTest.setText(message);
+            }
 
 
+        });
+        try {
+            apio.apisave(this, nameInput.getText().toString(), "-p", f);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
 
 }

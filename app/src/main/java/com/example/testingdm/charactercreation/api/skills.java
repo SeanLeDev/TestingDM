@@ -5,17 +5,17 @@ import java.util.List;
 public class skills {
 
     private String _id;
-    private int index;
+    private String index;
     private String name;
     private List<String> desc;
     private ability_scores ability_score;
     private String url;
 
-    public String get_id() {
+    public String getId() {
         return _id;
     }
 
-    public int getIndex() {
+    public String getIndex() {
         return index;
     }
 
