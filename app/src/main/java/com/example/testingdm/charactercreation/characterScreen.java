@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import com.example.testingdm.R;
 import com.example.testingdm.charactercreation.api.Features;
+import com.example.testingdm.charactercreation.api.apio;
 import com.example.testingdm.charactercreation.api.classes;
 import com.example.testingdm.charactercreation.api.dnd5eapi;
 import com.example.testingdm.ui.mainmenu.MainActivity;
@@ -102,7 +103,7 @@ public class characterScreen extends AppCompatActivity {
         getIDBonus();
         getIDSkills();
         configureFabButton();
-        features();
+
 
     }
 
@@ -116,12 +117,14 @@ public class characterScreen extends AppCompatActivity {
                 setStatDisplay();
                 setSkillsDisplay();
                 asave();
+                features("i");//TODO Replace i with user input and give this its independent save button
                 //IO.load();
 
             }
         });
 
     }
+
 
     //This method loads the character data into our array
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -143,6 +146,7 @@ public class characterScreen extends AppCompatActivity {
             Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show();
         }
         Toast.makeText(this, "Saved", Toast.LENGTH_LONG).show();
+
     }
 
     public static void load(String n) throws IOException {
@@ -271,13 +275,24 @@ public class characterScreen extends AppCompatActivity {
         }
     }
 
-    public void features(){Retrofit retrofit = new Retrofit.Builder() //Need this to access the api
+
+
+
+
+    //Beginning of the api interaction
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public void features(String k){Retrofit retrofit = new Retrofit.Builder() //Need this to access the api
             .baseUrl("http://dnd5eapi.co/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
         final dnd5eapi dnd5eapi = retrofit.create(dnd5eapi.class);
-
-        Call<com.example.testingdm.charactercreation.api.Features> call = dnd5eapi.getFeatures("action-surge-1-use"); //Unsure what to put here
+        final String [][] f = new String [1][6];
+        int i = 0;
+        while(i<7){
+            f[0][i] = null;
+        }
+        Call<com.example.testingdm.charactercreation.api.Features> call = dnd5eapi.getFeatures(k); //Unsure what to put here
 
         call.enqueue(new Callback<Features>() {
             @Override
@@ -291,11 +306,17 @@ public class characterScreen extends AppCompatActivity {
                 Features feat = new Features();
                 String cont = ""; //console testing
                 cont += "ID: " + response.body().getId() + "\n";
+                f [0][0] =  response.body().getId();
                 cont += "Index: " + response.body().getIndex() + "\n";
+                f [0][1] =  response.body().getIndex();
                 cont += "Name: " + response.body().getName() + "\n";
+                f [0][2] =  response.body().getName();
                 cont += "Level: " + response.body().getLevel() + "\n";
+                f [0][3] = Integer.toString(response.body().getLevel());
                 cont += "Description: " + response.body().getDesc() + "\n";
+                f [0][4] =  response.body().getDesc().toString();
                 cont += "URL: " + response.body().getUrl() + "\n";
+                f [0][5] =  response.body().getUrl();
                 //apiTest = findViewById(R.id.testAPI);
                 System.out.println(cont + "testing this shit");
             }
@@ -308,7 +329,14 @@ public class characterScreen extends AppCompatActivity {
                 //apiTest.setText(message);
             }
 
+
         });
+        try {
+            apio.apisave(this, nameInput.getText().toString(), "-f", f);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 
@@ -343,7 +371,6 @@ public class characterScreen extends AppCompatActivity {
                 cont += "Subclasses " + response.body().getSubclasses() + "\n";
                 cont += "Spell Casting " + response.body().getSpellcasting() + "\n";
                 cont += "Url " + response.body().getUrl() + "\n";
-
                 //apiTest = findViewById(R.id.testAPI);
                 System.out.println(cont + "testing this shit");
             }
@@ -358,6 +385,8 @@ public class characterScreen extends AppCompatActivity {
 
         });
     }
+
+
 
 
 }
