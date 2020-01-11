@@ -340,13 +340,19 @@ public class characterScreen extends AppCompatActivity {
     }
 
 
-    public void classes (){Retrofit retrofit = new Retrofit.Builder() //Need this to access the api
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public void classes (String k){Retrofit retrofit = new Retrofit.Builder() //Need this to access the api
             .baseUrl("http://dnd5eapi.co/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
         final dnd5eapi dnd5eapi = retrofit.create(dnd5eapi.class);
-
-        Call<com.example.testingdm.charactercreation.api.classes> call = dnd5eapi.getclasses(""); //Unsure what to put here
+        final String [][] f = new String [1][12];
+        int i = 0;
+        while(i<11) {
+            f[0][i] = null;
+        }
+        Call<com.example.testingdm.charactercreation.api.classes> call = dnd5eapi.getclasses(k); //Unsure what to put here
 
         call.enqueue(new Callback<classes>() {
             @Override
@@ -360,17 +366,29 @@ public class characterScreen extends AppCompatActivity {
                 Features feat = new Features();
                 String cont = ""; //console testing
                 cont += "ID: " + response.body().getId() + "\n";
+                f[0][0] = response.body().getId();
                 cont += "Index: " + response.body().getIndex() + "\n";
+                f[0][1] = response.body().getIndex();
                 cont += "Name: " + response.body().getName() + "\n";
+                f[0][2] = response.body().getName();
                 cont += "Hit Die: " + response.body().getHitdie() + "\n";
+                f[0][3] = Integer.toString(response.body().getHitdie());
                 cont += "Choice: " + response.body().getChoice() + "\n";
+                f[0][4] = String.valueOf(response.body().getChoice());
                 cont += "Proficiencies" + response.body().getProficiencies() + "\n";
+                f[0][5] = String.valueOf(response.body().getProficiencies());
                 cont += "Class Saving Throw" + response.body().getClassSavingThrow() + "\n";
+                f[0][6] = String.valueOf(response.body().getClassSavingThrow());
                 cont += "Starting Gear" + response.body().getStartingGear() + "\n";
+                f[0][7] = String.valueOf(response.body().getStartingGear());
                 cont += "Class Levels" + response.body().getClassLevels() + "\n";
+                f[0][8] = String.valueOf(response.body().getClassLevels());
                 cont += "Subclasses " + response.body().getSubclasses() + "\n";
+                f[0][9] = String.valueOf(response.body().getSubclasses());
                 cont += "Spell Casting " + response.body().getSpellcasting() + "\n";
+                f[0][10] = String.valueOf(response.body().getSpellcasting());
                 cont += "Url " + response.body().getUrl() + "\n";
+                f[0][11] = response.body().getUrl();
                 //apiTest = findViewById(R.id.testAPI);
                 System.out.println(cont + "testing this shit");
             }
@@ -384,6 +402,12 @@ public class characterScreen extends AppCompatActivity {
             }
 
         });
+
+        try {
+            apio.apisave(this, nameInput.getText().toString(), "-cl", f);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
