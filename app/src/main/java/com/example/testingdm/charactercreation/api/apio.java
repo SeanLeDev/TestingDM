@@ -18,8 +18,6 @@ import static com.example.testingdm.charactercreation.characterScreen.stats;
 public class apio {
 
     private static String FILENAME;
-    private static int aa = 0;
-
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static void apisave(Context con, String n, String i, String [][] a) throws IOException {
@@ -47,29 +45,23 @@ public class apio {
      */
 
     //TODO
-  /*  public static void load(Context con) throws IOException {
-       File nameList = new File(con.getFilesDir(), "Names.txt");
-        BufferedReader reader = new BufferedReader(new FileReader(nameList));
-        int i =  aa;
-        while (i != 99) {
+    public static String[][] apiload(Context con, String fname) throws IOException {
+       File name = new File(con.getFilesDir(), fname+".txt");
+        BufferedReader reader = new BufferedReader(new FileReader(name));
+        String [][] stat = new String[0][20];
+        int i =  0;
+        while (i < 20) {
             String a = reader.readLine();
             if(a != null) {
-                BufferedReader E = new BufferedReader(new FileReader(con.getFilesDir() + "/" + a + ".txt"));
-                System.out.println(i);
-                stats[i][0] = E.readLine();
-                stats[i][1] = E.readLine();
-                stats[i][2] = E.readLine();
-                stats[i][3] = E.readLine();
-                stats[i][4] = E.readLine();
-                stats[i][5] = E.readLine();
-                stats[i][6] = E.readLine();
-                E.close();
-                aa++;
+                System.out.println(a); //For debugging
+                stat[0][i] = a;
+                i++;
             } else {
                 break;
-            }
-        }
-
-    }*/
+            }//Else
+        }//While loop
+        reader.close();
+        return stat;
+    }
 
 }

@@ -392,7 +392,6 @@ public class characterScreen extends AppCompatActivity {
                 //apiTest = findViewById(R.id.testAPI);
                 System.out.println(cont + "testing this shit");
             }
-
             @Override
             public void onFailure(Call<classes> call, Throwable t) {
                 //TextView apiTest = findViewById(R.id.testAPI);
@@ -402,13 +401,15 @@ public class characterScreen extends AppCompatActivity {
             }
 
         });
-
         try {
-            apio.apisave(this, nameInput.getText().toString(), "-cl", f);
+            apio.apisave(this, nameInput.getText().toString(), "-c", f);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+
+
 
 
 
