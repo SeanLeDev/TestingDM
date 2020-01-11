@@ -42,7 +42,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
+//TODO Lots of redunt
 
 public class characterScreen extends AppCompatActivity {
 
@@ -281,6 +281,7 @@ public class characterScreen extends AppCompatActivity {
 
 
     //Beginning of the api interaction
+    //TODO Lots of redundant code here need to clean up
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void features(String k) {
@@ -504,7 +505,7 @@ public class characterScreen extends AppCompatActivity {
 
         });
         try {
-            apio.apisave(this, nameInput.getText().toString(), "-p", f);
+            apio.apisave(this, nameInput.getText().toString(), "-s", f);
         } catch (IOException e) {
             e.printStackTrace();
         }
