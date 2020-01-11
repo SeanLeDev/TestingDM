@@ -9,6 +9,7 @@ import com.example.testingdm.charactercreation.api.Features;
 import com.example.testingdm.charactercreation.api.apio;
 import com.example.testingdm.charactercreation.api.classes;
 import com.example.testingdm.charactercreation.api.dnd5eapi;
+import com.example.testingdm.charactercreation.api.proficiencies;
 import com.example.testingdm.ui.mainmenu.MainActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
@@ -303,7 +304,6 @@ public class characterScreen extends AppCompatActivity {
                     return;
                 }
                 Features feature = response.body(); //response.body is the object you get from api
-                Features feat = new Features();
                 String cont = ""; //console testing
                 cont += "ID: " + response.body().getId() + "\n";
                 f [0][0] =  response.body().getId();
@@ -363,7 +363,6 @@ public class characterScreen extends AppCompatActivity {
                     return;
                 }
                 classes classes = response.body(); //response.body is the object you get from api
-                Features feat = new Features();
                 String cont = ""; //console testing
                 cont += "ID: " + response.body().getId() + "\n";
                 f[0][0] = response.body().getId();
@@ -409,6 +408,57 @@ public class characterScreen extends AppCompatActivity {
     }
 
 
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public void proficiencies(String k){Retrofit retrofit = new Retrofit.Builder() //Need this to access the api
+            .baseUrl("http://dnd5eapi.co/api/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build();
+        final dnd5eapi dnd5eapi = retrofit.create(dnd5eapi.class);
+        final String [][] f = new String [1][7];
+        int i = 0;
+        while(i<8){
+            f[0][i] = null;
+        }
+        Call<com.example.testingdm.charactercreation.api.proficiencies> call = dnd5eapi.getproficiency(k); //Unsure what to put here
+
+        call.enqueue(new Callback<proficiencies>() {
+            @Override
+            public void onResponse(Call<proficiencies> call, Response<proficiencies> response) { //Connection to api is succesful
+
+                if (!response.isSuccessful()) {
+                    System.out.println("Code: " + response.code());
+                    return;
+                }
+                proficiencies proficiencies = response.body(); //response.body is the object you get from api
+                proficiencies pro = new proficiencies();
+                String cont = ""; //console testing
+                f [0][0] =  response.body().getId();
+                f [0][1] =  response.body().getIndex();
+                f [0][2] =  response.body().getType();
+                f [0][3] =  response.body().getName();
+                f [0][4] = String.valueOf(response.body().getProficiencyClass());
+                f [0][5] = String.valueOf(response.body().getRace());
+                f [0][6] =  response.body().getUrl();
+            }
+
+            @Override
+            public void onFailure(Call<proficiencies> call, Throwable t) {
+                //TextView apiTest = findViewById(R.id.testAPI);
+                String message = t.getMessage();
+                System.out.println(message + "&&&&&&&&&&&&&&&&&&&&&"); //bug output
+                //apiTest.setText(message);
+            }
+
+
+        });
+        try {
+            apio.apisave(this, nameInput.getText().toString(), "-p", f);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 
 
