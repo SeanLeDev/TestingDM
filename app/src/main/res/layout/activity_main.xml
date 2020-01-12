@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     tools:context=".ui.mainmenu.MainActivity">
 
 
@@ -65,8 +65,9 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         app:backgroundTint="#F44336"
-        app:layout_anchor="@+id/view_pager"
+
         app:layout_anchorGravity="end|bottom"
         app:srcCompat="@android:drawable/ic_menu_add" />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
