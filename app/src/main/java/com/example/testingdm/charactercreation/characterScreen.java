@@ -120,7 +120,7 @@ public class characterScreen extends AppCompatActivity {
                 setStatDisplay();
                 setSkillsDisplay();
                 asave();
-                features("i");//TODO Replace i with user input and give this its independent save button
+                //features("i");//TODO Replace i with user input and give this its independent save button
                 //IO.load();
 
             }
