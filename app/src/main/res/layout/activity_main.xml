@@ -55,17 +55,8 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
-        android:layout_height="613dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-    </androidx.viewpager.widget.ViewPager>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/characterList"
-        android:layout_width="match_parent"
-        android:layout_height="506dp"
-        app:layout_anchor="@+id/view_pager"
-        app:layout_anchorGravity="center" />
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
@@ -74,6 +65,8 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         app:backgroundTint="#F44336"
+        app:layout_anchor="@+id/view_pager"
+        app:layout_anchorGravity="end|bottom"
         app:srcCompat="@android:drawable/ic_menu_add" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

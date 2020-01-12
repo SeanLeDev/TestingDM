@@ -4,17 +4,22 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
 import com.example.testingdm.R;
+
 import com.example.testingdm.charactercreation.IO;
+import com.example.testingdm.charactercreation.ViewPagerAdapter;
 import com.example.testingdm.charactercreation.api.dnd5eapi;
 import com.example.testingdm.charactercreation.api.equipment;
+import com.example.testingdm.charactercreation.characterScreen;
 import com.example.testingdm.npc.npcView;
 import com.example.testingdm.ui.mainmenu.cardviewcreation.ArrayToList;
 import com.example.testingdm.ui.mainmenu.cardviewcreation.adapterCardView;
-import com.example.testingdm.charactercreation.characterScreen;
+
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
@@ -23,8 +28,13 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -46,122 +56,51 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import static com.example.testingdm.charactercreation.characterScreen.stats;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends FragmentActivity {
 
-    List<String> characterList;
-    private RecyclerView recyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager layoutManager;
+
     private int STORAGE_PERMISSION_CODE = 1;
     private TextView apiTest;
+    private PagerAdapter pagerAdapter;
+    private int numPages = 3;
+    public static List<String> characterList;
+    private TabLayout tabs;
+    private AppBarLayout appBarLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        System.out.println(this.getFilesDir());
         setContentView(R.layout.activity_main);
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.view_pager);
-        viewPager.setAdapter(sectionsPagerAdapter);
-        TabLayout tabs = findViewById(R.id.tabLayout);
+        tabs = findViewById(R.id.tabLayout);
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+
+        adapter.AddFragment(new characterFragment(), "Characters");
+        adapter.AddFragment(new npcFragment(), "NPCs");
+        adapter.AddFragment(new fragment_table(), "Table");
+        viewPager.setAdapter(adapter);
         tabs.setupWithViewPager(viewPager);
-        apiTest = findViewById(R.id.testAPI);
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://dnd5eapi.co/api/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        final dnd5eapi dnd5eapi = retrofit.create(dnd5eapi.class);
-
-        Call<equipment> call = dnd5eapi.getEquipment("shortsword");
-
-        call.enqueue(new Callback<equipment>() {
-            @Override
-            public void onResponse(Call<equipment> call, Response<equipment> response) {
-                apiTest = findViewById(R.id.testAPI);
-                if (!response.isSuccessful()) {
-                    apiTest.setText("Code: " + response.code());
-                    return;
-                }
-                equipment equipments = response.body();
-                equipment equip = new equipment();
-                String cont = "";
-                cont += "ID: " + response.body().get_Id() + "\n";
-                cont += "Index: " + response.body().getIndex() + "\n";
-                cont += "Name: " + response.body().getName() + "\n";
-                cont += "Equipment Category: " + response.body().getEquipmentCat() + "\n";
-                cont += "Weapon Category: " + response.body().getWeaponCat() + "\n";
-                cont += "Weapon Range: " + response.body().getWeaponRng() + "\n";
-                cont += "Cost: " + response.body().getCost() + "\n\n";
-                apiTest = findViewById(R.id.testAPI);
-                System.out.println(cont);
-
-            }
-
-            @Override
-            public void onFailure(Call<equipment> call, Throwable t) {
-                //TextView apiTest = findViewById(R.id.testAPI);
-                String message = t.getMessage();
-                System.out.println(message + "&&&&&&&&&&&&&&&&&&&&&");
-                //apiTest.setText(message);
-            }
-
-        });
-
-        RecyclerView recyclerView;
-        RecyclerView.LayoutManager layoutManager;
-        recyclerView = findViewById(R.id.characterList);
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        characterList = new ArrayList<>();
-        try {
-            System.out.println("YESSSSSSSSS");
-            characterList = ArrayToList.convertFileToList(this);
-            System.out.println(characterList);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            System.out.println(stats[1][0] + "**************");
-            IO.load(this);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        adapterCardView mAdapter = new adapterCardView(this, characterList); //Need to get Character Data
-        recyclerView.setAdapter(mAdapter);
-        recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
-            @Override
-            public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
-                /* RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) rv.getTag();
-                int position = viewHolder.getAdapterPosition();
-                System.out.println("onTouchEvent");
-                startActivity(new Intent(MainActivity.this, characterScreen.class));
-                System.out.println("onIntTouchEvent"); */
-                return false;
-            }
-
-            @Override
-            public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
-                RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) rv.getTag();
-                int position = viewHolder.getAdapterPosition();
-                System.out.println("onTouchEvent");
-                startActivity(new Intent(MainActivity.this, characterScreen.class));
-                try {
-                    characterScreen.load(characterList.get(position));
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-                System.out.println("onRequestTouchEvent");
-            }
-        });
-
-        System.out.println(characterList.isEmpty());
+        //apiTest = findViewById(R.id.testAPI);
         configureFabButton();
 
+    }
+
+
+    private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
+        public ScreenSlidePagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return new characterFragment();
+        }
+
+        @Override
+        public int getCount() {
+            return numPages;
+        }
     }
 
     private void configureFabButton() {
@@ -235,15 +174,5 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void onTouchEvent(View view) {
-        RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
-        int position = viewHolder.getAdapterPosition();
-        System.out.println("onTouchEvent");
-        startActivity(new Intent(MainActivity.this, characterScreen.class));
-        try {
-            characterScreen.load(characterList.get(position));
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-    }
+
 }
