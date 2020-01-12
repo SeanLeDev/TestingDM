@@ -19,6 +19,7 @@ import com.google.android.material.tabs.TabLayout;
 import java.io.BufferedReader;
 
 import androidx.annotation.RequiresApi;
+import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -29,6 +30,7 @@ import android.widget.Toast;
 
 import static androidx.core.content.ContextCompat.startActivity;
 import static com.example.testingdm.R.id.view_pager;
+import static com.example.testingdm.R.layout.activity_character_screen;
 import static com.example.testingdm.R.layout.activity_main;
 
 import com.example.testingdm.characterfiles.ValueCalculation;
@@ -47,7 +49,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class characterScreen extends AppCompatActivity {
 
     public static String[][] stats = new String[100][7];
-
+    private PagerAdapter pagerAdapter;
+    private TabLayout tabs;
     private String name;
     public String nameLoad;
     private int strength;
@@ -95,10 +98,15 @@ public class characterScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(activity_main);
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
+        //SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
+
         ViewPager viewPager = findViewById(view_pager);
-        viewPager.setAdapter(sectionsPagerAdapter);
-        TabLayout tabs = findViewById(R.id.tabLayout);
+        tabs = findViewById(R.id.tabLayout);
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.AddFragment(new characterEdit(), "Stats");
+        adapter.AddFragment(new inventory(), "Inventory");
+        adapter.AddFragment(new com.example.testingdm.charactercreation.skills(), "Skills");
+        viewPager.setAdapter(adapter);
         tabs.setupWithViewPager(viewPager);
         //Inputs
         getIDinput();
