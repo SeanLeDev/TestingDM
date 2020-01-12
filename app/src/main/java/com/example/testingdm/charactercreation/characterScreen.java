@@ -9,6 +9,7 @@ import com.example.testingdm.charactercreation.api.Features;
 import com.example.testingdm.charactercreation.api.apio;
 import com.example.testingdm.charactercreation.api.classes;
 import com.example.testingdm.charactercreation.api.dnd5eapi;
+import com.example.testingdm.charactercreation.api.equipment;
 import com.example.testingdm.charactercreation.api.proficiencies;
 import com.example.testingdm.charactercreation.api.skills;
 import com.example.testingdm.characterfiles.Skills;
@@ -120,7 +121,6 @@ public class characterScreen extends AppCompatActivity {
                 setStatDisplay();
                 setSkillsDisplay();
                 asave();
-                features("i");//TODO Replace i with user input and give this its independent save button
                 //IO.load();
 
             }
@@ -366,29 +366,17 @@ public class characterScreen extends AppCompatActivity {
                 }
                 classes classes = response.body(); //response.body is the object you get from api
                 String cont = ""; //console testing
-                cont += "ID: " + response.body().getId() + "\n";
                 f[0][0] = response.body().getId();
-                cont += "Index: " + response.body().getIndex() + "\n";
                 f[0][1] = response.body().getIndex();
-                cont += "Name: " + response.body().getName() + "\n";
                 f[0][2] = response.body().getName();
-                cont += "Hit Die: " + response.body().getHitdie() + "\n";
                 f[0][3] = Integer.toString(response.body().getHitdie());
-                cont += "Choice: " + response.body().getChoice() + "\n";
                 f[0][4] = String.valueOf(response.body().getChoice());
-                cont += "Proficiencies" + response.body().getProficiencies() + "\n";
                 f[0][5] = String.valueOf(response.body().getProficiencies());
-                cont += "Class Saving Throw" + response.body().getClassSavingThrow() + "\n";
                 f[0][6] = String.valueOf(response.body().getClassSavingThrow());
-                cont += "Starting Gear" + response.body().getStartingGear() + "\n";
                 f[0][7] = String.valueOf(response.body().getStartingGear());
-                cont += "Class Levels" + response.body().getClassLevels() + "\n";
                 f[0][8] = String.valueOf(response.body().getClassLevels());
-                cont += "Subclasses " + response.body().getSubclasses() + "\n";
                 f[0][9] = String.valueOf(response.body().getSubclasses());
-                cont += "Spell Casting " + response.body().getSpellcasting() + "\n";
                 f[0][10] = String.valueOf(response.body().getSpellcasting());
-                cont += "Url " + response.body().getUrl() + "\n";
                 f[0][11] = response.body().getUrl();
                 //apiTest = findViewById(R.id.testAPI);
                 System.out.println(cont + "testing this shit");
@@ -512,5 +500,68 @@ public class characterScreen extends AppCompatActivity {
 
 
     }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public void equipment(String k) {
+        Retrofit retrofit = new Retrofit.Builder() //Need this to access the api
+                .baseUrl("http://dnd5eapi.co/api/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        final dnd5eapi dnd5eapi = retrofit.create(dnd5eapi.class);
+        final String[][] f = new String[1][15];
+        int i = 0;
+        while (i < 15) {
+            f[0][i] = null;
+        }
+        Call<com.example.testingdm.charactercreation.api.equipment> call = dnd5eapi.getEquipment(k); //Unsure what to put here
+
+        call.enqueue(new Callback<equipment>() {
+            @Override
+            public void onResponse(Call<equipment> call, Response<equipment> response) { //Connection to api is succesful
+
+                if (!response.isSuccessful()) {
+                    System.out.println("Code: " + response.code());
+                    return;
+                }
+                equipment equipment = response.body(); //response.body is the object you get from api
+                f[0][0] = response.body().get_Id();
+                f[0][1] = response.body().getIndex();
+                f[0][2] = response.body().getName();
+                f[0][3] = String.valueOf(response.body().getEquipmentCat());
+                f[0][4] = String.valueOf(response.body().getWeaponCat());
+                f[0][5] = String.valueOf(response.body().getWeaponRng());
+                f[0][6] = String.valueOf(response.body().getCategoryRng());
+                f[0][7] = String.valueOf(response.body().getDamage());
+                f[0][8] = String.valueOf(response.body().getCost());
+                f[0][8] = String.valueOf(response.body().getDmgType());
+                f[0][10] = String.valueOf(response.body().getDmgDice());
+                f[0][11] = String.valueOf(response.body().getDmgBonus());
+                f[0][12] = String.valueOf(response.body().getWeaponProp());
+                f[0][13] = String.valueOf(response.body().getRange());
+                f[0][14] = String.valueOf(response.body().getWeight());
+
+
+            }
+
+            @Override
+            public void onFailure(Call<equipment> call, Throwable t) {
+                //TextView apiTest = findViewById(R.id.testAPI);
+                String message = t.getMessage();
+                System.out.println(message + "&&&&&&&&&&&&&&&&&&&&&"); //bug output
+                //apiTest.setText(message);
+            }
+
+
+        });
+        try {
+            apio.apisave(this, nameInput.getText().toString(), "-s", f);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
 
 }
