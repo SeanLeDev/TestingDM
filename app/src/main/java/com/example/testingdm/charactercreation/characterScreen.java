@@ -12,6 +12,7 @@ import com.example.testingdm.charactercreation.api.dnd5eapi;
 import com.example.testingdm.charactercreation.api.equipment;
 import com.example.testingdm.charactercreation.api.levels;
 import com.example.testingdm.charactercreation.api.proficiencies;
+import com.example.testingdm.charactercreation.api.races;
 import com.example.testingdm.charactercreation.api.skills;
 import com.example.testingdm.characterfiles.Skills;
 import com.example.testingdm.ui.mainmenu.MainActivity;
@@ -618,8 +619,6 @@ public class characterScreen extends AppCompatActivity {
                 f[0][3] = String.valueOf(response.body().getCharacterClass());
                 f[0][4] = String.valueOf(response.body().getUrl());
             }
-
-
             @Override
             public void onFailure(Call<levels> call, Throwable t) {
                 //TextView apiTest = findViewById(R.id.testAPI);
@@ -639,6 +638,68 @@ public class characterScreen extends AppCompatActivity {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public void races(String k) {
+        Retrofit retrofit = new Retrofit.Builder() //Need this to access the api
+                .baseUrl("http://dnd5eapi.co/api/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        final dnd5eapi dnd5eapi = retrofit.create(dnd5eapi.class);
+        final String[][] f = new String[1][15];
+        int i = 0;
+        while (i < 15) {
+            f[0][i] = null;
+        }
+        Call<com.example.testingdm.charactercreation.api.races> call = dnd5eapi.getrace(k); //Unsure what to put here
+
+        call.enqueue(new Callback<races>() {
+            @Override
+            public void onResponse(Call<races> call, Response<races> response) { //Connection to api is succesful
+
+                if (!response.isSuccessful()) {
+                    System.out.println("Code: " + response.code());
+                    return;
+                }
+                races races = response.body(); //response.body is the object you get from api
+                f[0][0] = response.body().getId();
+                f[0][1] = response.body().getIndex();
+                f[0][2] = response.body().getName();
+                f[0][3] = String.valueOf(response.body().getSpeed());
+                f[0][4] = String.valueOf(response.body().getBonuses());
+                f[0][0] = response.body().getAlignment();
+                f[0][1] = response.body().getAge();
+                f[0][2] = response.body().getSize();
+                f[0][3] = String.valueOf(response.body().getSizeDesc());
+                f[0][4] = String.valueOf(response.body().getProficiencies());
+                f[0][0] = String.valueOf(response.body().getSavingThrows());
+                f[0][1] = response.body().getLanguageDesc();
+                f[0][2] = String.valueOf(response.body().getTraits());
+                f[0][3] = String.valueOf(response.body().getSubraces());
+                f[0][4] = String.valueOf(response.body().getUrl());
+            }
+
+            @Override
+            public void onFailure(Call<races> call, Throwable t) {
+                //TextView apiTest = findViewById(R.id.testAPI);
+                String message = t.getMessage();
+                System.out.println(message + "&&&&&&&&&&&&&&&&&&&&&"); //bug output
+                //apiTest.setText(message);
+            }
+
+
+        });
+        try {
+            apio.apisave(this, nameInput.getText().toString(), "-r", f);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
 
 
 }
+
+
+
