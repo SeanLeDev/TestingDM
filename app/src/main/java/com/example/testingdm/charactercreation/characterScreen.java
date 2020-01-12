@@ -14,6 +14,7 @@ import com.example.testingdm.charactercreation.api.levels;
 import com.example.testingdm.charactercreation.api.proficiencies;
 import com.example.testingdm.charactercreation.api.races;
 import com.example.testingdm.charactercreation.api.skills;
+import com.example.testingdm.charactercreation.api.subclasses;
 import com.example.testingdm.characterfiles.Skills;
 import com.example.testingdm.ui.mainmenu.MainActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -613,11 +614,11 @@ public class characterScreen extends AppCompatActivity {
                 f[0][3] = String.valueOf(response.body().getAbilityScoreBonus());
                 f[0][4] = String.valueOf(response.body().getProfBonus());
                 f[0][5] = String.valueOf(response.body().getFeatureChoices());
-                f[0][0] = String.valueOf(response.body().getFeatures());
-                f[0][1] = (String) response.body().getSpellcasting();
-                f[0][2] = String.valueOf(response.body().getClassSpecific());
-                f[0][3] = String.valueOf(response.body().getCharacterClass());
-                f[0][4] = String.valueOf(response.body().getUrl());
+                f[0][6] = String.valueOf(response.body().getFeatures());
+                f[0][7] = (String) response.body().getSpellcasting();
+                f[0][8] = String.valueOf(response.body().getClassSpecific());
+                f[0][9] = String.valueOf(response.body().getCharacterClass());
+                f[0][10] = String.valueOf(response.body().getUrl());
             }
             @Override
             public void onFailure(Call<levels> call, Throwable t) {
@@ -666,16 +667,16 @@ public class characterScreen extends AppCompatActivity {
                 f[0][2] = response.body().getName();
                 f[0][3] = String.valueOf(response.body().getSpeed());
                 f[0][4] = String.valueOf(response.body().getBonuses());
-                f[0][0] = response.body().getAlignment();
-                f[0][1] = response.body().getAge();
-                f[0][2] = response.body().getSize();
-                f[0][3] = String.valueOf(response.body().getSizeDesc());
-                f[0][4] = String.valueOf(response.body().getProficiencies());
-                f[0][0] = String.valueOf(response.body().getSavingThrows());
-                f[0][1] = response.body().getLanguageDesc();
-                f[0][2] = String.valueOf(response.body().getTraits());
-                f[0][3] = String.valueOf(response.body().getSubraces());
-                f[0][4] = String.valueOf(response.body().getUrl());
+                f[0][5] = response.body().getAlignment();
+                f[0][6] = response.body().getAge();
+                f[0][7] = response.body().getSize();
+                f[0][8] = String.valueOf(response.body().getSizeDesc());
+                f[0][9] = String.valueOf(response.body().getProficiencies());
+                f[0][10] = String.valueOf(response.body().getSavingThrows());
+                f[0][11] = response.body().getLanguageDesc();
+                f[0][12] = String.valueOf(response.body().getTraits());
+                f[0][13] = String.valueOf(response.body().getSubraces());
+                f[0][14] = String.valueOf(response.body().getUrl());
             }
 
             @Override
@@ -696,6 +697,60 @@ public class characterScreen extends AppCompatActivity {
 
 
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public void subclasses(String k) {
+        Retrofit retrofit = new Retrofit.Builder() //Need this to access the api
+                .baseUrl("http://dnd5eapi.co/api/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        final dnd5eapi dnd5eapi = retrofit.create(dnd5eapi.class);
+        final String[][] f = new String[1][8];
+        int i = 0;
+        while (i < 8) {
+            f[0][i] = null;
+        }
+        Call<com.example.testingdm.charactercreation.api.subclasses> call = dnd5eapi.getsubclass(k); //Unsure what to put here
+
+        call.enqueue(new Callback<subclasses>() {
+            @Override
+            public void onResponse(Call<subclasses> call, Response<subclasses> response) { //Connection to api is succesful
+
+                if (!response.isSuccessful()) {
+                    System.out.println("Code: " + response.code());
+                    return;
+                }
+                subclasses subclasses = response.body(); //response.body is the object you get from api
+                f[0][0] = response.body().getId();
+                f[0][1] = response.body().getIndex();
+                f[0][2] = response.body().getName();
+                f[0][3] = String.valueOf(response.body().getClassChoice());
+                f[0][4] = String.valueOf(response.body().getSubclassFlavour());
+                f[0][5] = String.valueOf(response.body().getDesc());
+                f[0][6] = String.valueOf(response.body().getFeatures());
+                f[0][7] = String.valueOf(response.body().getUrl());
+
+            }
+
+            @Override
+            public void onFailure(Call<subclasses> call, Throwable t) {
+                //TextView apiTest = findViewById(R.id.testAPI);
+                String message = t.getMessage();
+                System.out.println(message + "&&&&&&&&&&&&&&&&&&&&&"); //bug output
+                //apiTest.setText(message);
+            }
+
+
+        });
+        try {
+            apio.apisave(this, nameInput.getText().toString(), "-sub", f);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
 
 
 
