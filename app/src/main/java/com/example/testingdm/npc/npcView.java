@@ -41,15 +41,14 @@ public class npcView extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getIDchips();
+        getIDtextFields();
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 nsave();
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
             }
         });
     }
@@ -86,7 +85,9 @@ public class npcView extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void nsave(){
-
+        getIDtextFields();
+        getIDchips();
+        getChipsChecked();
         int i = 0;
         while (npc [i][0] != null) {
             i++;
