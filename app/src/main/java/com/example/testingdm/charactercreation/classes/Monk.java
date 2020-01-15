@@ -2,19 +2,18 @@ package com.example.testingdm.charactercreation.classes;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Wizard {
-    @SerializedName("name")
-    private String name = "Wizard";
+public class Monk {
+    private String name = "Monk";
     @SerializedName("hit_die")
-    private int hitdie = 6;
+    private int hitdie = 8;
     @SerializedName("proficiency_choices")
-    private String[] proficiencyChoices = new String[]{"Arcana","History","Insight","Investigation","Medicine","Religion"};
+    private String[] proficiencyChoices = new String[]{"Acrobatics", "Athletics", "History", "Insight", "Religion", "Stealth","Artisan's Tools"};
     @SerializedName("proficiencies")
-    private String[] proficiencies = new String[]{"Darts","Daggers","Slings","Quarterstaves","Light Crossbows"};
+    private String[] proficiencies = new String[]{"Simple Weapons","Shortswords"};
     @SerializedName("saving_throws")
-    private String[] classSavingThrow = new String[]{"INT","WIS"};
+    private String[] classSavingThrow = new String[]{"STR", "DEX"};
     @SerializedName("subclasses")
-    private String[] subclasses = new String[]{"Onomancy","Psionics","Evocation"};
+    private String[] subclasses = new String[]{"Way of the Open Hand", "Way of the Astral Self"};
 
     public String[] getProficiencyChoices() {
         return proficiencyChoices;

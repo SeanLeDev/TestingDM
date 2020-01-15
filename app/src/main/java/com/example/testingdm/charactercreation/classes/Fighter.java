@@ -39,7 +39,5 @@ private String name = "Fighter";
         return hitdie;
     }
 
-
-
 }
 

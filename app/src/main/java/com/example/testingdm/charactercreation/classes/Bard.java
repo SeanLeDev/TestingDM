@@ -3,7 +3,7 @@ package com.example.testingdm.charactercreation.classes;
 import com.google.gson.annotations.SerializedName;
 
 public class Bard {@SerializedName("name")
-private String name = "Bard";
+    private String name = "Bard";
     @SerializedName("hit_die")
     private int hitdie = 8;
     @SerializedName("proficiency_choices")
