@@ -23,80 +23,80 @@
         app:layout_constraintVertical_bias="0.101" />
 
     <com.google.android.material.chip.ChipGroup
-        android:theme="@style/Theme.MaterialComponents.Light"
         android:id="@+id/chipGroup"
         android:layout_width="389dp"
         android:layout_height="103dp"
         android:layout_marginTop="50dp"
+        android:theme="@style/Theme.MaterialComponents.Light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/NPCname"
-        app:layout_constraintVertical_bias="0.102">
+        app:layout_constraintVertical_bias="0.096">
 
         <com.google.android.material.chip.Chip
             android:id="@+id/suspicious"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/susInput"
-            style="@style/Widget.MaterialComponents.Chip.Filter" />
+            android:text="@string/susInput" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/trusted"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/trustedInput"
-            style="@style/Widget.MaterialComponents.Chip.Filter" />
+            android:text="@string/trustedInput" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chaotic"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/chaoticInput"
-            style="@style/Widget.MaterialComponents.Chip.Filter" />
+            android:text="@string/chaoticInput" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/neutral"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/neutralInput"
-            style="@style/Widget.MaterialComponents.Chip.Filter" />
+            android:text="@string/neutralInput" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/good"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/goodInput"
-            style="@style/Widget.MaterialComponents.Chip.Filter" />
+            android:text="@string/goodInput" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/evil"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/evilInput"
-            style="@style/Widget.MaterialComponents.Chip.Filter" />
+            android:text="@string/evilInput" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/lawful"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/lawfulInput"
-            style="@style/Widget.MaterialComponents.Chip.Filter" />
+            android:text="@string/lawfulInput" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/companion"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/companion"
-            style="@style/Widget.MaterialComponents.Chip.Filter" />
+            android:text="@string/companion" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/secret"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/secretInput"
-            style="@style/Widget.MaterialComponents.Chip.Filter" />
+            android:text="@string/secretInput" />
 
     </com.google.android.material.chip.ChipGroup>
 

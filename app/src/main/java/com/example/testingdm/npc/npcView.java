@@ -13,6 +13,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Switch;
 
 import com.example.testingdm.R;
 
@@ -22,17 +23,18 @@ public class npcView extends AppCompatActivity {
 
     public static String[][] npc = new String[100][10];
 
-    public Chip sus;
-    public Chip trust;
-    public Chip chaos;
-    public Chip neutral;
-    public Chip law;
-    public Chip good;
-    public Chip evil;
-    public Chip companion;
-    public Chip secret;
+    public Switch sus;
+    public Switch trust;
+    public Switch chaos;
+    public Switch neutral;
+    public Switch law;
+    public Switch good;
+    public Switch evil;
+    public Switch companion;
+    public Switch secret;
     public EditText name;
     public EditText background;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,15 +56,15 @@ public class npcView extends AppCompatActivity {
     }
 
     private void getIDchips() {
-        Chip sus = findViewById(R.id.suspicious);
-        Chip trust = findViewById(R.id.trusted);
-        Chip chaos = findViewById(R.id.chaotic);
-        Chip neutral = findViewById(R.id.neutral);
-        Chip law = findViewById(R.id.lawful);
-        Chip good = findViewById(R.id.good);
-        Chip evil = findViewById(R.id.evil);
-        Chip companion = findViewById(R.id.companion);
-        Chip secret = findViewById(R.id.secret);
+        Switch sus = findViewById(R.id.suspicious);
+        Switch trust = findViewById(R.id.trusted);
+        Switch chaos = findViewById(R.id.chaotic);
+        Switch neutral = findViewById(R.id.neutral);
+        Switch law = findViewById(R.id.lawful);
+        Switch good = findViewById(R.id.good);
+        Switch evil = findViewById(R.id.evil);
+        Switch companion = findViewById(R.id.companion);
+        Switch secret = findViewById(R.id.secret);
     }
 
     private void getIDtextFields() {
