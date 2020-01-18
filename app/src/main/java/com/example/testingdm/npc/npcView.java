@@ -54,6 +54,15 @@ public class npcView extends AppCompatActivity {
     }
 
     private void getIDchips() {
+        sus = new Chip(this);
+        trust = new Chip(this);
+        chaos = new Chip(this);
+        neutral = new Chip(this);
+        law = new Chip(this);
+        good = new Chip(this);
+        evil = new Chip(this);
+        companion = new Chip(this);
+        secret = new Chip(this);
         Chip sus = findViewById(R.id.suspicious);
         Chip trust = findViewById(R.id.trusted);
         Chip chaos = findViewById(R.id.chaotic);
@@ -66,6 +75,8 @@ public class npcView extends AppCompatActivity {
     }
 
     private void getIDtextFields() {
+        name = new EditText(this);
+        background = new EditText(this);
         EditText name = findViewById(R.id.NPCname);
         EditText background = findViewById(R.id.background);
     }
