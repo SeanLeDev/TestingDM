@@ -21,7 +21,7 @@ import java.io.IOException;
 
 public class npcView extends AppCompatActivity {
 
-    public static String[][] npc = new String[100][10];
+    public static String[][] npc = new String[100][11];
 
     public Switch sus;
     public Switch trust;
@@ -78,6 +78,8 @@ public class npcView extends AppCompatActivity {
     }
 
     private void getIDtextFields() {
+        name = new EditText(this);
+        background = new EditText(this);
         EditText name = findViewById(R.id.NPCname);
         EditText background = findViewById(R.id.background);
     }

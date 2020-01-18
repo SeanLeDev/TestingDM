@@ -85,8 +85,6 @@ public class MainActivity extends FragmentActivity {
         tabs.setupWithViewPager(viewPager);
         //apiTest = findViewById(R.id.testAPI);
         configureFabButton();
-
-
     }
 
 
@@ -177,49 +175,6 @@ public class MainActivity extends FragmentActivity {
         }
     }
 
-    public void pussyMethod(String k) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://dnd5eapi.co/api/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        final dnd5eapi dnd5eapi = retrofit.create(dnd5eapi.class);
 
-        Call<Features> call = dnd5eapi.getFeatures(k);
-
-        call.enqueue(new Callback<Features>() {
-            @Override
-            public void onResponse(Call<Features> call, Response<Features> response) {
-                apiTest = findViewById(R.id.testAPI);
-                if (!response.isSuccessful()) {
-                    apiTest.setText("Code: " + response.code());
-                    return;
-                }
-                Features equipments = response.body();
-                equipment equip = new equipment();
-                String cont = "";
-                cont += "ID: " + response.body().getId() + "\n";
-                cont += "Index: " + response.body().getIndex() + "\n";
-                cont += "Name: " + response.body().getName() + "\n";
-                cont += "Equipment Category: " + response.body().getFeatureClass() + "\n";
-                cont += "Weapon Category: " + response.body().getDesc() + "\n";
-                /*cont += "Weapon Range: " + response.body().get() + "\n";
-                cont += "Cost: " + response.body().getCost() + "\n\n";
-                cont += "Armor Class " + response.body().getArmor_class();*/
-                apiTest = findViewById(R.id.testAPI);
-                System.out.println(cont);
-
-            }
-
-            @Override
-            public void onFailure(Call<Features> call, Throwable t) {
-                //TextView apiTest = findViewById(R.id.testAPI);
-                String message = t.getMessage();
-                System.out.println(message + "&&&&&&&&&&&&&&&&&&&&&");
-                //apiTest.setText(message);
-            }
-
-        });
-
-    }
 
 }
