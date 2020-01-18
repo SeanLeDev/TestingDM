@@ -15,9 +15,6 @@ public interface dnd5eapi {
     @GET("features/{featurename}")
     Call<Features> getFeatures(@Path("featurename") String featurename);
 
-    @GET("classes/{classname}")
-    Call<classes> getclasses(@Path("classname") String classname);
-
     @GET("choices/{choicename}")
     Call<choices> getchoices(@Path("choicename") String choicename);
 
