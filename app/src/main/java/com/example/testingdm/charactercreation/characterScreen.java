@@ -98,6 +98,7 @@ public class characterScreen extends AppCompatActivity {
     public TextView stealth;
     public TextView survival;
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,6 +119,7 @@ public class characterScreen extends AppCompatActivity {
         getIDBonus();
         getIDSkills();
         configureFabButton();
+        features("Archdruid");
 
 
     }

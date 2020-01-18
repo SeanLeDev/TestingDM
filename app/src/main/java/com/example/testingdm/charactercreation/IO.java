@@ -9,6 +9,7 @@ import androidx.annotation.RequiresApi;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -78,5 +79,43 @@ IO {
             }
         }
 
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public static void delete(Context con, String n ) throws IOException {
+        File nameList = new File(con.getFilesDir(), "Names.txt");
+        File tempList = new File(con.getFilesDir(), "temp.txt");
+        BufferedReader E = new BufferedReader(new FileReader(nameList));
+        BufferedWriter out = new BufferedWriter(new FileWriter(tempList));
+        String a = "a";
+        while (a != null){
+            a = E.readLine();
+            if(a != n) {
+              out.write(a);
+              out.write(System.lineSeparator());
+            }//End of If
+
+        }//End of while
+        nameList.delete();
+        tempList.renameTo(nameList);
+        File name = new File((con.getFilesDir()), n + ".txt");
+        name.delete();
+        File namec = new File((con.getFilesDir()), n + "-c" + ".txt");
+        namec.delete();
+        File namee = new File((con.getFilesDir()), n + "-e" + ".txt");
+        namee.delete();
+        File namef = new File((con.getFilesDir()), n + "-f" + ".txt");
+        namef.delete();
+        File namel = new File((con.getFilesDir()), n + "-l" + ".txt");
+        namel.delete();
+        File namep = new File((con.getFilesDir()), n + "-p" + ".txt");
+        namep.delete();
+        File namer = new File((con.getFilesDir()), n + "-r" + ".txt");
+        namer.delete();
+        File names = new File((con.getFilesDir()), n + "-s" + ".txt");
+        names.delete();
+        File namesub = new File((con.getFilesDir()), n + "-sub" + ".txt");
+        namesub.delete();
     }
 }
