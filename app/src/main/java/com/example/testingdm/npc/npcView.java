@@ -45,6 +45,7 @@ public class npcView extends AppCompatActivity {
         getIDchips();
         getIDtextFields();
 
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -56,6 +57,15 @@ public class npcView extends AppCompatActivity {
     }
 
     private void getIDchips() {
+        sus = new Switch(this);
+        trust = new Switch(this);
+        chaos = new Switch(this);
+        neutral = new Switch(this);
+        law = new Switch(this);
+        good = new Switch(this);
+        evil = new Switch(this);
+        companion = new Switch(this);
+        secret = new Switch(this);
         Switch sus = findViewById(R.id.suspicious);
         Switch trust = findViewById(R.id.trusted);
         Switch chaos = findViewById(R.id.chaotic);

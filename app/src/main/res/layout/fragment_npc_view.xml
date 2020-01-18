@@ -30,70 +30,60 @@
         android:theme="@style/Theme.MaterialComponents.Light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/NPCname"
-        app:layout_constraintVertical_bias="0.096">
+        app:layout_constraintVertical_bias="0.072">
 
-        <com.google.android.material.chip.Chip
+        <Switch
             android:id="@+id/suspicious"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/susInput" />
 
-        <com.google.android.material.chip.Chip
+        <Switch
             android:id="@+id/trusted"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/trustedInput" />
 
-        <com.google.android.material.chip.Chip
+        <Switch
             android:id="@+id/chaotic"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/chaoticInput" />
 
-        <com.google.android.material.chip.Chip
+        <Switch
             android:id="@+id/neutral"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/neutralInput" />
 
-        <com.google.android.material.chip.Chip
+        <Switch
             android:id="@+id/good"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/goodInput" />
 
-        <com.google.android.material.chip.Chip
+        <Switch
             android:id="@+id/evil"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/evilInput" />
 
-        <com.google.android.material.chip.Chip
+        <Switch
             android:id="@+id/lawful"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/lawfulInput" />
 
-        <com.google.android.material.chip.Chip
+        <Switch
             android:id="@+id/companion"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/companion" />
 
-        <com.google.android.material.chip.Chip
+        <Switch
             android:id="@+id/secret"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/secretInput" />
