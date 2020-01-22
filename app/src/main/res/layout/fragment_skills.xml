@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Item"
+        android:text="Skills"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.035"
@@ -23,24 +23,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.048" />
 
-    <TextView
-        android:id="@+id/textViewItem"
-        android:layout_width="98dp"
-        android:layout_height="61dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.022"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.183" />
-
     <Button
         android:id="@+id/itemEnter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="171dp"
-        android:layout_marginLeft="171dp"
+        android:layout_marginStart="402dp"
+        android:layout_marginLeft="402dp"
         android:layout_marginTop="93dp"
         android:layout_marginEnd="47dp"
         android:layout_marginRight="47dp"
@@ -48,7 +36,19 @@
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textViewItem"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="535dp"
+        android:layout_height="589dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -71,7 +71,6 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        pussyMethod("arcane-recovery");
         System.out.println(this.getFilesDir());
         setContentView(R.layout.activity_main);
         ViewPager viewPager = findViewById(R.id.view_pager);

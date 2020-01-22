@@ -2,15 +2,34 @@ package com.example.testingdm.charactercreation;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.example.testingdm.R;
+import com.example.testingdm.charactercreation.characterScreen;
+import com.example.testingdm.charactercreation.api.apio;
+import com.example.testingdm.charactercreation.api.dnd5eapi;
+import com.example.testingdm.charactercreation.api.equipment;
+import com.example.testingdm.ui.mainmenu.cardviewcreation.adapterCardView;
+
+import java.io.IOException;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +48,9 @@ public class inventory extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private RecyclerView recyclerView;
+    private List<equipment> equipmentList;
+    private EditText itemEnter;
 
     private OnFragmentInteractionListener mListener;
 
@@ -57,17 +79,20 @@ public class inventory extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
+        itemEnter = itemEnter.findViewById(R.id.itemInput);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_inventory, container, false);
+        View rootview = inflater.inflate(R.layout.fragment_inventory, container, false);
+        recyclerView = rootview.findViewById(R.id.itemRecyclerList);
+        adapterInventoryCardView mAdapter = new adapterInventoryCardView(getContext(), equipmentList);//Need to get Character Data
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(mAdapter);
+        return rootview;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -77,7 +102,41 @@ public class inventory extends Fragment {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public void equipment(String k) {
+        Retrofit retrofit = new Retrofit.Builder() //Need this to access the api
+                .baseUrl("http://dnd5eapi.co/api/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        final dnd5eapi dnd5eapi = retrofit.create(dnd5eapi.class);
 
+        Call<equipment> call = dnd5eapi.getEquipment(k); //Unsure what to put here
+
+        call.enqueue(new Callback<equipment>() {
+            @Override
+            public void onResponse(Call<equipment> call, Response<equipment> response) { //Connection to api is succesful
+
+                if (!response.isSuccessful()) {
+                    System.out.println("Code: " + response.code());
+                    return;
+                }
+                equipment item = response.body(); //response.body is the object you get from api
+                saveMethod(item);
+            }
+
+            @Override
+            public void onFailure(Call<equipment> call, Throwable t) {
+                //TextView apiTest = findViewById(R.id.testAPI);
+                String message = t.getMessage();
+                System.out.println(message + "&&&&&&&&&&&&&&&&&&&&&"); //bug output
+                //apiTest.setText(message);
+            }
+
+
+        });
+
+
+    }
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -91,5 +150,37 @@ public class inventory extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    public void saveMethod(equipment c){
+        final String[][] f = new String[1][15];
+        int i = 0;
+        while (i < 15) {
+            f[0][i] = null;
+        }
+        f[0][0] = c.get_Id();
+        f[0][1] = c.getIndex();
+        f[0][2] = c.getName();
+        f[0][3] = String.valueOf(c.getEquipmentCat());
+        f[0][4] = String.valueOf(c.getWeaponCat());
+        f[0][5] = String.valueOf(c.getWeaponRng());
+        f[0][6] = c.getCategoryRng();
+        f[0][7] = String.valueOf(c.getDamage());
+        f[0][8] = String.valueOf(c.getCost());
+        f[0][9] = String.valueOf(c.getDmgType());
+        f[0][10] = String.valueOf(c.getDmgDice());
+        f[0][11] = String.valueOf(c.getDmgBonus());
+        f[0][12] = String.valueOf(c.getWeaponProp());
+        f[0][13] = String.valueOf(c.getRange());
+        f[0][14] = String.valueOf(c.getWeight());
+
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                apio.apisave(getActivity(), characterScreen.nameInput.getText().toString(), "-e", f);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }
