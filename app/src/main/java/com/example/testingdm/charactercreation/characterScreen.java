@@ -44,7 +44,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class characterScreen extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
-    public static String[][] stats = new String[100][9];
+    public static String[][] stats = new String[100][10];
     private PagerAdapter pagerAdapter;
     private TabLayout tabs;
     private String name;
@@ -53,6 +53,7 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
     public static Spinner spinnerClasses;
     public static Spinner spinnerRaces;
     public static EditText nameInput;
+    public static EditText lvlInput;
     public static EditText strInput;
     public static EditText chaInput;
     public static EditText wisInput;
@@ -158,12 +159,13 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
         stats[i][0] = nameInput.getText().toString();
         stats[i][1] = spinnerClasses.getSelectedItem().toString();
         stats[i][2] = spinnerRaces.getSelectedItem().toString();
-        stats[i][3] = conInput.getText().toString();
-        stats[i][4] = strInput.getText().toString();
-        stats[i][5] = dexInput.getText().toString();
-        stats[i][6] = intInput.getText().toString();
-        stats[i][7] = wisInput.getText().toString();
-        stats[i][8] = chaInput.getText().toString();
+        stats[i][3] = lvlInput.getText().toString();
+        stats[i][4] = conInput.getText().toString();
+        stats[i][5] = strInput.getText().toString();
+        stats[i][6] = dexInput.getText().toString();
+        stats[i][7] = intInput.getText().toString();
+        stats[i][8] = wisInput.getText().toString();
+        stats[i][9] = chaInput.getText().toString();
         try {
             IO.save(this, i);
         } catch (IOException e) {
@@ -293,6 +295,7 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
 
     public void getIDinput() {
         nameInput = findViewById(R.id.nameInput);
+        lvlInput = findViewById(R.id.lvlInput);
         strInput = findViewById(R.id.strInput);
         chaInput = findViewById(R.id.chaInput);
         wisInput = findViewById(R.id.wisInput);

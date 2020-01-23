@@ -22,6 +22,7 @@
     <string name="dexInput">Dex</string>
     <string name="conInput">Con</string>
     <string name="chaInput">Cha</string>
+    <string name="lvlInput">Lvl</string>
     <string name="saveResults">Save</string>
     <string name="addThing">Add</string>
 

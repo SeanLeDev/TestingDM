@@ -71,6 +71,7 @@ public class adapterCardView extends RecyclerView.Adapter<adapterCardView.MyView
         private TextView textViewName;
         private TextView textViewClass;
         private TextView textViewRace;
+        private TextView textViewLvl;
         private TextView textViewStr;
         private TextView textViewCon;
         private TextView textViewInt;
@@ -85,6 +86,7 @@ public class adapterCardView extends RecyclerView.Adapter<adapterCardView.MyView
             textViewName = itemView.findViewById(R.id.textViewName);
             textViewRace = itemView.findViewById(R.id.textViewRace);
             textViewClass = itemView.findViewById(R.id.textViewClass);
+            textViewLvl = itemView.findViewById(R.id.textViewLvl);
             textViewStr = itemView.findViewById(R.id.textViewStr);
             textViewCon = itemView.findViewById(R.id.textViewCon);
             textViewInt = itemView.findViewById(R.id.textViewInt);
@@ -115,6 +117,7 @@ public class adapterCardView extends RecyclerView.Adapter<adapterCardView.MyView
         holder.textViewName.setText(E.readLine());
         holder.textViewClass.setText(E.readLine());
         holder.textViewRace.setText(E.readLine());
+        holder.textViewLvl.setText("Level "+E.readLine());
         holder.textViewStr.setText(E.readLine());
         holder.textViewCon.setText(E.readLine());
         holder.textViewInt.setText(E.readLine());
