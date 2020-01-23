@@ -18,15 +18,16 @@ import static com.example.testingdm.npc.npcView.npc;
 
 public class npcio
 {
-    private static String FILENAME;
+    private static String FILE;
     private static int aa = 0;
 
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static void nsave(Context con, int i) throws IOException {
+        System.out.println(npc[i][0]);
         File nameList = new File(con.getFilesDir(), "npcNames.txt");
-        FILENAME = npc[i][0] + ".txt";
-        File file = new File(con.getFilesDir(), FILENAME);
+        FILE = npc[i][0] + ".txt";
+        File file = new File(con.getFilesDir(), FILE);
         try (BufferedWriter out = new BufferedWriter(new FileWriter(file))) { //Writes to the file
             out.write(npc[i][0] + System.lineSeparator()); //Name
             out.write(npc[i][1] + System.lineSeparator());
@@ -49,7 +50,7 @@ public class npcio
         if (!nameList.exists()) {
             nameList = new File(con.getFilesDir(), "npcNames.txt");
         }
-        try (BufferedWriter out = new BufferedWriter(new FileWriter(nameList, true))) {
+        try (BufferedWriter out = new BufferedWriter(new FileWriter(nameList))) {
             out.write(npc[i][0] + System.lineSeparator());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -86,6 +87,26 @@ public class npcio
                 break;
             }
         }
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public static void ndelete(Context con, String n ) throws IOException {
+        File nameList = new File(con.getFilesDir(), "npcNames.txt");
+        File tempList = new File(con.getFilesDir(), "temp.txt");
+        BufferedReader E = new BufferedReader(new FileReader(nameList));
+        BufferedWriter out = new BufferedWriter(new FileWriter(tempList));
+        String a = "a";
+        while (a != null) {
+            a = E.readLine();
+            if (a != n) {
+                out.write(a);
+                out.write(System.lineSeparator());
+            }//End of If
+
+        }//End of while
+        nameList.delete();
+        tempList.renameTo(nameList);
 
     }
 }
