@@ -13,6 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 
@@ -24,7 +27,9 @@ import com.example.testingdm.charactercreation.characterScreen;
 import com.example.testingdm.characterfiles.Character;
 import com.example.testingdm.ui.mainmenu.MainActivity;
 
+import static androidx.core.content.ContextCompat.createDeviceProtectedStorageContext;
 import static androidx.core.content.ContextCompat.startActivity;
+import static com.example.testingdm.charactercreation.characterScreen.stats;
 
 public class adapterCardView extends RecyclerView.Adapter<adapterCardView.MyViewHolder> {
 
@@ -49,6 +54,12 @@ public class adapterCardView extends RecyclerView.Adapter<adapterCardView.MyView
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         String c = characterList.get(position);
+        String FILENAME = c + ".txt";
+        try {
+            setUpStatView(holder, FILENAME);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         holder.textViewName.setText(c);
     }
 
@@ -59,11 +70,24 @@ public class adapterCardView extends RecyclerView.Adapter<adapterCardView.MyView
 
     public static class MyViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener {
         private TextView textViewName;
+        private TextView textViewStr;
+        private TextView textViewCon;
+        private TextView textViewInt;
+        private TextView textViewDex;
+        private TextView textViewCha;
+        private TextView textViewWis;
+
         OnCardListener cardListener;
 
         public MyViewHolder(@NonNull View itemView, OnCardListener cardListener) {
             super(itemView);
             textViewName = itemView.findViewById(R.id.textViewName);
+            textViewStr = itemView.findViewById(R.id.textViewStr);
+            textViewCon = itemView.findViewById(R.id.textViewCon);
+            textViewInt = itemView.findViewById(R.id.textViewInt);
+            textViewDex = itemView.findViewById(R.id.textViewDex);
+            textViewCha = itemView.findViewById(R.id.textViewCha);
+            textViewWis = itemView.findViewById(R.id.textViewWis);
             this.cardListener = cardListener;
             itemView.setOnClickListener(this);
         }
@@ -80,5 +104,17 @@ public class adapterCardView extends RecyclerView.Adapter<adapterCardView.MyView
 
     public interface OnCardListener{
         void onCardClick(int position);
+    }
+
+    public void setUpStatView(MyViewHolder holder, String file) throws IOException {
+        File nameList = new File(mContext.getFilesDir(), file);
+        BufferedReader E = new BufferedReader(new FileReader(mContext.getFilesDir() + "/" + file));
+        holder.textViewStr.setText(E.readLine());
+        holder.textViewCon.setText(E.readLine());
+        holder.textViewInt.setText(E.readLine());
+        holder.textViewDex.setText(E.readLine());
+        holder.textViewCha.setText(E.readLine());
+        holder.textViewWis.setText(E.readLine());
+        E.close();
     }
 }
