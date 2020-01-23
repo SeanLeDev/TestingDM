@@ -32,7 +32,7 @@ public class npcView extends AppCompatActivity {
     public Switch evil;
     public Switch companion;
     public Switch secret;
-    public EditText name;
+    public EditText nameInput;
     public EditText background;
 
 
@@ -40,6 +40,8 @@ public class npcView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_npc_view);
+        nameInput = findViewById(R.id.NPCname);
+        background = findViewById(R.id.background);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getIDchips();
@@ -51,6 +53,9 @@ public class npcView extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
+                getIDtextFields();
+                getIDchips();
+                getChipsChecked();
                 nsave();
             }
         });
@@ -66,22 +71,20 @@ public class npcView extends AppCompatActivity {
         evil = new Switch(this);
         companion = new Switch(this);
         secret = new Switch(this);
-        Switch sus = findViewById(R.id.suspicious);
-        Switch trust = findViewById(R.id.trusted);
-        Switch chaos = findViewById(R.id.chaotic);
-        Switch neutral = findViewById(R.id.neutral);
-        Switch law = findViewById(R.id.lawful);
-        Switch good = findViewById(R.id.good);
-        Switch evil = findViewById(R.id.evil);
-        Switch companion = findViewById(R.id.companion);
-        Switch secret = findViewById(R.id.secret);
+        sus = findViewById(R.id.suspicious);
+        trust = findViewById(R.id.trusted);
+        chaos = findViewById(R.id.chaotic);
+        neutral = findViewById(R.id.neutral);
+        law = findViewById(R.id.lawful);
+        good = findViewById(R.id.good);
+        evil = findViewById(R.id.evil);
+        companion = findViewById(R.id.companion);
+        secret = findViewById(R.id.secret);
     }
 
     private void getIDtextFields() {
-        name = new EditText(this);
-        background = new EditText(this);
-        EditText name = findViewById(R.id.NPCname);
-        EditText background = findViewById(R.id.background);
+        nameInput = findViewById(R.id.NPCname);
+        background = findViewById(R.id.background);
     }
 
     private void getChipsChecked() {
@@ -99,25 +102,22 @@ public class npcView extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void nsave(){
-        getIDtextFields();
-        getIDchips();
-        getChipsChecked();
+
         int i = 0;
         while (npc [i][0] != null) {
             i++;
         }
-        npc [i][0] = name.getText().toString();
-        npc [i][1] = sus.toString();
-        npc [i][2] = trust.toString();
-        npc [i][3] = chaos.toString();
-        npc [i][4] = neutral.toString();
-        npc [i][5] = law.toString();
-        npc [i][6] = good.toString();
-        npc [i][7] = evil.toString();
-        npc [i][8] = companion.toString();
-        npc [i][9] = secret.toString();
+        npc[i][0] = nameInput.getText().toString();
+        npc[i][1] = String.valueOf(sus.isChecked());
+        npc[i][2] = String.valueOf(trust.isChecked());
+        npc[i][3] = String.valueOf(chaos.isChecked());
+        npc[i][4] = String.valueOf(neutral.isChecked());
+        npc[i][5] = String.valueOf(law.isChecked());
+        npc[i][6] = String.valueOf(good.isChecked());
+        npc[i][7] = String.valueOf(evil.isChecked());
+        npc[i][8] = String.valueOf(companion.isChecked());
+        npc[i][9] = String.valueOf(secret.isChecked());
         npc [i][10] = background.getText().toString();
-
         try {
             npcio.nsave(this,i);
         } catch (IOException e) {
