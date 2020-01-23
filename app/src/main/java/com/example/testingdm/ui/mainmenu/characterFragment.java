@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +34,7 @@ import static com.example.testingdm.charactercreation.characterScreen.stats;
  * Use the {@link characterFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class characterFragment extends Fragment {
+public class characterFragment extends Fragment implements adapterCardView.OnCardListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -41,9 +42,23 @@ public class characterFragment extends Fragment {
 
     // TODO: Rename and change types of parameters
     View rootView;
+    private FragmentListener listener;
     private RecyclerView recyclerView;
     private OnFragmentInteractionListener mListener;
     private List<String> characterList;
+
+    @Override
+    public void onCardClick(int position) {
+        Intent intent = new Intent(getContext(), characterScreen.class);
+        String nameSend = characterList.get(position);
+        intent.putExtra("Test",characterList.get(position));
+        startActivity(intent);
+        System.out.println("IT GOT CLICKED");
+    }
+
+    public interface FragmentListener{
+        void inputPress(boolean pressed);
+    }
 
     public characterFragment() {
         // Required empty public constructor
@@ -73,13 +88,13 @@ public class characterFragment extends Fragment {
         View rootview = inflater.inflate(R.layout.fragment_character, container, false);
         recyclerView = rootview.findViewById(R.id.characterRecyclerList);
         System.out.println("AAAAAAAAAAAAAAAAAAAAAA");
-        adapterCardView mAdapter = new adapterCardView(getContext(), characterList);//Need to get Character Data
+        adapterCardView mAdapter = new adapterCardView(getContext(), characterList, this);//Need to get Character Data
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         System.out.println(characterList.isEmpty() + ".....");
         recyclerView.setAdapter(mAdapter);
         System.out.println(characterList);
-
         System.out.println(characterList.isEmpty());
+
         return rootview;
     }
 
@@ -114,7 +129,7 @@ public class characterFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    public void onTouchEvent(View view) {
+    /*public void onTouchEvent(View view) {
         RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
         int position = viewHolder.getAdapterPosition();
         System.out.println("onTouchEvent");
@@ -124,7 +139,7 @@ public class characterFragment extends Fragment {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-    }
+    }*/
 
     public void characterListMake() {
         System.out.println("FreeFallinggggg%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
@@ -136,5 +151,6 @@ public class characterFragment extends Fragment {
             e.printStackTrace();
         }
     }
+
 
 }

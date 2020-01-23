@@ -16,12 +16,13 @@
         <activity
             android:name=".npc.npcView"
             android:label="@string/title_activity_npc_view"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".charactercreation.characterScreen"
             android:label="@string/title_activity_character_screen"
             android:parentActivityName=".ui.mainmenu.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.testingdm.ui.mainmenu.MainActivity" />

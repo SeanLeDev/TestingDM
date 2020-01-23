@@ -30,17 +30,19 @@ public class adapterCardView extends RecyclerView.Adapter<adapterCardView.MyView
 
     Context mContext;
     List<String> characterList;
+    OnCardListener mOnCardListener;
 
-    public adapterCardView(Context mContext, List<String> characterList) {
+    public adapterCardView(Context mContext, List<String> characterList, OnCardListener OnCardListener) {
         this.mContext = mContext;
         this.characterList = characterList;
+        this.mOnCardListener = OnCardListener;
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v;
         v = LayoutInflater.from(mContext).inflate(R.layout.cardview, parent, false);
-        MyViewHolder vHolder = new MyViewHolder(v);
+        MyViewHolder vHolder = new MyViewHolder(v, mOnCardListener);
         return vHolder;
     }
 
@@ -55,12 +57,28 @@ public class adapterCardView extends RecyclerView.Adapter<adapterCardView.MyView
         return characterList.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener {
         private TextView textViewName;
+        OnCardListener cardListener;
 
-        public MyViewHolder(@NonNull View itemView) {
+        public MyViewHolder(@NonNull View itemView, OnCardListener cardListener) {
             super(itemView);
             textViewName = itemView.findViewById(R.id.textViewName);
+            this.cardListener = cardListener;
+            itemView.setOnClickListener(this);
         }
+
+        public String getTextViewName() {
+            return textViewName.toString();
+        }
+
+        @Override
+        public void onClick(View v) {
+            cardListener.onCardClick(getAdapterPosition());
+        }
+    }
+
+    public interface OnCardListener{
+        void onCardClick(int position);
     }
 }

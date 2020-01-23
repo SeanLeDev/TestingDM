@@ -4,21 +4,14 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
 import com.example.testingdm.R;
 
-import com.example.testingdm.charactercreation.IO;
 import com.example.testingdm.charactercreation.ViewPagerAdapter;
-import com.example.testingdm.charactercreation.api.Features;
-import com.example.testingdm.charactercreation.api.dnd5eapi;
-import com.example.testingdm.charactercreation.api.equipment;
 import com.example.testingdm.charactercreation.characterScreen;
 import com.example.testingdm.npc.npcView;
-import com.example.testingdm.ui.mainmenu.cardviewcreation.ArrayToList;
-import com.example.testingdm.ui.mainmenu.cardviewcreation.adapterCardView;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -33,28 +26,17 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.app.AppCompatActivity;
 
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
-import static com.example.testingdm.charactercreation.characterScreen.stats;
+import static com.example.testingdm.charactercreation.IO.*;
 
 
 public class MainActivity extends FragmentActivity {
@@ -80,12 +62,16 @@ public class MainActivity extends FragmentActivity {
         adapter.AddFragment(new characterFragment(), "Characters");
         adapter.AddFragment(new npcFragment(), "NPCs");
         adapter.AddFragment(new fragment_table(), "Table");
+        try {
+            load(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         viewPager.setAdapter(adapter);
         tabs.setupWithViewPager(viewPager);
         //apiTest = findViewById(R.id.testAPI);
         configureFabButton();
     }
-
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
         public ScreenSlidePagerAdapter(FragmentManager fm) {

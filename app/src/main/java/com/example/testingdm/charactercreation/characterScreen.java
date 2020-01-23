@@ -9,18 +9,12 @@ import com.example.testingdm.charactercreation.api.Features;
 import com.example.testingdm.charactercreation.api.apio;
 
 import com.example.testingdm.charactercreation.api.dnd5eapi;
-import com.example.testingdm.charactercreation.api.equipment;
 import com.example.testingdm.charactercreation.api.levels;
 import com.example.testingdm.charactercreation.api.proficiencies;
 import com.example.testingdm.charactercreation.api.races;
-import com.example.testingdm.charactercreation.api.skills;
 import com.example.testingdm.charactercreation.api.subclasses;
-import com.example.testingdm.characterfiles.Skills;
-import com.example.testingdm.ui.mainmenu.MainActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
-
-import java.io.BufferedReader;
 
 import androidx.annotation.RequiresApi;
 import androidx.viewpager.widget.PagerAdapter;
@@ -29,24 +23,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import static androidx.core.content.ContextCompat.startActivity;
 import static com.example.testingdm.R.id.view_pager;
 import static com.example.testingdm.R.layout.activity_character_screen;
 import static com.example.testingdm.R.layout.activity_main;
-import static com.example.testingdm.R.layout.support_simple_spinner_dropdown_item;
 
 import com.example.testingdm.characterfiles.ValueCalculation;
 
-import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -63,6 +51,7 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
     private String name;
     public String nameLoad;
     public int editStorage;
+    public Spinner spinner;
     public static EditText nameInput;
     public static EditText strInput;
     public static EditText chaInput;
@@ -102,8 +91,6 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
         super.onCreate(savedInstanceState);
         setContentView(activity_main);
         //SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
-
-
         ViewPager viewPager = findViewById(view_pager);
         tabs = findViewById(R.id.tabLayout);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
@@ -112,12 +99,6 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
         adapter.AddFragment(new com.example.testingdm.charactercreation.skills(), "Skills");
         viewPager.setAdapter(adapter);
         tabs.setupWithViewPager(viewPager);
-        Spinner spinner = findViewById(R.id.spinner);
-        ArrayAdapter<CharSequence> spinnerAdapter;
-        spinnerAdapter = ArrayAdapter.createFromResource(this,R.array.Classes, android.R.layout.simple_spinner_item);
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(spinnerAdapter);
-        spinner.setOnItemSelectedListener(this);
 
         //Inputs
         getIDinput();
@@ -125,8 +106,27 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
         getIDBonus();
         getIDSkills();
         configureFabButton();
-        //features("Archdruid");
+        Intent intent = getIntent();
+        if(intent.getStringExtra("Test") !=null){
+            String characterName = intent.getStringExtra("Test");
+            System.out.println(characterName+"lolololollolololololololo");
+            getIDinput();
+            //Bonus View
+            getIDBonus();
+            getIDSkills();
+            setStatDisplay(characterName);
+        }
 
+        //features("Archdruid");
+    }
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String classChoice = parent.getItemAtPosition(position).toString();
+        Toast.makeText(parent.getContext(), classChoice, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
 
     }
 
@@ -172,8 +172,11 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
 
     }
 
-    public static void load(String n) throws IOException {
+    public void load(String n) throws IOException {
         int characterRow = 0;
+        getIDinput();
+        getIDBonus();
+        getIDSkills();
         for (int l = 0; l == 100; l++) {
             if (n.equals(stats[l][0])) {
                 characterRow = l;
@@ -183,8 +186,13 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
         }
         //Temporary before the actual name list comes
         for (int l = 0; l < 7; l++) {
+            System.out.println(stats[characterRow][l]);
+            getIDBonus();
+            getIDinput();
+            getIDDisplays();
             switch (l) { //Loads all the stats into the inputs
                 case 0:
+                    //nameInput.setText(stats[characterRow][l]);
                     nameDisplay.setText(stats[characterRow][l]);
                     break;
                 case 1:
@@ -204,8 +212,42 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
                     break;
                 case 7:
                     chaInput.setText(stats[characterRow][l]);
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + l);
             }
         }
+    }
+
+    public void setStatDisplay(String name){
+        int characterRow = 0;
+        System.out.println(name+"harmony");
+        for (int l = 0; l == 100; l++) {
+            if (name.equals(stats[l][0])) {
+                System.out.println("Found it!"+stats[l][0]);
+                characterRow = l;
+                break;
+            } else
+                System.out.println(l);
+                continue;
+        }
+        System.out.println(stats[characterRow][0]+"))))");
+        nameDisplay = new TextView(this);
+        strInput = new EditText(this);
+        conInput = new EditText(this);
+        intInput = new EditText(this);
+        dexInput = new EditText(this);
+        chaInput = new EditText(this);
+        wisInput = new EditText(this);
+        getIDinput();
+        nameDisplay.setText(stats[characterRow][0]);
+        System.out.println(nameDisplay.getText().toString()+"**");
+        strInput.setText((stats[characterRow][1]),TextView.BufferType.EDITABLE);
+        conInput.setText((stats[characterRow][2]),TextView.BufferType.EDITABLE);
+        intInput.setText((stats[characterRow][3]),TextView.BufferType.EDITABLE);
+        dexInput.setText((stats[characterRow][4]),TextView.BufferType.EDITABLE);
+        chaInput.setText((stats[characterRow][5]),TextView.BufferType.EDITABLE);
+        wisInput.setText((stats[characterRow][6]),TextView.BufferType.EDITABLE);
     }
 
     public void setStatDisplay() {
@@ -289,15 +331,12 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
         survival = findViewById(R.id.survivalBonus);
     }
 
-    public void loadDataActivity(String n) {
-        Intent i = new Intent(characterScreen.this, MainActivity.class);
-        startActivity(i);
-        try {
-            characterScreen.load(n);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void getIDDisplays(){
+        nameDisplay = new TextView(this);
+        nameDisplay = findViewById(R.id.nameDisplay);
     }
+
+
 
 
     //Beginning of the api interaction
@@ -583,16 +622,7 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
     }
 
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String classChoice = parent.getItemAtPosition(position).toString();
-        Toast.makeText(parent.getContext(), classChoice, Toast.LENGTH_SHORT).show();
-    }
 
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
 }
 
 

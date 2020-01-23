@@ -1,10 +1,11 @@
 package com.example.testingdm.charactercreation;
 
-import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,16 +14,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.testingdm.R;
-import com.example.testingdm.charactercreation.characterScreen;
 import com.example.testingdm.charactercreation.api.apio;
 import com.example.testingdm.charactercreation.api.dnd5eapi;
 import com.example.testingdm.charactercreation.api.equipment;
-import com.example.testingdm.ui.mainmenu.cardviewcreation.adapterCardView;
+import com.example.testingdm.ui.mainmenu.cardviewcreation.ArrayToList;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -49,7 +51,7 @@ public class inventory extends Fragment {
     private String mParam1;
     private String mParam2;
     private RecyclerView recyclerView;
-    private List<equipment> equipmentList;
+    private List<String> equipmentList;
     private EditText itemEnter;
 
     private OnFragmentInteractionListener mListener;
@@ -78,9 +80,26 @@ public class inventory extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        equipmentList = new ArrayList<>();
         super.onCreate(savedInstanceState);
 
-        itemEnter = itemEnter.findViewById(R.id.itemInput);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Button itemAdd;
+        itemEnter = new EditText(getContext());
+        itemAdd = view.findViewById(R.id.itemAddInventory);
+        itemEnter = view.findViewById(R.id.itemInput);
+        itemAdd.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+            @Override
+            public void onClick(View v) {
+                String c = itemEnter.getText().toString();
+                saveMethod(c);
+            }
+        });
     }
 
     @Override
@@ -102,7 +121,7 @@ public class inventory extends Fragment {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    /*@RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void equipment(String k) {
         Retrofit retrofit = new Retrofit.Builder() //Need this to access the api
                 .baseUrl("http://dnd5eapi.co/api/")
@@ -110,6 +129,8 @@ public class inventory extends Fragment {
                 .build();
         final dnd5eapi dnd5eapi = retrofit.create(dnd5eapi.class);
 
+        k.toLowerCase();
+        k.replace(" ","-");
         Call<equipment> call = dnd5eapi.getEquipment(k); //Unsure what to put here
 
         call.enqueue(new Callback<equipment>() {
@@ -121,6 +142,7 @@ public class inventory extends Fragment {
                     return;
                 }
                 equipment item = response.body(); //response.body is the object you get from api
+                equipmentList.add(item.getName());
                 saveMethod(item);
             }
 
@@ -136,7 +158,8 @@ public class inventory extends Fragment {
         });
 
 
-    }
+    }*/
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -152,28 +175,13 @@ public class inventory extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    public void saveMethod(equipment c){
-        final String[][] f = new String[1][15];
+    public void saveMethod(String c){
+        final String[][] f = new String[1][3];
         int i = 0;
-        while (i < 15) {
-            f[0][i] = null;
+        while (i < 1) {
+            f[i][0] = null;
         }
-        f[0][0] = c.get_Id();
-        f[0][1] = c.getIndex();
-        f[0][2] = c.getName();
-        f[0][3] = String.valueOf(c.getEquipmentCat());
-        f[0][4] = String.valueOf(c.getWeaponCat());
-        f[0][5] = String.valueOf(c.getWeaponRng());
-        f[0][6] = c.getCategoryRng();
-        f[0][7] = String.valueOf(c.getDamage());
-        f[0][8] = String.valueOf(c.getCost());
-        f[0][9] = String.valueOf(c.getDmgType());
-        f[0][10] = String.valueOf(c.getDmgDice());
-        f[0][11] = String.valueOf(c.getDmgBonus());
-        f[0][12] = String.valueOf(c.getWeaponProp());
-        f[0][13] = String.valueOf(c.getRange());
-        f[0][14] = String.valueOf(c.getWeight());
-
+        f[0][i] = c;
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 apio.apisave(getActivity(), characterScreen.nameInput.getText().toString(), "-e", f);

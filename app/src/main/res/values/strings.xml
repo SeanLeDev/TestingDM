@@ -23,6 +23,7 @@
     <string name="conInput">Con</string>
     <string name="chaInput">Cha</string>
     <string name="saveResults">Save</string>
+    <string name="addThing">Add</string>
 
     <string name="NPCtitle">NPC Creator</string>
     <string name="susInput">Suspicious</string>

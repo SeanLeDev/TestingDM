@@ -17,9 +17,9 @@ import java.util.List;
 public class adapterInventoryCardView extends RecyclerView.Adapter<adapterInventoryCardView.MyViewHolder> {
 
     Context mContext;
-    List<equipment> equipmentList;
+    List<String> equipmentList;
 
-    public adapterInventoryCardView(Context mContext, List<equipment> characterList) {
+    public adapterInventoryCardView(Context mContext, List<String> equipmentList) {
         this.mContext = mContext;
         this.equipmentList = equipmentList;
     }
@@ -34,13 +34,11 @@ public class adapterInventoryCardView extends RecyclerView.Adapter<adapterInvent
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        equipment c = equipmentList.get(position);
-        holder.textViewName.setText(c.getName());
-        if(c.getDmgDice() == null){
-            holder.textViewProperties.setText(c.getEquipmentCat());
-        }else{
-            holder.textViewProperties.setText(c.getDmgDice()+"+"+c.getDmgBonus());
-        }
+        String c = equipmentList.get(position);
+        holder.textViewName.setText(equipmentList.get(position));
+        holder.textViewProperties.setText(equipmentList.get(position+1));
+
+
     }
 
     @Override
