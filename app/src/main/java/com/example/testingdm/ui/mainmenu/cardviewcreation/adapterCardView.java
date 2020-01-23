@@ -60,7 +60,6 @@ public class adapterCardView extends RecyclerView.Adapter<adapterCardView.MyView
         } catch (IOException e) {
             e.printStackTrace();
         }
-        holder.textViewName.setText(c);
     }
 
     @Override
@@ -109,6 +108,7 @@ public class adapterCardView extends RecyclerView.Adapter<adapterCardView.MyView
     public void setUpStatView(MyViewHolder holder, String file) throws IOException {
         File nameList = new File(mContext.getFilesDir(), file);
         BufferedReader E = new BufferedReader(new FileReader(mContext.getFilesDir() + "/" + file));
+        holder.textViewName.setText(E.readLine());
         holder.textViewStr.setText(E.readLine());
         holder.textViewCon.setText(E.readLine());
         holder.textViewInt.setText(E.readLine());
