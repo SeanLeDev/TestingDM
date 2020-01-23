@@ -69,6 +69,8 @@ public class adapterCardView extends RecyclerView.Adapter<adapterCardView.MyView
 
     public static class MyViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener {
         private TextView textViewName;
+        private TextView textViewClass;
+        private TextView textViewRace;
         private TextView textViewStr;
         private TextView textViewCon;
         private TextView textViewInt;
@@ -81,6 +83,8 @@ public class adapterCardView extends RecyclerView.Adapter<adapterCardView.MyView
         public MyViewHolder(@NonNull View itemView, OnCardListener cardListener) {
             super(itemView);
             textViewName = itemView.findViewById(R.id.textViewName);
+            textViewRace = itemView.findViewById(R.id.textViewRace);
+            textViewClass = itemView.findViewById(R.id.textViewClass);
             textViewStr = itemView.findViewById(R.id.textViewStr);
             textViewCon = itemView.findViewById(R.id.textViewCon);
             textViewInt = itemView.findViewById(R.id.textViewInt);
@@ -109,6 +113,8 @@ public class adapterCardView extends RecyclerView.Adapter<adapterCardView.MyView
         File nameList = new File(mContext.getFilesDir(), file);
         BufferedReader E = new BufferedReader(new FileReader(mContext.getFilesDir() + "/" + file));
         holder.textViewName.setText(E.readLine());
+        holder.textViewClass.setText(E.readLine());
+        holder.textViewRace.setText(E.readLine());
         holder.textViewStr.setText(E.readLine());
         holder.textViewCon.setText(E.readLine());
         holder.textViewInt.setText(E.readLine());

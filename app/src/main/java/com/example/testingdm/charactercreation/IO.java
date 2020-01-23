@@ -36,6 +36,8 @@ IO {
             out.write(stats[i][4] + System.lineSeparator());
             out.write(stats[i][5] + System.lineSeparator());
             out.write(stats[i][6] + System.lineSeparator());
+            out.write(stats[i][7] + System.lineSeparator());
+            out.write(stats[i][8] + System.lineSeparator());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -72,6 +74,8 @@ IO {
                 stats[i][4] = E.readLine();
                 stats[i][5] = E.readLine();
                 stats[i][6] = E.readLine();
+                stats[i][7] = E.readLine();
+                stats[i][8] = E.readLine();
                 E.close();
                 aa++;
             } else {

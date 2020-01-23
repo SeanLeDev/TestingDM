@@ -50,12 +50,23 @@
         <item>Sorcerer</item>
         <item>Warlock</item>
         <item>Wizard</item>
+    </string-array>
 
+    <string-array name="Races">
+        <item>Human</item>
+        <item>Elf</item>
+        <item>Gnome</item>
+        <item>Dwarf</item>
+        <item>Halfling</item>
+        <item>Dragonborn</item>
+        <item>Tiefling</item>
+        <item>Half-Elf</item>
+        <item>Half-Orc</item>
     </string-array>
 
 
 
-    <string name="acrobatics">Acrobatics</string>
+<string name="acrobatics">Acrobatics</string>
     <string name="animalHandling">Animal Handling</string>
     <string name="arcana">Arcana</string>
     <string name="athletics">Athletics</string>

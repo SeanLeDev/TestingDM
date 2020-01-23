@@ -29,7 +29,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import static com.example.testingdm.R.id.view_pager;
-import static com.example.testingdm.R.layout.activity_character_screen;
 import static com.example.testingdm.R.layout.activity_main;
 
 import com.example.testingdm.characterfiles.ValueCalculation;
@@ -45,13 +44,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class characterScreen extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
-    public static String[][] stats = new String[100][7];
+    public static String[][] stats = new String[100][9];
     private PagerAdapter pagerAdapter;
     private TabLayout tabs;
     private String name;
     public String nameLoad;
     public int editStorage;
-    public Spinner spinner;
+    public static Spinner spinnerClasses;
+    public static Spinner spinnerRaces;
     public static EditText nameInput;
     public static EditText strInput;
     public static EditText chaInput;
@@ -99,7 +99,6 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
         adapter.AddFragment(new com.example.testingdm.charactercreation.skills(), "Skills");
         viewPager.setAdapter(adapter);
         tabs.setupWithViewPager(viewPager);
-
         //Inputs
         getIDinput();
         //Bonus View
@@ -157,12 +156,14 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
             i++;
         }
         stats[i][0] = nameInput.getText().toString();
-        stats[i][1] = conInput.getText().toString();
-        stats[i][2] = strInput.getText().toString();
-        stats[i][3] = dexInput.getText().toString();
-        stats[i][4] = intInput.getText().toString();
-        stats[i][5] = wisInput.getText().toString();
-        stats[i][6] = chaInput.getText().toString();
+        stats[i][1] = spinnerClasses.getSelectedItem().toString();
+        stats[i][2] = spinnerRaces.getSelectedItem().toString();
+        stats[i][3] = conInput.getText().toString();
+        stats[i][4] = strInput.getText().toString();
+        stats[i][5] = dexInput.getText().toString();
+        stats[i][6] = intInput.getText().toString();
+        stats[i][7] = wisInput.getText().toString();
+        stats[i][8] = chaInput.getText().toString();
         try {
             IO.save(this, i);
         } catch (IOException e) {
@@ -298,6 +299,11 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
         conInput = findViewById(R.id.conInput);
         dexInput = findViewById(R.id.dexInput);
         intInput = findViewById(R.id.intInput);
+        spinnerClasses = findViewById(R.id.spinnerClasses);
+        spinnerRaces = findViewById(R.id.spinnerRaces);
+        /*ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this,R.layout.spinner,getResources().getStringArray(R.array.Classes));
+        spinnerAdapter.setDropDownViewResource(R.layout.spinner_dropdown);
+        spinner.setAdapter(spinnerAdapter);*/
     }
 
     public void getIDBonus() {

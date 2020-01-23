@@ -9,7 +9,7 @@
     tools:context=".charactercreation.characterEdit">
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/spinnerClasses"
         android:layout_width="155dp"
         android:layout_height="33dp"
         android:layout_marginStart="1dp"
@@ -21,6 +21,25 @@
         android:entries="@array/Classes"
         app:layout_constraintBottom_toTopOf="@+id/nameInput"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Spinner
+        android:id="@+id/spinnerRaces"
+        android:layout_width="155dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="116dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginBottom="12dp"
+        android:entries="@array/Races"
+        app:layout_constraintBottom_toTopOf="@+id/nameInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.858"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
