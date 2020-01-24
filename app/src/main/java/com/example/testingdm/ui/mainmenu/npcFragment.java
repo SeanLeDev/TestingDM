@@ -5,12 +5,21 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.testingdm.R;
+import com.example.testingdm.ui.mainmenu.cardviewcreation.ArrayToList;
+import com.example.testingdm.ui.mainmenu.cardviewcreation.adapterCardView;
+import com.example.testingdm.ui.mainmenu.cardviewcreation.adapterNPCCardView;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,8 +36,9 @@ public class npcFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private RecyclerView recyclerView;
+    private List<String> npcList;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -52,6 +62,15 @@ public class npcFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        npcList = new ArrayList<>();
+        try {
+            npcList = ArrayToList.convertNPCFileToList(getContext());
+            System.out.println(npcList);
+            System.out.println("success");
+        } catch (IOException e) {
+            System.out.println("Fail" + e);
+            e.printStackTrace();
+        }
         super.onCreate(savedInstanceState);
 
     }
@@ -60,7 +79,16 @@ public class npcFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_npc, container, false);
+        View rootview = inflater.inflate(R.layout.fragment_npc, container, false);
+        recyclerView = rootview.findViewById(R.id.npcRecyclerList);
+        System.out.println("AAAAAAAAAAAAAAAAAAAAAA");
+        adapterNPCCardView mAdapter = new adapterNPCCardView(getContext(), npcList);//Need to get Character Data
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        System.out.println(npcList.isEmpty() + ".....");
+        recyclerView.setAdapter(mAdapter);
+        System.out.println(npcList);
+        System.out.println(npcList.isEmpty());
+        return rootview;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

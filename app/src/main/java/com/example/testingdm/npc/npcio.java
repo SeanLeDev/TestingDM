@@ -50,7 +50,7 @@ public class npcio
         if (!nameList.exists()) {
             nameList = new File(con.getFilesDir(), "npcNames.txt");
         }
-        try (BufferedWriter out = new BufferedWriter(new FileWriter(nameList))) {
+        try (BufferedWriter out = new BufferedWriter(new FileWriter(nameList,true))) {
             out.write(npc[i][0] + System.lineSeparator());
         } catch (FileNotFoundException e) {
             e.printStackTrace();

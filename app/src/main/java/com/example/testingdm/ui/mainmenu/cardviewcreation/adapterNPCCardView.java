@@ -1,4 +1,4 @@
-package com.example.testingdm.charactercreation;
+package com.example.testingdm.ui.mainmenu.cardviewcreation;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,18 +10,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.testingdm.R;
-import com.example.testingdm.charactercreation.api.equipment;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
 
-public class adapterInventoryCardView extends RecyclerView.Adapter<adapterInventoryCardView.MyViewHolder> {
+public class adapterNPCCardView extends RecyclerView.Adapter<adapterNPCCardView.MyViewHolder> {
 
     Context mContext;
-    List<String> equipmentList;
+    List<String> npcList;
 
-    public adapterInventoryCardView(Context mContext, List<String> equipmentList) {
+    public adapterNPCCardView(Context mContext, List<String> npcList) {
         this.mContext = mContext;
-        this.equipmentList = equipmentList;
+        this.npcList = npcList;
     }
 
     @Override
@@ -34,26 +37,26 @@ public class adapterInventoryCardView extends RecyclerView.Adapter<adapterInvent
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        String c = equipmentList.get(position);
-        holder.textViewName.setText(equipmentList.get(position));
-        //holder.textViewProperties.setText(equipmentList.get(position+1));
-
-
+        String c = npcList.get(position);
+        holder.textViewName.setText(npcList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return equipmentList.size();
+        return npcList.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView textViewName;
-        private TextView textViewProperties;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewName = itemView.findViewById(R.id.itemName);
-            //textViewProperties = itemView.findViewById(R.id.attributes);
         }
+    }
+
+    public void npcDisplaySetup(MyViewHolder holder,String file) throws IOException {
+        File nameList = new File(mContext.getFilesDir(), file);
+        BufferedReader E = new BufferedReader(new FileReader(mContext.getFilesDir() + "/" + file));
     }
 }
