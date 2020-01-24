@@ -108,7 +108,6 @@ IO {
 
         }//End of while
         tempList.renameTo(nameList);
-        nameList.delete();
         File name = new File((con.getFilesDir()), n + ".txt");
         name.delete();
         File namec = new File((con.getFilesDir()), n + "-c" + ".txt");
