@@ -123,6 +123,7 @@ IO {
             out.write(nam[i][0]+ System.lineSeparator()) ;
             i--;
         }
+        out.close();
 
 
 
