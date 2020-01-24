@@ -14,6 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.example.testingdm.R;
 
@@ -57,6 +58,7 @@ public class npcView extends AppCompatActivity {
                 getIDchips();
                 getChipsChecked();
                 nsave();
+
             }
         });
     }
@@ -120,9 +122,11 @@ public class npcView extends AppCompatActivity {
         npc [i][10] = background.getText().toString();
         try {
             npcio.nsave(this,i);
+            Toast.makeText(this, "Saved", Toast.LENGTH_LONG).show();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
 }
