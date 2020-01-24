@@ -95,9 +95,13 @@ IO {
         BufferedReader E = new BufferedReader(new FileReader(nameList));
         BufferedWriter out = new BufferedWriter(new FileWriter(tempList));
         String a = "a";
-        while (a != null){
+        while (a != "b"){
             a = E.readLine();
+            if(a == null){
+               a = "b";
+            }
             if(a != n) {
+                System.out.println(a);
               out.write(a);
               out.write(System.lineSeparator());
             }//End of If
