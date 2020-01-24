@@ -112,7 +112,7 @@ IO {
 
         }//End of while
         nameList.delete();
-        File na = new File(con.getFilesDir(), "Names.txt");
+        File na = new File(con.getFilesDir(), "Namess.txt");
         BufferedWriter out = new BufferedWriter(new FileWriter(na));
         while(i>=0)
         {
