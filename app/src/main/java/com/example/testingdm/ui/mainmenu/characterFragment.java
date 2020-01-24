@@ -81,6 +81,20 @@ public class characterFragment extends Fragment implements adapterCardView.OnCar
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        System.out.println("FALL OFF YOUR HORSE");
+        System.out.println("AAAAAAAAAAAAAAAAAAAAAA");
+        adapterCardView mAdapter = new adapterCardView(getContext(), characterList, this);//Need to get Character Data
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        System.out.println(characterList.isEmpty() + ".....");
+        recyclerView.setAdapter(mAdapter);
+        System.out.println(characterList);
+        System.out.println(characterList.isEmpty());
+        mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment

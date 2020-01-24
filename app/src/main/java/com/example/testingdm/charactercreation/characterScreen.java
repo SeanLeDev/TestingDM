@@ -42,7 +42,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 //TODO Lots of redunt
 
-public class characterScreen extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+public class characterScreen extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     public static String[][] stats = new String[100][10];
     private PagerAdapter pagerAdapter;
@@ -107,9 +107,9 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
         getIDSkills();
         configureFabButton();
         Intent intent = getIntent();
-        if(intent.getStringExtra("Test") !=null){
+        if (intent.getStringExtra("Test") != null) {
             String characterName = intent.getStringExtra("Test");
-            System.out.println(characterName+"lolololollolololololololo");
+            System.out.println(characterName + "lolololollolololololololo");
             getIDinput();
             //Bonus View
             getIDBonus();
@@ -119,6 +119,7 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
 
         //features("Archdruid");
     }
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String classChoice = parent.getItemAtPosition(position).toString();
@@ -140,6 +141,7 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
                 setStatDisplay();
                 setSkillsDisplay();
                 asave();
+                restartApp();
                 //features("i");//TODO Replace i with user input and give this its independent save button
                 //.load();
 
@@ -148,6 +150,11 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
 
     }
 
+    public void restartApp() {
+        Intent restartIntent = getBaseContext().getPackageManager().getLaunchIntentForPackage(getBaseContext().getPackageName());
+        restartIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(restartIntent);
+    }
 
     //This method loads the character data into our array
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -222,19 +229,19 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
         }
     }
 
-    public void setStatDisplay(String name){
+    public void setStatDisplay(String name) {
         int characterRow = 0;
-        System.out.println(name+"harmony");
+        System.out.println(name + "harmony");
         for (int l = 0; l == 100; l++) {
             if (name.equals(stats[l][0])) {
-                System.out.println("Found it!"+stats[l][0]);
+                System.out.println("Found it!" + stats[l][0]);
                 characterRow = l;
                 break;
             } else
                 System.out.println(l);
-                continue;
+            continue;
         }
-        System.out.println(stats[characterRow][0]+"))))");
+        System.out.println(stats[characterRow][0] + "))))");
         nameDisplay = new TextView(this);
         strInput = new EditText(this);
         conInput = new EditText(this);
@@ -244,13 +251,13 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
         wisInput = new EditText(this);
         getIDinput();
         nameDisplay.setText(stats[characterRow][0]);
-        System.out.println(nameDisplay.getText().toString()+"**");
-        strInput.setText((stats[characterRow][1]),TextView.BufferType.EDITABLE);
-        conInput.setText((stats[characterRow][2]),TextView.BufferType.EDITABLE);
-        intInput.setText((stats[characterRow][3]),TextView.BufferType.EDITABLE);
-        dexInput.setText((stats[characterRow][4]),TextView.BufferType.EDITABLE);
-        chaInput.setText((stats[characterRow][5]),TextView.BufferType.EDITABLE);
-        wisInput.setText((stats[characterRow][6]),TextView.BufferType.EDITABLE);
+        System.out.println(nameDisplay.getText().toString() + "**");
+        strInput.setText((stats[characterRow][1]), TextView.BufferType.EDITABLE);
+        conInput.setText((stats[characterRow][2]), TextView.BufferType.EDITABLE);
+        intInput.setText((stats[characterRow][3]), TextView.BufferType.EDITABLE);
+        dexInput.setText((stats[characterRow][4]), TextView.BufferType.EDITABLE);
+        chaInput.setText((stats[characterRow][5]), TextView.BufferType.EDITABLE);
+        wisInput.setText((stats[characterRow][6]), TextView.BufferType.EDITABLE);
     }
 
     public void setStatDisplay() {
@@ -340,12 +347,10 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
         survival = findViewById(R.id.survivalBonus);
     }
 
-    public void getIDDisplays(){
+    public void getIDDisplays() {
         nameDisplay = new TextView(this);
         nameDisplay = findViewById(R.id.nameDisplay);
     }
-
-
 
 
     //Beginning of the api interaction
@@ -408,9 +413,6 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
         }
 
     }
-
-
-
 
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -499,6 +501,7 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
                 f[0][9] = String.valueOf(response.body().getCharacterClass());
                 f[0][10] = String.valueOf(response.body().getUrl());
             }
+
             @Override
             public void onFailure(Call<levels> call, Throwable t) {
                 //TextView apiTest = findViewById(R.id.testAPI);
@@ -629,7 +632,6 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
 
 
     }
-
 
 
 }

@@ -13,6 +13,13 @@ public class equipment {
     private String weapon_range;
     private String category_range;
 
+    private String armor_category;
+    private Map<String, String> armor_class;
+    private int strMin;
+    private Boolean stealthDisadvantage;
+
+
+
     private Map<String, String> damage;
 
     private Cost cost;
@@ -23,6 +30,14 @@ public class equipment {
     private Weapon_Properties properties;
     private int range;
     private int weight;
+
+    public Map<String, String> getArmor_class() {
+        return armor_class;
+    }
+
+    public String getArmor_category() {
+        return armor_category;
+    }
 
     public String get_Id() {
         return _id;

@@ -5,16 +5,13 @@
     <string name="Table">Table</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="character_screen">Character Screen</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="character_level"></string>
     <string name="title_activity_character_screen">characterScreen</string>
     <string name="tab_text_1">Stats</string>
     <string name="tab_text_2">Inventory</string>
     <string name="tab_text_3">Skills</string>
-    <string name="delete_Character">By entering a character name here, that character will be banished to the lowest depths of the Underworld and burn for an eternity (A very long time!)</string>
 
     <string name="nameInput">Character Name</string>
     <string name="strInput">Str</string>
@@ -24,7 +21,6 @@
     <string name="conInput">Con</string>
     <string name="chaInput">Cha</string>
     <string name="lvlInput">Lvl</string>
-    <string name="saveResults">Save</string>
     <string name="addThing">Add</string>
 
     <string name="NPCtitle">NPC Creator</string>
@@ -79,7 +75,6 @@
     <string name="investigation">Investigation</string>
     <string name="medicine">Medicine</string>
     <string name="nature">Nature</string>
-    <string name="perception">Perception</string>
     <string name="performance">Performance</string>
     <string name="persuasion">Persuasion</string>
     <string name="religion">Religion</string>
@@ -87,7 +82,6 @@
     <string name="stealth">Stealth</string>
     <string name="survival">Survival</string>
     <string name="title_activity_npc_view">npcView</string>
-    <string name="action_settings">Settings</string>
 
 
 </resources>

@@ -1,5 +1,6 @@
 package com.example.testingdm.npc;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -58,9 +59,16 @@ public class npcView extends AppCompatActivity {
                 getIDchips();
                 getChipsChecked();
                 nsave();
+                restartApp();
 
             }
         });
+    }
+
+    public void restartApp() {
+        Intent restartIntent = getBaseContext().getPackageManager().getLaunchIntentForPackage(getBaseContext().getPackageName());
+        restartIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(restartIntent);
     }
 
     private void getIDchips() {
