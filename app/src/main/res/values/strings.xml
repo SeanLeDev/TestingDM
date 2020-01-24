@@ -14,6 +14,7 @@
     <string name="tab_text_1">Stats</string>
     <string name="tab_text_2">Inventory</string>
     <string name="tab_text_3">Skills</string>
+    <string name="delete_Character">By entering a character name here, that character will be banished to the lowest depths of the Underworld and burn for an eternity (A very long time!)</string>
 
     <string name="nameInput">Character Name</string>
     <string name="strInput">Str</string>

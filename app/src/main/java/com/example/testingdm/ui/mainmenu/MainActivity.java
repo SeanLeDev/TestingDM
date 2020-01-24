@@ -30,6 +30,7 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,7 +40,7 @@ import java.util.List;
 import static com.example.testingdm.charactercreation.IO.*;
 
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends FragmentActivity implements dialogClass.deleteDialogListener{
 
 
     private int STORAGE_PERMISSION_CODE = 1;
@@ -49,6 +50,7 @@ public class MainActivity extends FragmentActivity {
     public static List<String> characterList;
     private TabLayout tabs;
     private AppBarLayout appBarLayout;
+    public ImageButton deleteButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,23 +72,13 @@ public class MainActivity extends FragmentActivity {
         viewPager.setAdapter(adapter);
         tabs.setupWithViewPager(viewPager);
         //apiTest = findViewById(R.id.testAPI);
+        deleteButtonConfig();
         configureFabButton();
     }
 
-    private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
-        public ScreenSlidePagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return new characterFragment();
-        }
-
-        @Override
-        public int getCount() {
-            return numPages;
-        }
+    public void openDialog(){
+        dialogClass dialog = new dialogClass();
+        dialog.show(getSupportFragmentManager(),"dialog delete");
     }
 
     private void configureFabButton() {
@@ -146,6 +138,15 @@ public class MainActivity extends FragmentActivity {
         }
     }
 
+    public void deleteButtonConfig(){
+        deleteButton = findViewById(R.id.deleteButton);
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDialog();
+            }
+        });
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -161,5 +162,13 @@ public class MainActivity extends FragmentActivity {
     }
 
 
-
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    @Override
+    public void applyTexts(String characterDeleteName) {
+        try {
+            delete(this,characterDeleteName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
