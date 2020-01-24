@@ -116,6 +116,7 @@ IO {
         BufferedWriter out = new BufferedWriter(new FileWriter(na));
         while(i>=0)
         {
+            System.out.println(nam[i][0]);
             out.write(nam[i][0]);
             i--;
         }
