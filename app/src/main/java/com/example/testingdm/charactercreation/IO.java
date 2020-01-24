@@ -19,6 +19,7 @@ import static com.example.testingdm.charactercreation.characterScreen.stats;
 
 public class
 IO {
+    private static String[][] nam = new String [100][1];
     private static String FILENAME;
     private static int aa = 0;
 
@@ -91,26 +92,36 @@ IO {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static void delete(Context con, String n ) throws IOException {
         File nameList = new File(con.getFilesDir(), "Names.txt");
-        File tempList = new File(con.getFilesDir(), "temp.txt");
+      //  File tempList = new File(con.getFilesDir(), "temp.txt");
         BufferedReader E = new BufferedReader(new FileReader(nameList));
-        BufferedWriter out = new BufferedWriter(new FileWriter(tempList));
+      //  BufferedWriter out = new BufferedWriter(new FileWriter(tempList));
         String a = "a";
+        int i = 0;
         while (a != "b"){
             a = E.readLine();
+            System.out.println(a);
             if(a == null){
                a = "b";
             }
             if(a != n) {
-                System.out.println(a);
-              out.write(a);
-              out.write(System.lineSeparator());
+            nam[i][0] = a;
+            i++;
+            //  out.write(a);
+            //  out.write(System.lineSeparator());
             }//End of If
 
         }//End of while
-
         nameList.delete();
         File na = new File(con.getFilesDir(), "Names.txt");
-        tempList.renameTo(na);
+        BufferedWriter out = new BufferedWriter(new FileWriter(na));
+        while(i>=0)
+        {
+            out.write(nam[i][0]);
+            i--;
+        }
+
+
+
         File name = new File((con.getFilesDir()), n + ".txt");
         name.delete();
         File namec = new File((con.getFilesDir()), n + "-c" + ".txt");
