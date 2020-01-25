@@ -108,7 +108,6 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
         Intent intent = getIntent();
         if (intent.getStringExtra("Test") != null) {
             String characterName = intent.getStringExtra("Test");
-            System.out.println(characterName + "lolololollolololololololo");
             getIDinput();
             //Bonus View
             getIDBonus();
@@ -195,7 +194,6 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
         }
         //Temporary before the actual name list comes
         for (int l = 0; l < 7; l++) {
-            System.out.println(stats[characterRow][l]);
             getIDBonus();
             getIDinput();
             getIDDisplays();
@@ -234,7 +232,6 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
                 characterRow = l;
                 break;
             } else
-                System.out.println(l);
             continue;
         }
         nameDisplay = new TextView(this);
@@ -385,7 +382,6 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
                 cont += "URL: " + response.body().getUrl() + "\n";
                 f[0][5] = response.body().getUrl();
                 //apiTest = findViewById(R.id.testAPI);
-                System.out.println(cont + "testing this shit");
             }
 
             @Override
