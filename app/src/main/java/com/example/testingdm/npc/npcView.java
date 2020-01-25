@@ -65,13 +65,13 @@ public class npcView extends AppCompatActivity {
         });
     }
 
-    public void restartApp() {
+    public void restartApp() { //Restart app Intent
         Intent restartIntent = getBaseContext().getPackageManager().getLaunchIntentForPackage(getBaseContext().getPackageName());
         restartIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(restartIntent);
     }
 
-    private void getIDchips() {
+    private void getIDchips() { //Gets id for usage
         sus = new Switch(this);
         trust = new Switch(this);
         chaos = new Switch(this);
@@ -92,12 +92,12 @@ public class npcView extends AppCompatActivity {
         secret = findViewById(R.id.secret);
     }
 
-    private void getIDtextFields() {
+    private void getIDtextFields() { //Gets textfield ids
         nameInput = findViewById(R.id.NPCname);
         background = findViewById(R.id.background);
     }
 
-    private void getChipsChecked() {
+    private void getChipsChecked() { //Checks if chips are checked
         getIDchips();
         sus.isChecked();
         trust.isChecked();
@@ -111,7 +111,7 @@ public class npcView extends AppCompatActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public void nsave(){
+    public void nsave(){ //Save method
 
         int i = 0;
         while (npc [i][0] != null) {

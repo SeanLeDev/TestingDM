@@ -64,11 +64,8 @@ public class npcFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         npcList = new ArrayList<>();
         try {
-            npcList = ArrayToList.convertNPCFileToList(getContext());
-            System.out.println(npcList);
-            System.out.println("success");
+            npcList = ArrayToList.convertNPCFileToList(getContext()); //Gets NPCname List
         } catch (IOException e) {
-            System.out.println("Fail" + e);
             e.printStackTrace();
         }
         super.onCreate(savedInstanceState);
@@ -81,13 +78,9 @@ public class npcFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootview = inflater.inflate(R.layout.fragment_npc, container, false);
         recyclerView = rootview.findViewById(R.id.npcRecyclerList);
-        System.out.println("AAAAAAAAAAAAAAAAAAAAAA");
         adapterNPCCardView mAdapter = new adapterNPCCardView(getContext(), npcList);//Need to get Character Data
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        System.out.println(npcList.isEmpty() + ".....");
         recyclerView.setAdapter(mAdapter);
-        System.out.println(npcList);
-        System.out.println(npcList.isEmpty());
         return rootview;
     }
 

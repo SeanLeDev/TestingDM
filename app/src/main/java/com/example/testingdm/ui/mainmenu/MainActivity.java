@@ -44,18 +44,13 @@ public class MainActivity extends FragmentActivity implements dialogClass.delete
 
 
     private int STORAGE_PERMISSION_CODE = 1;
-    private TextView apiTest;
-    private PagerAdapter pagerAdapter;
     private int numPages = 3;
-    public static List<String> characterList;
     private TabLayout tabs;
-    private AppBarLayout appBarLayout;
     public ImageButton deleteButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        System.out.println(this.getFilesDir());
         setContentView(R.layout.activity_main);
         ViewPager viewPager = findViewById(R.id.view_pager);
         tabs = findViewById(R.id.tabLayout);
@@ -63,7 +58,7 @@ public class MainActivity extends FragmentActivity implements dialogClass.delete
 
         adapter.AddFragment(new characterFragment(), "Characters");
         adapter.AddFragment(new npcFragment(), "NPCs");
-        adapter.AddFragment(new fragment_table(), "Table");
+        adapter.AddFragment(new fragment_table(), "Table"); //Setting tab names
         try {
             load(this);
         } catch (IOException e) {
@@ -71,7 +66,6 @@ public class MainActivity extends FragmentActivity implements dialogClass.delete
         }
         viewPager.setAdapter(adapter);
         tabs.setupWithViewPager(viewPager);
-        //apiTest = findViewById(R.id.testAPI);
         deleteButtonConfig();
         configureFabButton();
     }
@@ -81,7 +75,7 @@ public class MainActivity extends FragmentActivity implements dialogClass.delete
         dialog.show(getSupportFragmentManager(),"dialog delete");
     }
 
-    private void configureFabButton() {
+    private void configureFabButton() { //Sets up Floating Action Button
         FloatingActionButton fab;
         final TabLayout tabs = findViewById(R.id.tabLayout);
         fab = findViewById(R.id.fab);
@@ -114,7 +108,7 @@ public class MainActivity extends FragmentActivity implements dialogClass.delete
 
     }
 
-    public void storageRequest() {
+    public void storageRequest() { //Storage Request Pop up
         if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
             new AlertDialog.Builder(this)
                     .setTitle("Storage Required")
@@ -138,7 +132,7 @@ public class MainActivity extends FragmentActivity implements dialogClass.delete
         }
     }
 
-    public void deleteButtonConfig(){
+    public void deleteButtonConfig(){ //Hooking up Delete Button
         deleteButton = findViewById(R.id.deleteButton);
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,7 +143,7 @@ public class MainActivity extends FragmentActivity implements dialogClass.delete
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) { //Connected to the Storage Request
         if (requestCode == STORAGE_PERMISSION_CODE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this, "Welcome to the DM's Assistant!", Toast.LENGTH_SHORT).show();
@@ -164,7 +158,7 @@ public class MainActivity extends FragmentActivity implements dialogClass.delete
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
-    public void applyTexts(String characterDeleteName) {
+    public void applyTexts(String characterDeleteName) { //Gets String from Delete popup
         try {
             delete(this,characterDeleteName);
         } catch (IOException e) {

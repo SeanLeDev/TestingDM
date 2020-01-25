@@ -28,7 +28,7 @@ public class dialogClass extends AppCompatDialogFragment {
 
         builder.setView(rootview);
         builder.setTitle("Delete");
-        builder.setNegativeButton("I refuse!", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("I refuse!", new DialogInterface.OnClickListener() { //sets up button title
             @Override
             public void onClick(DialogInterface dialog, int which) {
 

@@ -73,11 +73,11 @@ public class adapterNPCCardView extends RecyclerView.Adapter<adapterNPCCardView.
         for(int i = 0; i==10; i++){
             String temp = E.readLine();
             switch(i){
-                case 0:
+                case 0: //case 0 = name
                     continue;
                 case 1:
-                    if(temp.equals("true")){
-                        holder.textViewPersonality.append("Suspicious ");
+                    if(temp.equals("true")){ //Outdated, needs changes
+                        holder.textViewPersonality.append("Suspicious "); //Adds different prefixes to npc card view
                         System.out.println("hmhmhmhm");
                     }
                     continue;

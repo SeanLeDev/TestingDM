@@ -91,7 +91,6 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(activity_main);
-        //SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = findViewById(view_pager);
         tabs = findViewById(R.id.tabLayout);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
@@ -182,7 +181,7 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
 
     }
 
-    public void load(String n) throws IOException {
+    public void load(String n) throws IOException { //Broken
         int characterRow = 0;
         getIDinput();
         getIDBonus();
@@ -202,7 +201,6 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
             getIDDisplays();
             switch (l) { //Loads all the stats into the inputs
                 case 0:
-                    //nameInput.setText(stats[characterRow][l]);
                     nameDisplay.setText(stats[characterRow][l]);
                     break;
                 case 1:
@@ -229,19 +227,16 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
         }
     }
 
-    public void setStatDisplay(String name) {
+    public void setStatDisplay(String name) { //Broken
         int characterRow = 0;
-        System.out.println(name + "harmony");
         for (int l = 0; l == 100; l++) {
             if (name.equals(stats[l][0])) {
-                System.out.println("Found it!" + stats[l][0]);
                 characterRow = l;
                 break;
             } else
                 System.out.println(l);
             continue;
         }
-        System.out.println(stats[characterRow][0] + "))))");
         nameDisplay = new TextView(this);
         strInput = new EditText(this);
         conInput = new EditText(this);
@@ -251,7 +246,6 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
         wisInput = new EditText(this);
         getIDinput();
         nameDisplay.setText(stats[characterRow][0]);
-        System.out.println(nameDisplay.getText().toString() + "**");
         strInput.setText((stats[characterRow][1]), TextView.BufferType.EDITABLE);
         conInput.setText((stats[characterRow][2]), TextView.BufferType.EDITABLE);
         intInput.setText((stats[characterRow][3]), TextView.BufferType.EDITABLE);
@@ -311,9 +305,6 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
         intInput = findViewById(R.id.intInput);
         spinnerClasses = findViewById(R.id.spinnerClasses);
         spinnerRaces = findViewById(R.id.spinnerRaces);
-        /*ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this,R.layout.spinner,getResources().getStringArray(R.array.Classes));
-        spinnerAdapter.setDropDownViewResource(R.layout.spinner_dropdown);
-        spinner.setAdapter(spinnerAdapter);*/
     }
 
     public void getIDBonus() {
@@ -353,8 +344,9 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
     }
 
 
-    //Beginning of the api interaction
-    //TODO Lots of redundant code here need to clean up
+    /*
+    API Code, needs clean up. Unused
+     */
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void features(String k) {
@@ -368,7 +360,7 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
         while (i < 7) {
             f[0][i] = null;
         }
-        Call<com.example.testingdm.charactercreation.api.Features> call = dnd5eapi.getFeatures(k); //Unsure what to put here
+        Call<com.example.testingdm.charactercreation.api.Features> call = dnd5eapi.getFeatures(k);
 
         call.enqueue(new Callback<Features>() {
             @Override
@@ -427,7 +419,7 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
         while (i < 7) {
             f[0][i] = null;
         }
-        Call<com.example.testingdm.charactercreation.api.proficiencies> call = dnd5eapi.getproficiency(k); //Unsure what to put here
+        Call<com.example.testingdm.charactercreation.api.proficiencies> call = dnd5eapi.getproficiency(k);
 
         call.enqueue(new Callback<proficiencies>() {
             @Override
@@ -478,7 +470,7 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
         while (i < 11) {
             f[0][i] = null;
         }
-        Call<com.example.testingdm.charactercreation.api.levels> call = dnd5eapi.getlevels(k); //Unsure what to put here
+        Call<com.example.testingdm.charactercreation.api.levels> call = dnd5eapi.getlevels(k);
 
         call.enqueue(new Callback<levels>() {
             @Override
@@ -533,7 +525,7 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
         while (i < 15) {
             f[0][i] = null;
         }
-        Call<com.example.testingdm.charactercreation.api.races> call = dnd5eapi.getrace(k); //Unsure what to put here
+        Call<com.example.testingdm.charactercreation.api.races> call = dnd5eapi.getrace(k);
 
         call.enqueue(new Callback<races>() {
             @Override
@@ -563,10 +555,8 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
 
             @Override
             public void onFailure(Call<races> call, Throwable t) {
-                //TextView apiTest = findViewById(R.id.testAPI);
                 String message = t.getMessage();
                 System.out.println(message + "&&&&&&&&&&&&&&&&&&&&&"); //bug output
-                //apiTest.setText(message);
             }
 
 
@@ -592,7 +582,7 @@ public class characterScreen extends AppCompatActivity implements AdapterView.On
         while (i < 8) {
             f[0][i] = null;
         }
-        Call<com.example.testingdm.charactercreation.api.subclasses> call = dnd5eapi.getsubclass(k); //Unsure what to put here
+        Call<com.example.testingdm.charactercreation.api.subclasses> call = dnd5eapi.getsubclass(k);
 
         call.enqueue(new Callback<subclasses>() {
             @Override

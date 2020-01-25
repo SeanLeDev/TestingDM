@@ -53,7 +53,6 @@ public class characterFragment extends Fragment implements adapterCardView.OnCar
         String nameSend = characterList.get(position);
         intent.putExtra("Test",characterList.get(position));
         startActivity(intent);
-        System.out.println("IT GOT CLICKED");
     }
 
     public interface FragmentListener{
@@ -73,7 +72,6 @@ public class characterFragment extends Fragment implements adapterCardView.OnCar
      */
     // TODO: Rename and change types and number of parameters
     public static characterFragment newInstance() {
-        System.out.println("ITS HERE");
         characterFragment fragment = new characterFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
@@ -83,14 +81,9 @@ public class characterFragment extends Fragment implements adapterCardView.OnCar
     @Override
     public void onResume() {
         super.onResume();
-        System.out.println("FALL OFF YOUR HORSE");
-        System.out.println("AAAAAAAAAAAAAAAAAAAAAA");
         adapterCardView mAdapter = new adapterCardView(getContext(), characterList, this);//Need to get Character Data
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        System.out.println(characterList.isEmpty() + ".....");
         recyclerView.setAdapter(mAdapter);
-        System.out.println(characterList);
-        System.out.println(characterList.isEmpty());
         mAdapter.notifyDataSetChanged();
     }
 
@@ -98,31 +91,22 @@ public class characterFragment extends Fragment implements adapterCardView.OnCar
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        System.out.println("FALL OFF YOUR HORSE");
         View rootview = inflater.inflate(R.layout.fragment_character, container, false);
         recyclerView = rootview.findViewById(R.id.characterRecyclerList);
-        System.out.println("AAAAAAAAAAAAAAAAAAAAAA");
         adapterCardView mAdapter = new adapterCardView(getContext(), characterList, this);//Need to get Character Data
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        System.out.println(characterList.isEmpty() + ".....");
         recyclerView.setAdapter(mAdapter);
-        System.out.println(characterList);
-        System.out.println(characterList.isEmpty());
 
         return rootview;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        System.out.println(getContext().getFilesDir() + "**");
-        System.out.println("EAT SHIT ASSHOLE");
+
         characterList = new ArrayList<>();
         try {
             characterList = ArrayToList.convertFileToList(getContext());
-            System.out.println(characterList);
-            System.out.println("success");
         } catch (IOException e) {
-            System.out.println("Fail" + e);
             e.printStackTrace();
         }
         super.onCreate(savedInstanceState);
@@ -141,29 +125,6 @@ public class characterFragment extends Fragment implements adapterCardView.OnCar
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
-    }
-
-    /*public void onTouchEvent(View view) {
-        RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
-        int position = viewHolder.getAdapterPosition();
-        System.out.println("onTouchEvent");
-        startActivity(new Intent(getActivity(), characterScreen.class));
-        try {
-            characterScreen.load(characterList.get(position));
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-    }*/
-
-    public void characterListMake() {
-        System.out.println("FreeFallinggggg%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-
-        try {
-            System.out.println(stats[1][0] + "**************");
-            IO.load(getContext());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
 

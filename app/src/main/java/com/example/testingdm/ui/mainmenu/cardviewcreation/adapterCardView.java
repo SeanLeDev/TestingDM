@@ -1,14 +1,11 @@
 package com.example.testingdm.ui.mainmenu.cardviewcreation;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 
@@ -21,15 +18,6 @@ import java.util.List;
 
 
 import com.example.testingdm.R;
-import com.example.testingdm.charactercreation.IO;
-import com.example.testingdm.charactercreation.characterEdit;
-import com.example.testingdm.charactercreation.characterScreen;
-import com.example.testingdm.characterfiles.Character;
-import com.example.testingdm.ui.mainmenu.MainActivity;
-
-import static androidx.core.content.ContextCompat.createDeviceProtectedStorageContext;
-import static androidx.core.content.ContextCompat.startActivity;
-import static com.example.testingdm.charactercreation.characterScreen.stats;
 
 public class adapterCardView extends RecyclerView.Adapter<adapterCardView.MyViewHolder> {
 

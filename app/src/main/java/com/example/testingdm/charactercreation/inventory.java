@@ -121,44 +121,6 @@ public class inventory extends Fragment {
         }
     }
 
-    /*@RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public void equipment(String k) {
-        Retrofit retrofit = new Retrofit.Builder() //Need this to access the api
-                .baseUrl("http://dnd5eapi.co/api/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        final dnd5eapi dnd5eapi = retrofit.create(dnd5eapi.class);
-
-        k.toLowerCase();
-        k.replace(" ","-");
-        Call<equipment> call = dnd5eapi.getEquipment(k); //Unsure what to put here
-
-        call.enqueue(new Callback<equipment>() {
-            @Override
-            public void onResponse(Call<equipment> call, Response<equipment> response) { //Connection to api is succesful
-
-                if (!response.isSuccessful()) {
-                    System.out.println("Code: " + response.code());
-                    return;
-                }
-                equipment item = response.body(); //response.body is the object you get from api
-                equipmentList.add(item.getName());
-                saveMethod(item);
-            }
-
-            @Override
-            public void onFailure(Call<equipment> call, Throwable t) {
-                //TextView apiTest = findViewById(R.id.testAPI);
-                String message = t.getMessage();
-                System.out.println(message + "&&&&&&&&&&&&&&&&&&&&&"); //bug output
-                //apiTest.setText(message);
-            }
-
-
-        });
-
-
-    }*/
 
     /**
      * This interface must be implemented by activities that contain this
